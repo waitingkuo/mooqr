@@ -1,0 +1,65 @@
+@import 'nib'
+
+// global
+a
+  text-decoration none
+  //color rgba(0, 0, 0, .87)
+
+body
+  background rgba(0, 0, 0, 0.1)
+  font-family 'Roboto', sans-seri
+
+// font w eight
+regular = 400
+medium = 500
+bold = 700
+
+// colors
+primary = #3F51B5
+primary-light = #C5CAE9
+primary-dark = #303F9F
+white = #FFFFFF
+
+
+// Utilities
+
+shadow(z-depth=1)
+  // box-shadow( x-offset, y-offset, blur, 0px, rgba(0, 0, 0, opacity) )
+  if z-depth == 1
+    box-shadow(0, 1px, 1px, 0px, rgba(0, 0, 0, 0.24))
+  else if z-depth == 2
+    box-shadow(0, 3px, 3px, 0px, rgba(0, 0, 0, 0.23))
+  else if z-depth == 3
+    box-shadow(0, 6px, 3px, 0px, rgba(0, 0, 0, 0.23))
+  else if z-depth == 4
+    box-shadow(0, 10px, 5px, 0px, rgba(0, 0, 0, 0.22))
+  else if z-depth == 5
+    box-shadow(0, 15px, 6px, 0px, rgba(0, 0, 0, 0.22))
+    
+
+// App bar
+.app-bar
+  shadow 2
+  background primary
+  color white
+  height 64px
+
+  padding 20px 24px 20px 24px
+
+  box-sizing border-box
+
+  clearfix()
+  > *
+    float left
+
+  .nav-icon
+    font-size 24px
+    height 24px
+    line-height 24px
+    margin-right 32px
+
+  .title
+    font-weight medium
+    font-size 20px
+    line-height 24px
+    height 24px
