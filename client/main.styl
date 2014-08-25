@@ -9,10 +9,64 @@ body
   background rgba(0, 0, 0, 0.1)
   font-family 'Roboto', sans-seri
 
-// font w eight
+// font weight
 regular = 400
 medium = 500
 bold = 700
+
+// typography
+// FIXME find a better way to set default color
+typog-headline()
+  font-weight regular
+  font-size 24px
+  line-height 32px
+  color rgba(0, 0, 0, 0.87)
+
+typog-title()
+  font-weight medium
+  font-size 20px
+  color rgba(0, 0, 0, 0.87)
+
+typog-subhead()
+  font-weight regular
+  font-weight 15px
+  // FIXME font-size 16px for devices
+  color rgba(0, 0, 0, 0.87)
+  line-height 24px
+//FIXME consider subhead2 if need
+
+typog-body1()
+  font-weight regular
+  font-size 13px
+  // FIXME font-size 14px for devices
+  color rgba(0, 0, 0, 0.87)
+  line-height 20px
+
+typog-body2()
+  font-weight medium
+  font-size 13px
+  // FIXME font-size 14px for devices
+  color rgba(0, 0, 0, 0.87)
+  line-height 24px
+
+typog-caption
+  font-weight regular
+  font-size 12px
+  color rgba(0, 0, 0, 0.54)
+
+typog-menu()
+  font-weight medium
+  font-size 13px
+  // FIXME font-size 14px for devices
+  color rgba(0, 0, 0, 0.87)
+
+typog-button()
+  font-weight medium
+  font-size 14px
+  text-transform uppercase
+  color rgba(0, 0, 0, 0.87)
+
+
 
 // colors
 primary = #3F51B5
@@ -20,9 +74,11 @@ primary-light = #C5CAE9
 primary-dark = #303F9F
 white = #FFFFFF
 
+/*
+ * Utilities
+ */
 
-// Utilities
-
+// shadow
 shadow(z-depth=1)
   // box-shadow( x-offset, y-offset, blur, 0px, rgba(0, 0, 0, opacity) )
   if z-depth == 1
@@ -35,14 +91,29 @@ shadow(z-depth=1)
     box-shadow(0, 10px, 5px, 0px, rgba(0, 0, 0, 0.22))
   else if z-depth == 5
     box-shadow(0, 15px, 6px, 0px, rgba(0, 0, 0, 0.22))
+
+// divider
+.divider
+  border-top 1px solid #a0afbb
     
+// container
+container()
+  max-width 1150px
+  width 1150px
+  margin-left auto
+  margin-right auto
+
 
 // App bar
+#app-bar
+  height 64px
 .app-bar
-  shadow 2
   background primary
   color white
+  width 100%
   height 64px
+  shadow 2
+  position fixed
 
   padding 20px 24px 20px 24px
 
@@ -61,7 +132,36 @@ shadow(z-depth=1)
     margin-right 32px
 
   .title
-    font-weight medium
-    font-size 20px
+    typog-headline()
+    color white
     line-height 24px
     height 24px
+
+
+.card
+  background white
+  border-radius 2px
+  shadow 1
+
+  margin-bottom 8px
+
+  .title
+    typog-headline()
+
+  .content
+    padding 16px
+    font-size 14px
+    font-weight regular
+
+    .title
+      typog-headline()
+
+// index
+#index
+  .container
+    container()
+
+// test
+.test
+  typog-body1()
+  vertical-align top
