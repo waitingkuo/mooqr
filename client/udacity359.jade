@@ -1,0 +1,26 @@
+template(name="udacity359")
+  #udacity359
+    br
+    br
+    .container
+
+      .card
+        .content
+          .title {{courseName}}
+        .divider
+        .content
+          .progress-bar-container(style="width: calc(100% - 50px)")
+            .progress-bar(style="width:{{percent}}%; float:left;")
+          .percent(style="float:right; width:50px") {{percent}}%
+
+      each modules
+        .card.module
+          .content
+            .title {{moduleName}}
+          .divider
+          .content
+            ul.tasks
+              each tasks
+                li.task
+                  input(type="checkbox" checked="{{done}}")
+                  a {{taskName}}
