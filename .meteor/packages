@@ -13,4 +13,5 @@ iron:router
 waitingkuo:normalize
 mrt:moment
 mrt:ionicons
+mrt:numeral
 
