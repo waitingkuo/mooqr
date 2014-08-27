@@ -4,8 +4,6 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
-insecure
 waitingkuo:jade
 coffeescript
 stylus
@@ -14,4 +12,3 @@ waitingkuo:normalize
 mrt:moment
 mrt:ionicons
 mrt:numeral
-

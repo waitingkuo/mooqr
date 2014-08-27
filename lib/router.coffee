@@ -14,3 +14,5 @@ Meteor.startup ->
       data: ->
         # FIXME
         CoursePlans.findOne()
+      waitOn: ->
+        Meteor.subscribe 'coursePlans'
