@@ -1,0 +1,34 @@
+template(name="plan")
+  #plan
+    br
+    br
+    .container
+
+      .card
+        .content
+          .title {{planName}}
+          button.add-module ADD NEW MODULE
+        .divider
+        .content
+          br
+
+      each modules
+        +module
+
+
+template(name="module")
+  .card.module
+    .content
+      .title {{moduleName}}
+      button.add-task ADD NEW TASK
+    .divider
+    .content
+      ul.tasks
+        each tasks
+          li.task
+            .checkbox
+              input(type="checkbox", checked="{{done}}", id="{{_id}}")
+              label(for="{{_id}}")
+            .task-content {{taskName}}
+            
+   

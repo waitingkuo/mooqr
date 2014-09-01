@@ -66,6 +66,10 @@ typog-button()
   text-transform uppercase
   color rgba(0, 0, 0, 0.87)
 
+typog-list-title()
+  font-weight regular
+  font-size 16px
+  color rgba(0, 0, 0, 0.87)
 
 
 // colors
@@ -91,6 +95,91 @@ shadow(z-depth=1)
     box-shadow(0, 10px, 5px, 0px, rgba(0, 0, 0, 0.22))
   else if z-depth == 5
     box-shadow(0, 15px, 6px, 0px, rgba(0, 0, 0, 0.22))
+
+
+// checkbox
+// https://github.com/nt1m/material-framework/blob/master/css/material.css
+.checkbox
+
+  //display inline-block
+  //vertical-align top
+  cursor pointer
+  user-select none
+
+  label
+    cursor pointer
+
+  input[type="checkbox"]
+    display none
+
+  input[type="checkbox"] + label 
+    //border-radius 100%
+    width 30px
+    height 30px
+    display inline-block
+    //background transparent
+    //transition all 0.2s
+    //position relative
+    //box-shadow 0 0 0 transparent
+
+  //input[type="checkbox"] + label:active
+  //  box-shadow 0 0 0 9px rgba(15, 157, 88, 0.29)
+  //  background rgba(15, 157, 88, 0.29)
+
+  //input[type="checkbox"]:checked + label:active
+  //  background rgba(204, 204, 204, 0.8)
+
+  input[type="checkbox"] + label::after
+    content ""
+    border 2px solid #5A5A5A
+    width 18px
+    height 18px
+    display inline-block
+    position relative
+    margin-top 4px
+    margin-left 4px
+    margin-bottom 1px
+    //animation checkbox 0.3s reverse
+
+  input[type="checkbox"]:checked + label::after
+    transform rotate(45deg)
+    top -4px
+    left 6px
+    width 10px
+    height 21px
+    border-width medium 2px 2px medium
+    border-top 0 none #0F9D58
+    border-left 0 none #0F9D58
+    border-color #0F9D58
+    margin-bottom 0
+    //animation checkbox2 0.3s alternate
+
+
+@keyframes checkbox {
+  0% {
+    transform none
+  }
+  50% {
+    transform scale(0.1)
+  }
+  100% {
+    transform rotate(45deg)
+  }
+}
+@keyframes checkbox2 {
+  0% {
+    transform none
+  }
+  50% {
+    transform scale(0.1)
+  }
+  100% {
+    transform rotate(45deg)
+  }
+}
+
+
+
 
 // divider
 .divider
@@ -161,7 +250,7 @@ container()
   .container
     container()
 
-#udacity359
+#udacity359, #plan
   .container
     container()
 
@@ -175,6 +264,22 @@ container()
     ul.tasks
       list-style none
       padding-left 0
+
+      .task
+        clearfix()
+        > *
+          float left
+
+        .checkbox   
+          width 30px
+          height 30px
+          margin-right 26px
+
+        .task-content
+          typog-list-title()
+          height 30px
+          line-height 30px
+
 
 // test
 .test
