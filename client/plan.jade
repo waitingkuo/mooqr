@@ -15,6 +15,8 @@ template(name="plan")
       each modules
         +module
 
+      +taskDialog
+
 
 template(name="module")
   .card.module
@@ -31,4 +33,34 @@ template(name="module")
               label(for="{{_id}}")
             .task-content {{taskName}}
             
-   
+template(name="taskDialog") 
+  .task-dialog
+
+    .dialog-header New task
+
+    .task-name
+      +UI.dynamic template="inputText" data=taskName
+
+    //.task-content
+    //  +UI.dynamic template="inputTextarea" data=content
+
+    .dialog-footer
+      button.button.flat-button.save-button save
+      button.button.flat-button.cancel-button cancel
+
+
+template(name="inputText")
+  .input-text
+    input(type="text", required)
+    span.highlight
+    span.bar
+    label {{label}}
+
+template(name="inputTextarea")
+  .input-textarea
+    textarea(required)
+    span.highlight
+    span.bar
+    label {{label}}
+
+

@@ -5,9 +5,11 @@ a
   text-decoration none
   //color rgba(0, 0, 0, .87)
 
-body
-  background rgba(0, 0, 0, 0.1)
-  font-family 'Roboto', sans-seri
+// colors
+primary = #3F51B5
+primary-light = #C5CAE9
+primary-dark = #303F9F
+white = #FFFFFF
 
 // font weight
 regular = 400
@@ -71,12 +73,26 @@ typog-list-title()
   font-size 16px
   color rgba(0, 0, 0, 0.87)
 
+// button
+.button
+  margin-left 5px
+  margin-right 5px
+  typog-button()
+  &:focus
+    outline none
 
-// colors
-primary = #3F51B5
-primary-light = #C5CAE9
-primary-dark = #303F9F
-white = #FFFFFF
+  &.flat-button
+    border 0
+    background white
+
+    &.save-button
+      color #4285F4
+
+body
+  background rgba(0, 0, 0, 0.1)
+  font-family 'Roboto', sans-seri
+
+
 
 /*
  * Utilities
@@ -257,10 +273,183 @@ dialog(z-depth=2)
   dialog(3)
   padding 24px
   width 600px
-  top 100px
+  top 200px
   left calc((100% - 600px) / 2)
 
+  .dialog-header
+    typog-headline()
+    margin-bottom 30px
 
+  .dialog-footer   
+    clearfix()
+    .button
+      float right
+
+
+//input
+// http://scotch.io/tutorials/css/google-material-design-input-boxes-in-css3
+.input-text
+
+  position relative
+  margin-bottom 45px
+
+  input 
+    font-size 18px
+    padding 10px 10px 10px 5px
+    display block
+    width 300px
+    box-sizing border-box
+    border none
+    border-bottom 1px solid #757575
+    &:focus
+      outline none
+
+  label
+    color #999
+    font-size 18px
+    font-weight normal
+    position absolute
+    pointer-events none
+    left 5px
+    top 10px
+    transition 0.2s ease all
+
+  input:focus ~ label
+  input:valid ~ label
+    top -20px
+    font-size 14px
+    color #5264AE
+
+  // BOTTOM BARS
+  .bar
+    position relative
+    display block
+    width 300px
+    background blue
+
+    &::before,
+    &::after
+      content ""
+      height 2px
+      width 0
+      bottom 1px
+      position absolute
+      background #5264AE
+      transition 0.2s ease all
+    &::before
+      left 50%
+    &::after
+      right 50%
+
+  input:focus ~ .bar::before,
+  input:focus ~ .bar::after
+    width 50%
+
+  // HIGHLIGHTER 
+  .highlight
+    position absolute
+    height 60%
+    width 100px
+    top 25%
+    left 0
+    pointer-events none
+    opacity 0.5
+  input:focus ~ .highlight
+    animation input-highlighter 0.3s ease
+
+@keyframes input-highlighter {
+  form {
+    background #5264AE
+  }
+  to {
+    width 0
+    background transparent
+  }
+}
+
+.input-textarea
+
+  position relative
+  margin-bottom 45px
+
+  textarea
+    overflow hidden
+    resize none
+    height 24px
+    line-height 24px
+    font-size 18px
+    padding 10px 10px 10px 5px
+    display block
+    width 285px
+    border none
+    border-bottom 1px solid #757575
+    &:focus
+      outline none
+
+  label
+    color #999
+    font-size 18px
+    font-weight normal
+    position absolute
+    pointer-events none
+    left 5px
+    top 10px
+    transition 0.2s ease all
+
+  textarea:focus ~ label
+  textarea:valid ~ label
+    top -20px
+    font-size 14px
+    color #5264AE
+
+  // BOTTOM BARS
+  .bar
+    position relative
+    display block
+    width 300px
+    background blue
+
+    &::before,
+    &::after
+      content ""
+      height 2px
+      width 0
+      bottom 1px
+      position absolute
+      background #5264AE
+      transition 0.2s ease all
+    &::before
+      left 50%
+    &::after
+      right 50%
+
+  textarea:focus ~ .bar::before,
+  textarea:focus ~ .bar::after
+    width 50%
+
+  // HIGHLIGHTER 
+  .highlight
+    position absolute
+    height 60%
+    width 100px
+    top 25%
+    left 0
+    pointer-events none
+    opacity 0.5
+  textarea:focus ~ .highlight
+    animation textarea-highlighter 0.3s ease
+
+@keyframes textarea-highlighter {
+  form {
+    background #5264AE
+  }
+  to {
+    width 0
+    background transparent
+  }
+}
+
+    
 // index
 #index
   .container
