@@ -198,6 +198,7 @@ shadow(z-depth=1)
 
 
 // divider
+divider = 1px solid #a0afbb
 .divider
   border-top 1px solid #a0afbb
     
@@ -236,12 +237,55 @@ container()
     text-align center
     line-height 24px
     margin-right 32px
+    cursor pointer
 
   .title
     typog-headline()
     color white
     line-height 24px
     height 24px
+
+// sidebar
+//#side-bar
+side-bar-width = 300px
+#side-bar
+
+  width side-bar-width
+  min-height 100%
+
+  background white
+
+  position fixed
+  top 0
+  left 0
+
+  z-index 3
+  shadow 3
+
+  transform translateX( - side-bar-width )
+  &.active
+    transform translateX( 0 )
+  transition 0.2s ease all
+  
+
+  .header
+    height 150px
+    padding 16px
+    .avatar
+      width 48px
+      height 48px
+      border-radius 24px
+      background black
+
+  .lists
+    padding 16px
+    .list
+      i
+        font-size 24px
+        margin-right 36px
+      span
+        font-size 20px
+        vertical-align 10%
 
 
 .card
