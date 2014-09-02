@@ -7,8 +7,8 @@ Template.appBar.events
     else
       Session.set 'sideBar:isActive', true
 
+
 Meteor.startup ->
   $(':not(.navi-icon)').click (e) ->
-    e.stopPropagation()
     Session.set 'sideBar:isActive', false
     

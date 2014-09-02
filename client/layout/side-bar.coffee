@@ -6,6 +6,5 @@ Template.sideBar.helpers
     else
       return ''
 
-    
-   
-  
+
+
