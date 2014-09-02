@@ -1,5 +1,34 @@
 @Plans = new Meteor.Collection 'plans'
 
+Plans.attachSchema new SimpleSchema
+
+  planName:
+    type: String
+    label: 'Plan name'
+    max: 200
+
+  moduleIds:
+    type: [String]
+    optional: true
+
+
+if Meteor.isClient
+  AutoForm.hooks
+    planDialog:
+      onSubmit: (insertDoc, updateDoc, currentDoc) ->
+
+        planName = insertDoc.planName
+
+        Meteor.call 'createPlan', planName, (err, result) ->
+          if not err
+            UI.remove UI.planDialog
+
+        @done()
+        return false
+
+
+
+
 Meteor.methods
 
   'createPlan': (planName) ->

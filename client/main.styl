@@ -73,20 +73,7 @@ typog-list-title()
   font-size 16px
   color rgba(0, 0, 0, 0.87)
 
-// button
-.button
-  margin-left 5px
-  margin-right 5px
-  typog-button()
-  &:focus
-    outline none
 
-  &.flat-button
-    border 0
-    background white
-
-    &.save-button
-      color #4285F4
 
 body
   background rgba(0, 0, 0, 0.1)
@@ -112,6 +99,38 @@ shadow(z-depth=1)
   else if z-depth == 5
     box-shadow 0 0px 30px 0px rgba(0, 0, 0, 0.30), 0 15px 6px 0px rgba(0, 0, 0, 0.22)
 
+// button
+.button
+  typog-button()
+  //FIXME
+  margin-left 5px
+  margin-right 5px
+  &:focus
+    outline none
+
+  &.flat-button
+    border 0
+    background white
+
+    &.save-button
+      color #4285F4
+
+  &.float-button
+    border 0
+    background primary
+    width 48px
+    height 48px
+    border-radius 24px
+    color white
+    font-size 24px
+    line-height 45px
+    text-align center
+    position fixed
+    right 50px
+    bottom 50px
+    shadow 2
+    z-index 3
+    cursor pointer
 
 // checkbox
 // https://github.com/nt1m/material-framework/blob/master/css/material.css
@@ -204,8 +223,8 @@ divider = 1px solid #a0afbb
     
 // container
 container()
-  max-width 1150px
-  width 1150px
+  max-width 900px
+  width 900px
   margin-left auto
   margin-right auto
 
@@ -313,6 +332,7 @@ dialog(z-depth=2)
   position fixed
   z-index z-depth
 
+.plan-dialog,
 .module-dialog
   dialog(3)
   padding 24px
@@ -517,6 +537,30 @@ dialog(z-depth=2)
   .container
     container()
 
+#plans
+  .container
+    container()
+
+  .my-plans
+    .header
+      typog-subhead()
+
+  .plan
+    clearfix()
+    > *
+      float left
+    padding 16px
+    cursor pointer
+    a
+      display block
+      width 100%
+    &:hover
+      background rgba(0, 0, 0, 0.1)
+
+  .plan + .plan 
+    border-top divider
+
+  
 #udacity359, #plan
   .container
     container()

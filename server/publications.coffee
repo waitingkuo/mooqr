@@ -13,6 +13,9 @@ Meteor.publish 'plan', (planId) ->
     Tasks.find planId: planId
   ]
 
+Meteor.publish 'userPlans', () ->
+  Plans.find()
+
 
 
 

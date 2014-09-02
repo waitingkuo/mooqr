@@ -1,0 +1,30 @@
+template(name="plans")
+  #plans
+
+    .button.float-button.add-plan +
+
+    br
+    br
+    .container
+
+      .my-plans
+        .header My Plans
+        br
+
+        .card
+          each plans
+            .plan
+              .plan-title {{planName}}
+
+
+template(name="planDialog")
+  .plan-dialog
+    +autoForm id="planDialog" collection="Plans"
+      .dialog-header New Plan
+
+      .plan-name
+        +UI.dynamic template="inputText" data=planName
+
+      .dialog-footer
+        button.button.flat-button.save-button(type="submit") save
+        button.button.flat-button.cancel-button(type="button") cancel

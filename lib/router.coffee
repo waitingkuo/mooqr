@@ -8,6 +8,15 @@ Meteor.startup ->
       path: '/'
       template: 'index'
 
+    @route 'plans',
+      path: '/plans',
+      template: 'plans'
+      data: ->
+        # FIXME according to user
+        plans: -> Plans.find()
+      waitOn: ->
+        Meteor.subscribe 'userPlans'
+
     @route 'plan',
       path: '/plans/:_id',
       template: 'plan'
@@ -19,10 +28,6 @@ Meteor.startup ->
         planId = @params._id
         plan = Plans.findOne @params._id
         if plan
-          #modules = Modules.find _id: {$in: plan.moduleIds}
-          #if modules.count() > 0
-          #  moduleMap = _.indexBy modules.fetch(), '_id'
-          #  plan.modules = plan.moduleIds.map (moduleId) -> moduleMap[moduleId]
           plan.modules = plan.moduleIds.map (moduleId) -> 
             module = Modules.findOne moduleId
             if module.taskIds

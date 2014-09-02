@@ -28,7 +28,6 @@ if Meteor.isClient
           if not err
             UI.remove UI.taskDialog
 
-        console.log 'onsubmit'
         @done()
         return false
 
