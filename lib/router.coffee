@@ -11,6 +11,9 @@ Meteor.startup ->
     @route 'plan',
       path: '/plans/:_id',
       template: 'plan'
+      action: -> 
+        Session.set 'currentPlanId', @params._id
+        @render()
       data: ->
         # FIXME might need to optimize
         planId = @params._id

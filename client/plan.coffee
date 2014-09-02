@@ -3,36 +3,40 @@ Template.plan.events
   'click .add-module': (e) ->
 
     planId = @_id
-
-    Meteor.call 'addModule', planId, 'New Module'
+    Session.set 'currentPlanId', planId
+  
+    UI.moduleDialog = UI.render Template.moduleDialog
+    UI.insert UI.moduleDialog, $('body')[0]
 
   
 Template.module.events
 
   'click .add-task': (e) ->
 
-    planId = Router.current().data()._id
     moduleId = @_id
+    Session.set 'currentModuleId', moduleId
 
-    #Meteor.call 'addTask', planId, moduleId, 'New Task'
-    #
-    #
+    UI.taskDialog = UI.render Template.taskDialog
+    UI.insert UI.taskDialog, $('body')[0]
+
     
-Template.taskDialog.helpers
-
-  taskName: ->
-    label: 'Task Name'
-  #content: ->
-  #  label: 'Content' 
-  #
-Template.taskDialog.events
-
-  'click .save-button': (e) ->
-    planId = undefined
-    moduleId = undefined
-    taskName = $(e.currentTarget).closest('.task-dialog').find('.task-name input').val()
-    console.log taskName
+   
   
+Template.moduleDialog.helpers
+  moduleName: ->
+    fieldName: 'moduleName'
+Template.moduleDialog.events
+  'click .cancel-button': (e) ->
+    UI.remove UI.moduleDialog
+
+Template.taskDialog.helpers
+  taskName: ->
+    fieldName: 'taskName'
+Template.taskDialog.events
+  'click .cancel-button': (e) ->
+    UI.remove UI.taskDialog
+
+
 Template.inputTextarea.events
 
   'keyup': (e) ->

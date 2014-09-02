@@ -15,8 +15,6 @@ template(name="plan")
       each modules
         +module
 
-      +taskDialog
-
 
 template(name="module")
   .card.module
@@ -32,29 +30,40 @@ template(name="module")
               input(type="checkbox", checked="{{done}}", id="{{_id}}")
               label(for="{{_id}}")
             .task-content {{taskName}}
-            
+
+template(name="moduleDialog")
+  .module-dialog
+    +autoForm id="moduleDialog" collection="Modules"
+      .dialog-header New Module
+
+      .module-name
+        +UI.dynamic template="inputText" data=moduleName
+
+      .dialog-footer
+        button.button.flat-button.save-button(type="submit") save
+        button.button.flat-button.cancel-button(type="button") cancel
+
 template(name="taskDialog") 
   .task-dialog
+    +autoForm id="taskDialog" collection="Tasks"
+      .dialog-header New Task
 
-    .dialog-header New task
+      .module-name
+        +UI.dynamic template="inputText" data=taskName
 
-    .task-name
-      +UI.dynamic template="inputText" data=taskName
-
-    //.task-content
-    //  +UI.dynamic template="inputTextarea" data=content
-
-    .dialog-footer
-      button.button.flat-button.save-button save
-      button.button.flat-button.cancel-button cancel
+      .dialog-footer
+        button.button.flat-button.save-button(type="submit") save
+        button.button.flat-button.cancel-button(type="button") cancel
 
 
 template(name="inputText")
   .input-text
-    input(type="text", required)
+    //input(type="text", required)
+    +afFieldInput name=fieldName template="plain"
     span.highlight
     span.bar
-    label {{label}}
+    +afFieldLabel name=fieldName template="plain"
+    //label {{label}}
 
 template(name="inputTextarea")
   .input-textarea

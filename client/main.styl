@@ -269,6 +269,22 @@ dialog(z-depth=2)
   position fixed
   z-index z-depth
 
+.module-dialog
+  dialog(3)
+  padding 24px
+  width 600px
+  top 200px
+  left calc((100% - 600px) / 2)
+
+  .dialog-header
+    typog-headline()
+    margin-bottom 30px
+
+  .dialog-footer   
+    clearfix()
+    .button
+      float right
+
 .task-dialog
   dialog(3)
   padding 24px
@@ -284,6 +300,8 @@ dialog(z-depth=2)
     clearfix()
     .button
       float right
+
+
 
 
 //input
