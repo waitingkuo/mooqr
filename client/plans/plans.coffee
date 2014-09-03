@@ -11,5 +11,8 @@ Template.planDialog.helpers
   # this is strange
   planName: ->
     fieldName: 'planName'
+Template.planDialog.events
+  'click .cancel-button': (e) ->
+    UI.remove UI.planDialog
 
 
