@@ -7,7 +7,6 @@ standard-app-packages
 waitingkuo:jade
 coffeescript
 stylus
-iron:router
 waitingkuo:normalize
 mrt:moment
 mrt:ionicons
@@ -15,4 +14,5 @@ mrt:numeral
 aldeed:autoform
 aldeed:collection2
 aldeed:simple-schema
+iron:router@0.9.3-rc0
 
