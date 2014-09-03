@@ -3,9 +3,7 @@ Template.plans.events
     Router.go 'plan', _id: @_id
 
   'click .add-plan': (e) ->
-    
-    UI.planDialog = UI.render Template.planDialog
-    UI.insert UI.planDialog, $('body')[0]
+    Blaze.render Template.planDialog, document.body
 
 Template.planDialog.helpers
   # this is strange
@@ -13,6 +11,18 @@ Template.planDialog.helpers
     fieldName: 'planName'
 Template.planDialog.events
   'click .cancel-button': (e) ->
-    UI.remove UI.planDialog
+    Blaze.remove Blaze.currentView
 
+AutoForm.hooks
+  planDialog:
+    onSubmit: (insertDoc, updateDoc, currentDoc) ->
+
+      planName = insertDoc.planName
+
+      Meteor.call 'createPlan', planName, (err, result) ->
+        if not err
+          Blaze.remove Blaze.getView($('.plan-dialog')[0])
+
+      @done()
+      return false
 
