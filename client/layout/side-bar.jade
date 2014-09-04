@@ -1,7 +1,11 @@
 template(name="sideBar")
   #side-bar(class="{{active}}")
     .header
-      .avatar
+       
+      img.avatar(src="{{user.profile.picture}}", style="width:48px")
+      h2 {{user.profile.name}}
+      h2 {{user.profile.email}}
+
     .divider
 
     .lists

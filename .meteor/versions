@@ -1,3 +1,8 @@
+accounts-base@1.1.0-rc0
+accounts-google@1.0.0
+accounts-oauth@1.1.0-rc0
+accounts-ui-unstyled@1.1.0-rc0
+accounts-ui@1.1.0-rc0
 aldeed:autoform@0.17.1
 aldeed:collection2@0.4.6
 aldeed:simple-schema@0.7.0
@@ -18,6 +23,7 @@ ejson@1.0.1-rc0
 fastclick@1.0.0-cordova1
 follower-livedata@1.0.1-rc0
 geojson-utils@1.0.0
+google@1.1.0-rc0
 handlebars@1.0.0
 html-tools@1.0.0
 htmljs@1.0.0-cordova1
@@ -29,7 +35,9 @@ iron:layout@0.4.1-rc0
 iron:router@0.9.3-rc0
 jquery@1.0.0
 json@1.0.0
+less@1.0.8-cordova6
 livedata@1.0.8-rc1
+localstorage@1.0.0
 logging@1.0.2-cordova2
 meteor-platform@1.1.0-rc0
 meteor@1.1.0-rc0
@@ -41,6 +49,8 @@ mongo@1.0.4-rc0
 mrt:ionicons@1.4.1
 mrt:moment@2.8.1
 mrt:numeral@1.5.3
+oauth2@1.1.0-rc0
+oauth@1.1.0-rc0
 observe-sequence@1.0.2-rc0
 ordered-dict@1.0.0
 random@1.0.0
@@ -49,6 +59,7 @@ reactive-var@1.0.1-rc0
 reload@1.1.0-rc1
 retry@1.0.0
 routepolicy@1.0.0-cordova1
+service-configuration@1.0.1-rc0
 session@1.0.1-rc0
 spacebars-compiler@1.0.2-rc0
 spacebars@1.0.1-rc1

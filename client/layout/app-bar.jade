@@ -5,5 +5,10 @@ template(name="appBar")
         i.icon.ion-navicon
       .title
         a Mooqr
+        
+        unless currentUser
+            +loginButtons
+      
+
 
       
