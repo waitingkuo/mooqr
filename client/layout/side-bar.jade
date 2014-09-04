@@ -2,9 +2,12 @@ template(name="sideBar")
   #side-bar(class="{{active}}")
     .header
        
-      img.avatar(src="{{user.profile.picture}}", style="width:48px")
-      h2 {{user.profile.name}}
-      h2 {{user.profile.email}}
+      if currentUser
+        with currentUser.profile
+          img.avatar(src="{{currentUser.profile.picture}}", style="width:48px")
+          p {{currentUser.profile.name}}
+      else
+        .avatar
 
     .divider
 
