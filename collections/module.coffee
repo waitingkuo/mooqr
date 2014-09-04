@@ -16,21 +16,6 @@ Modules.attachSchema new SimpleSchema
     optional: true
 
 
-if Meteor.isClient
-  AutoForm.hooks
-    moduleDialog:
-      onSubmit: (insertDoc, updateDoc, currentDoc) ->
-
-        planId = Session.get 'currentPlanId'
-        moduleName = insertDoc.moduleName
-
-        Meteor.call 'addModule', planId, moduleName, (err, result) ->
-          if not err
-            UI.remove UI.moduleDialog
-
-        @done()
-        return false
-
 Modules.allow
   'insert': -> true
   'update': -> true

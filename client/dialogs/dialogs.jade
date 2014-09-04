@@ -1,0 +1,59 @@
+template(name="inputText")
+  .input-text
+    +afFieldInput name=fieldName template="plain"
+    span.highlight
+    span.bar
+    +afFieldLabel name=fieldName template="plain"
+
+template(name="inputTextarea")
+  .input-textarea
+    textarea(required)
+    span.highlight
+    span.bar
+    label {{label}}
+
+// Plan Dialog
+template(name="planDialog")
+  .plan-dialog
+    +autoForm id="planDialog" collection="Plans"
+      .dialog-header New Plan
+
+      .plan-name
+        +UI.dynamic template="inputText" data=planName
+
+      .dialog-footer
+        button.button.flat-button.save-button(type="submit") save
+        button.button.flat-button.cancel-button(type="button") cancel
+
+
+// Module Dialog
+template(name="moduleDialog")
+  .module-dialog
+    +autoForm id="moduleDialog" collection="Modules"
+      .dialog-header New Module
+
+      .module-name
+        +UI.dynamic template="inputText" data=moduleName
+
+      .dialog-footer
+        button.button.flat-button.save-button(type="submit") save
+        button.button.flat-button.cancel-button(type="button") cancel
+
+
+// Task Dialog
+template(name="taskDialog") 
+  .task-dialog
+    +autoForm id="taskDialog" collection="Tasks"
+      .dialog-header New Task
+
+      .module-name
+        +UI.dynamic template="inputText" data=taskName
+
+      .dialog-footer
+        button.button.flat-button.save-button(type="submit") save
+        button.button.flat-button.cancel-button(type="button") cancel
+
+
+
+
+

@@ -87,29 +87,3 @@ Meteor.methods
   
 
 
-
-
-#@CoursePlans = new Meteor.Collection 'coursePlans'
-
-#CoursePlans.allow
-  # FIXME
-#  'update': -> true
-
-#if Meteor.isServer
-
-#  Meteor.methods
-#    'updateCoursePlanTask': (coursePlanId, taskId, done) ->
-
-#      selector =
-#        _id: coursePlanId
-#        'modules.tasks.taskId': taskId
-
-#      modifier =
-#        $set:
-#          'modules.$.done': done
-
-#      console.log selector, modifier
-
-#      CoursePlans.update selector, modifier
-
-
