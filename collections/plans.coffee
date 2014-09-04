@@ -32,6 +32,9 @@ Meteor.methods
   'deletePlan': (planId) ->
     # FIXME 
     'consider whether we make it public or not'
+    Plans.remove planId
+    #FIXME
+    #should also delete modules and tasks
 
 
   'addModule': (planId, moduleName) ->

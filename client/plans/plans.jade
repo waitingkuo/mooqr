@@ -17,5 +17,10 @@ template(name="plans")
               .plan-title {{planName}}
               .plan-more
                 i.ion-more
+                +planItemMoreMenu
 
-
+template(name="planItemMoreMenu")
+  .menu.plan-item-more-menu
+    .item.rename Rename
+    .item.remove Remove
+     
