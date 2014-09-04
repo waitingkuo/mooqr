@@ -16,6 +16,16 @@ Template.planDialog.helpers
 Template.planDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
+Template.editPlanDialog.helpers
+  # this is strange
+  planName: ->
+    fieldName: 'planName'
+  editingDoc: ->
+    Plans.findOne Session.get('currentPlanId')
+
+Template.editPlanDialog.events
+  'click .cancel-button': (e) ->
+    Blaze.remove Blaze.currentView
 
 
 # Module Dialog
@@ -44,6 +54,19 @@ AutoForm.hooks
       planName = insertDoc.planName
 
       Meteor.call 'createPlan', planName, (err, result) ->
+        if not err
+          Blaze.remove Blaze.getView($('.plan-dialog')[0])
+
+      @done()
+      return false
+
+  editPlanDialog:
+    onSubmit: (insertDoc, updateDoc, currentDoc) ->
+
+      planId = currentDoc._id
+      planName = updateDoc.$set.planName
+
+      Meteor.call 'updatePlan', planId, planName, (err, result) ->
         if not err
           Blaze.remove Blaze.getView($('.plan-dialog')[0])
 

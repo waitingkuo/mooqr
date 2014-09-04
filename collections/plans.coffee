@@ -26,7 +26,8 @@ Meteor.methods
   'updatePlan': (planId, planName) ->
 
     Plans.update planId,
-      planName: planName
+      $set:
+        planName: planName
 
 
   'deletePlan': (planId) ->

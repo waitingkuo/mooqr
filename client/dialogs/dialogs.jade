@@ -25,6 +25,19 @@ template(name="planDialog")
         button.button.flat-button.save-button(type="submit") save
         button.button.flat-button.cancel-button(type="button") cancel
 
+// Plan Dialog
+template(name="editPlanDialog")
+  .plan-dialog
+    +autoForm id="editPlanDialog" collection="Plans" doc=editingDoc
+      .dialog-header Edit Plan
+
+      .plan-name
+        +UI.dynamic template="inputText" data=planName
+
+      .dialog-footer
+        button.button.flat-button.save-button(type="submit") update
+        button.button.flat-button.cancel-button(type="button") cancel
+
 
 // Module Dialog
 template(name="moduleDialog")

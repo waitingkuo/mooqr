@@ -15,6 +15,10 @@ $('*').click (e) ->
   $(e.target).find('.plan-item-more-menu').removeClass('active')
 
 Template.plans.events
+  'click .rename': (e) ->
+    Session.set 'currentPlanId', @_id
+    Blaze.render Template.editPlanDialog, document.body 
+
   'click .remove': (e) ->
     Meteor.call 'deletePlan', @_id
 
