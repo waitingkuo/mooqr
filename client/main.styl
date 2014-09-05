@@ -601,9 +601,101 @@ dialog(z-depth=2)
     border-top divider
 
   
-#udacity359, #plan
+#plan
   .container
     container()
+    .plan
+      .header
+        position relative
+        height 52px
+        clearfix()
+        > *
+          float left
+        .plan-name
+          box-sizing border-box
+          padding 16px
+          width calc(100% - 52px)
+        .plan-more-button 
+          box-sizing border-box
+          width 52px
+          height 52px
+          line-height 52px
+          text-align center
+          transform rotate(90deg)
+          font-size 20px
+          cursor pointer
+          color rgba(0, 0, 0, 0.2)
+          &:hover
+            color rgba(0, 0, 0, 1)
+        .plan-more-menu
+          z-index 5
+          position absolute
+          top 10px
+          right 10px
+          .item
+            cursor pointer
+
+          &:not(.active)
+            display none
+
+    .module
+      .header
+        position relative
+        height 52px
+        clearfix()
+        > *
+          float left
+        .module-name
+          box-sizing border-box
+          padding 16px
+          width calc(100% - 52px)
+        .module-more-button 
+          box-sizing border-box
+          width 52px
+          height 52px
+          line-height 52px
+          text-align center
+          transform rotate(90deg)
+          font-size 20px
+          cursor pointer
+          color rgba(0, 0, 0, 0.2)
+          &:hover
+            color rgba(0, 0, 0, 1)
+        .module-more-menu
+          z-index 5
+          position absolute
+          top 10px
+          right 10px
+          .item
+            cursor pointer
+
+          &:not(.active)
+            display none
+
+      ul.tasks
+        list-style none
+        padding-left 0
+
+        .task
+          clearfix()
+          > *
+            float left
+
+          .checkbox   
+            width 30px
+            height 30px
+            margin-right 26px
+
+          .task-content
+            typog-list-title()
+            height 30px
+            line-height 30px
+
+
+#udacity359
+  .container
+    container()
+
 
   .card
     .content

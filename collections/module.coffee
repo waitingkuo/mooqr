@@ -7,6 +7,10 @@ Modules.attachSchema new SimpleSchema
     label: 'Module name'
     max: 200
 
+  userId:
+    type: String
+    optional: true
+
   planId:
     type: String
     optional: true

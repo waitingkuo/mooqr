@@ -52,6 +52,19 @@ template(name="moduleDialog")
         button.button.flat-button.save-button(type="submit") save
         button.button.flat-button.cancel-button(type="button") cancel
 
+// Module Dialog
+template(name="editModuleDialog")
+  .module-dialog
+    +autoForm id="editModuleDialog" collection="Modules" doc=editingDoc
+      .dialog-header Edit Module
+
+      .module-name
+        +UI.dynamic template="inputText" data=moduleName
+
+      .dialog-footer
+        button.button.flat-button.save-button(type="submit") update
+        button.button.flat-button.cancel-button(type="button") cancel
+
 
 // Task Dialog
 template(name="taskDialog") 

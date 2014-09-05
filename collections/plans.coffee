@@ -2,6 +2,10 @@
 
 Plans.attachSchema new SimpleSchema
 
+  userId:
+    type: String
+    optional: true
+
   planName:
     type: String
     label: 'Plan name'
@@ -16,7 +20,12 @@ Meteor.methods
 
   'createPlan': (planName) ->
 
+    userId = Meteor.userId()
+
+    # FIXME reject if not userId
+
     plan =
+      userId: userId
       planName: planName
       moduleIds: []
 
@@ -25,23 +34,40 @@ Meteor.methods
 
   'updatePlan': (planId, planName) ->
 
-    Plans.update planId,
+    userId = Meteor.userId()
+
+    selector =
+      _id: planId
+      userId: userId
+
+    modifier =
       $set:
         planName: planName
+
+    Plans.update selector, modifier
 
 
   'deletePlan': (planId) ->
     # FIXME 
     'consider whether we make it public or not'
-    Plans.remove planId
+
+    userId = Meteor.userId()
+    Plans.remove 
+      _id: planId
+      userId: userId
+
     #FIXME
+    
     #should also delete modules and tasks
 
 
   'addModule': (planId, moduleName) ->
 
+    userId = Meteor.userId()
+
     module =
       moduleName: moduleName
+      userId: userId
       planId: planId
       taskIds: []
 
@@ -54,20 +80,52 @@ Meteor.methods
     moduleId
 
 
-  'updateModule': (moduleId, moduleName) ->
-    console.log 'woo'
+  'updateModule': (planId, moduleId, moduleName) ->
+
+    userId = Meteor.userId()
+
+    selector =
+      _id: moduleId
+      userId: userId
+      planId: planId
+
+    modifier =
+      $set:
+        moduleName: moduleName
+
+    Modules.update selector, modifier
 
   'moveModule': (planId, moduleId, fromModulePos, toModulePos) ->
     console.log 'woo'
 
   'deleteModule': (planId, moduleId) ->
-    console.log 'woo'
+
+    # FIXME 
+    'consider whether we make it public or not'
+
+    userId = Meteor.userId()
+
+    Plans.update planId,
+      $pull:
+        moduleIds: moduleId
+
+    Modules.remove
+      _id: moduleId,
+      planId: planId
+      userId: userId
+
+    #FIXME
+    
+    #should also delete tasks
 
 
   'addTask': (planId, moduleId, taskName) ->
 
+    userId = Meteor.userId()
+
     task =
       taskName: taskName
+      userId: userId
       planId: planId
       moduleId: moduleId
 

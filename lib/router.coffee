@@ -27,10 +27,10 @@ Meteor.startup ->
         # FIXME might need to optimize
         planId = @params._id
         plan = Plans.findOne @params._id
-        if plan
+        if plan and plan.moduleIds
           plan.modules = plan.moduleIds.map (moduleId) -> 
             module = Modules.findOne moduleId
-            if module.taskIds
+            if module and module.taskIds
               module.tasks = module.taskIds.map (taskId) ->
                 Tasks.findOne taskId
             module

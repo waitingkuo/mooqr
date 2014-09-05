@@ -7,6 +7,10 @@ Tasks.attachSchema new SimpleSchema
     label: 'Task name'
     max: 200
 
+  userId:
+    type: String
+    optional: true
+
   planId:
     type: String
     optional: true

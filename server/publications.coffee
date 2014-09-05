@@ -1,21 +1,26 @@
-Meteor.publish 'coursePlan', ->
-  # should be para
-  coursePlanId = CoursePlans.findOne()._id
-  [
-    CoursePlans.find(coursePlanId)
-    Tasks.find()
-  ]
-
 Meteor.publish 'plan', (planId) ->
+
+  userId = @userId
+
   [
-    Plans.find planId
-    Modules.find planId: planId
-    Tasks.find planId: planId
+    Plans.find
+      _id: planId
+      userId: userId
+    Modules.find
+      planId: planId
+      userId: userId
+    Tasks.find
+      planId: planId
+      userId: userId
   ]
 
 Meteor.publish 'userPlans', () ->
-  Plans.find()
 
+  userId = @userId
+
+  Plans.find
+    userId: userId
+    
 
 
 

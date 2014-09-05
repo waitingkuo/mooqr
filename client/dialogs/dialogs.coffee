@@ -35,6 +35,18 @@ Template.moduleDialog.helpers
 Template.moduleDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
+Template.editModuleDialog.helpers
+  # this is strange
+  moduleName: ->
+    fieldName: 'moduleName'
+  editingDoc: ->
+    Modules.findOne 
+      _id: Session.get 'currentModuleId'
+      planId: Session.get 'currentPlanId'
+Template.editModuleDialog.events
+  'click .cancel-button': (e) ->
+    Blaze.remove Blaze.currentView
+      
 
 
 #Task Dialog
@@ -82,7 +94,25 @@ AutoForm.hooks
 
       Meteor.call 'addModule', planId, moduleName, (err, result) ->
         if not err
-          UI.remove UI.moduleDialog
+          Blaze.remove Blaze.getView($('.module-dialog')[0])
+
+      @done()
+      return false
+
+
+  editModuleDialog:
+    onSubmit: (insertDoc, updateDoc, currentDoc) ->
+
+      planId = currentDoc.planId
+      moduleId = currentDoc._id
+      moduleName = updateDoc.$set.moduleName
+
+      Meteor.call 'updateModule', planId, moduleId, moduleName, (err, result) ->
+        if not err
+          Blaze.remove Blaze.getView($('.module-dialog')[0])
+        else 
+          console.log insertDoc, updateDoc, currentDoc
+          console.log err
 
       @done()
       return false
@@ -97,7 +127,7 @@ AutoForm.hooks
 
       Meteor.call 'addTask', planId, moduleId, taskName, (err, result) ->
         if not err
-          UI.remove UI.taskDialog
+          Blaze.remove Blaze.getView($('.task-dialog')[0])
 
       @done()
       return false

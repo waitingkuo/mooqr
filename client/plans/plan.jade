@@ -3,24 +3,35 @@ template(name="plan")
     br
     br
     .container
-
-      .card
-        .content
-          .title {{planName}}
-          button.add-module ADD NEW MODULE
+      .card.plan
+        .header
+          .plan-name {{planName}}
+          //button.add-module ADD NEW MODULE
+          .plan-more-button
+            i.ion-more
+          +planMoreMenu
         .divider
-        .content
-          br
+        //.content
+        //  br
 
       each modules
         +module
 
+template(name="planMoreMenu")
+  .menu.plan-more-menu
+    .item.add-module Add Module
+    .item.rename Edit
+    //.item.remove Remove
+
 
 template(name="module")
   .card.module
-    .content
-      .title {{moduleName}}
-      button.add-task ADD NEW TASK
+    .header
+      .module-name {{moduleName}}
+      //button.add-task ADD NEW TASK
+      .module-more-button
+        i.ion-more
+      +moduleMoreMenu
     .divider
     .content
       ul.tasks
@@ -31,3 +42,9 @@ template(name="module")
               label(for="{{_id}}")
             .task-content {{taskName}}
 
+
+template(name="moduleMoreMenu")
+  .menu.module-more-menu
+    .item.add-task Add Task
+    .item.edit-module Edit
+    .item.remove-module Remove
