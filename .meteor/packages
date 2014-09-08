@@ -4,16 +4,17 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-waitingkuo:jade
-coffeescript
-stylus
 waitingkuo:normalize
 mrt:moment
 mrt:ionicons
 mrt:numeral
-aldeed:autoform
-aldeed:collection2
-aldeed:simple-schema
-iron:router@0.9.3-rc0
 accounts-google
 accounts-ui
+iron:router
+waitingkuo:jade
+coffeescript
+aldeed:autoform
+aldeed:simple-schema
+aldeed:collection2
+stylus
+
