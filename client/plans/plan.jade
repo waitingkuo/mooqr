@@ -7,9 +7,10 @@ template(name="plan")
         .header
           .plan-name {{planName}}
           //button.add-module ADD NEW MODULE
-          .plan-more-button
-            i.ion-more
-          +planMoreMenu
+          if isOwner
+            .plan-more-button
+              i.ion-more
+            +planMoreMenu
         .divider
         //.content
         //  br
@@ -29,9 +30,11 @@ template(name="module")
     .header
       .module-name {{moduleName}}
       //button.add-task ADD NEW TASK
-      .module-more-button
-        i.ion-more
-      +moduleMoreMenu
+      if isOwner
+        .module-more-button
+          i.ion-more
+        +moduleMoreMenu
+
     .divider
     .content
       ul.tasks

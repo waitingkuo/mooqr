@@ -7,10 +7,9 @@ template(name="plans")
     br
     .container
 
-      .my-plans
-        .header My Plans
+      .your-plans
+        .header Your Plans
         br
-
         .card
           each plans
             .plan
@@ -18,6 +17,35 @@ template(name="plans")
               .plan-more
                 i.ion-more
                 +planItemMoreMenu
+
+      br
+      br
+      br
+      .followed-plans
+        .header Followed Plans
+        br
+        .card
+          each followedPlans
+            .plan
+              .plan-title {{planName}}
+              //.plan-more
+              //  i.ion-more
+              //  +planItemMoreMenu
+        
+      
+      br
+      br
+      .discover-plans
+        .header Discover Plans
+        br
+        .card
+          each otherPlans
+            .plan
+              .plan-title {{planName}}
+              //.plan-more
+              //  i.ion-more
+                //+planItemMoreMenu
+              button.button.follow follow
 
 
 template(name="planItemMoreMenu")

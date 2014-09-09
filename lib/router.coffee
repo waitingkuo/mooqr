@@ -13,9 +13,44 @@ Meteor.startup ->
       template: 'plans'
       data: ->
         # FIXME according to user
-        plans: -> Plans.find()
+        plans: ->
+          userPlans = UserPlans.find
+            userId: Meteor.userId()
+            isOwner: true
+
+          planIds = userPlans.map (userPlan) -> userPlan.planId
+
+          Plans.find
+            _id:
+              $in: planIds
+
+        followedPlans: ->
+          userPlans = UserPlans.find
+            userId: Meteor.userId()
+            isOwner: false
+
+          planIds = userPlans.map (userPlan) -> userPlan.planId
+
+          Plans.find
+            _id:
+              $in: planIds
+
+        otherPlans: ->
+          userPlans = UserPlans.find
+            userId: Meteor.userId()
+
+          planIds = userPlans.map (userPlan) -> userPlan.planId
+
+          #FIX bad performance
+          Plans.find
+            _id:
+              $nin: planIds
+
+
       waitOn: ->
         Meteor.subscribe 'userPlans'
+        Meteor.subscribe 'otherPlans'
+
 
     @route 'plan',
       path: '/plans/:_id',

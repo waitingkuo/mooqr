@@ -20,7 +20,15 @@ Template.plan.events
     Blaze.render Template.editPlanDialog, document.body
 
 
+Template.plan.helpers
 
+  isOwner: () ->
+    Meteor.userId() is @userId
+
+Template.module.helpers
+
+  isOwner: () ->
+    Meteor.userId() is @userId
   
 Template.module.events
 

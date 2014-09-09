@@ -10,6 +10,21 @@ Template.plans.events
     #HACK #FIXME
     $(e.currentTarget).find('.menu').toggleClass('active')
 
+  'click .follow': (e) ->
+    e.stopPropagation()
+
+    userId = Meteor.userId()
+    planId = @_id
+
+    userPlan =
+      userId: userId
+      planId: planId
+      isOwner: false
+
+    if not UserPlans.findOne {userId: userId, planId: planId}
+      UserPlans.insert userPlan
+   
+
 #FIXME
 $('*').click (e) ->
   $(e.target).find('.plan-item-more-menu').removeClass('active')
