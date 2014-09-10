@@ -18,7 +18,7 @@ Plans.attachSchema new SimpleSchema
 
 Meteor.methods
 
-  'createPlan': (planName) ->
+  'createPlan': (planName, description) ->
 
     userId = Meteor.userId()
 
@@ -29,7 +29,17 @@ Meteor.methods
       planName: planName
       moduleIds: []
 
-    Plans.insert plan
+    planId = Plans.insert plan
+
+    userPlan = 
+      userId: userId
+      planId: planId
+      isOwner: true
+
+
+    UserPlans.insert userPlan
+
+    planId
 
 
   'updatePlan': (planId, planName) ->
@@ -61,7 +71,7 @@ Meteor.methods
     #should also delete modules and tasks
 
 
-  'createModule': (planId, moduleName) ->
+  'createModule': (planId, moduleName, description) ->
 
     userId = Meteor.userId()
 
@@ -70,6 +80,11 @@ Meteor.methods
       userId: userId
       planId: planId
       taskIds: []
+
+
+    if description
+      module.description = description
+
 
     moduleId = Modules.insert module
     
@@ -80,7 +95,7 @@ Meteor.methods
     moduleId
 
 
-  'updateModule': (planId, moduleId, moduleName) ->
+  'updateModule': (planId, moduleId, moduleName, description) ->
 
     userId = Meteor.userId()
 
@@ -89,9 +104,18 @@ Meteor.methods
       userId: userId
       planId: planId
 
+    updater = {}
+
+    if moduleName
+      updater.moduleName = moduleName
+
+    if description
+      updater.description = description
+
+
+
     modifier =
-      $set:
-        moduleName: moduleName
+      $set: updater
 
     Modules.update selector, modifier
 
