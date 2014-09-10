@@ -92,7 +92,7 @@ AutoForm.hooks
       planId = Session.get 'currentPlanId'
       moduleName = insertDoc.moduleName
 
-      Meteor.call 'addModule', planId, moduleName, (err, result) ->
+      Meteor.call 'createModule', planId, moduleName, (err, result) ->
         if not err
           Blaze.remove Blaze.getView($('.module-dialog')[0])
 
@@ -125,7 +125,7 @@ AutoForm.hooks
       moduleId = Session.get 'currentModuleId'
       taskName = insertDoc.taskName
 
-      Meteor.call 'addTask', planId, moduleId, taskName, (err, result) ->
+      Meteor.call 'createTask', planId, moduleId, taskName, (err, result) ->
         if not err
           Blaze.remove Blaze.getView($('.task-dialog')[0])
 

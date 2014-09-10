@@ -61,7 +61,7 @@ Meteor.methods
     #should also delete modules and tasks
 
 
-  'addModule': (planId, moduleName) ->
+  'createModule': (planId, moduleName) ->
 
     userId = Meteor.userId()
 
@@ -119,7 +119,7 @@ Meteor.methods
     #should also delete tasks
 
 
-  'addTask': (planId, moduleId, taskName) ->
+  'createTask': (planId, moduleId, taskName) ->
 
     userId = Meteor.userId()
 
