@@ -28,6 +28,14 @@ Meteor.publish 'userPlans', () ->
         $in: planIds
   ]
 
+Meteor.publish 'userTasks', (planId) ->
+
+  userId = @userId
+
+  UserTasks.find
+    userId: userId
+    planId: planId
+
 
 Meteor.publish 'otherPlans', () ->
 

@@ -1,0 +1,27 @@
+template(name="plan")
+  #plan
+    br
+    br
+    .container
+      .card.plan
+        .header
+          .plan-name {{planName}}
+          //button.add-module ADD NEW MODULE
+          if isOwner
+            .plan-more-button
+              i.ion-more
+            +planMoreMenu
+        .divider
+        //.content
+        //  br
+
+      each modules
+        +module
+
+template(name="planMoreMenu")
+  .menu.plan-more-menu
+    .item.add-module Add Module
+    .item.rename Edit
+    //.item.remove Remove
+
+

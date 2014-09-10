@@ -76,6 +76,7 @@ Meteor.startup ->
       waitOn: ->
         planId = @params._id
         Meteor.subscribe 'plan', planId
+        Meteor.subscribe 'userTasks', planId
       
 
     @route 'udacity359',

@@ -1,0 +1,23 @@
+template(name="module")
+  .card.module
+    .header
+      .module-name {{moduleName}}
+      //button.add-task ADD NEW TASK
+      if isOwner
+        .module-more-button
+          i.ion-more
+        +moduleMoreMenu
+
+    .divider
+    .content
+      ul.tasks
+        each tasks
+          +task
+
+
+template(name="moduleMoreMenu")
+  .menu.module-more-menu
+    .item.add-task Add Task
+    .item.edit-module Edit
+    .item.remove-module Remove
+
