@@ -1,8 +1,8 @@
 
 Accounts.onCreateUser (options, user) ->
 	# if user.services.google
-	console.log options
-	console.log user
+	# console.log options
+	# console.log user
 	if user.profile
 		user.profile.profile_picture = user.services.google.picture;
 	else
