@@ -11,6 +11,10 @@ Plans.attachSchema new SimpleSchema
     label: 'Plan name'
     max: 200
 
+  planUrl:
+    type: String
+    optional: true
+
   moduleIds:
     type: [String]
     optional: true
