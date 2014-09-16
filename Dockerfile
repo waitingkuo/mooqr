@@ -9,4 +9,6 @@ RUN meteor build --directory /var/www/app
 WORKDIR /var/www/app
 RUN cd bundle/programs/server && npm install
 
+EXPOSE 80
+
 CMD node ./bundle/main.js
