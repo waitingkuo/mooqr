@@ -297,14 +297,24 @@ side-bar-width = 300px
       background black
 
   .lists
-    padding 16px
     .list
-      i
-        font-size 24px
-        margin-right 36px
-      span
-        font-size 20px
-        vertical-align 10%
+      a
+        padding 16px
+        display block
+        color black
+        cursor pointer
+        &:hover
+          background #F1FAF6
+
+        span.icon
+          // FIXME
+          display inline-block
+          width 60px
+          i
+            font-size 24px
+        span
+          font-size 20px
+          vertical-align 10%
 
 card()
   background white
