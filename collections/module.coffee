@@ -21,7 +21,11 @@ Modules.attachSchema new SimpleSchema
 
   taskIds:
     type: [String]
-    optional: true
+    #optional: true
+    autoValue: ()->
+      if @isInsert
+        new Array()
+
 
   createAt:
     type: Date

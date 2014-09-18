@@ -17,7 +17,10 @@ Plans.attachSchema new SimpleSchema
 
   moduleIds:
     type: [String]
-    optional: true
+    #optional: true
+    autoValue: ()->
+      if @isInsert
+        new Array()
 
   createAt:
     type: Date
@@ -52,9 +55,12 @@ Meteor.methods
 
   'createPlan': (planName, description) ->
 
-    userId = Meteor.userId()
+    user = Meteor.user()
 
-    # FIXME reject if not userId
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
 
     plan =
       userId: userId
@@ -76,7 +82,12 @@ Meteor.methods
 
   'updatePlan': (planId, planName) ->
 
-    userId = Meteor.userId()
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
 
     selector =
       _id: planId
@@ -93,7 +104,13 @@ Meteor.methods
     # FIXME 
     'consider whether we make it public or not'
 
-    userId = Meteor.userId()
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
+    
     Plans.remove 
       _id: planId
       userId: userId
@@ -105,7 +122,12 @@ Meteor.methods
 
   'createModule': (planId, moduleName, description) ->
 
-    userId = Meteor.userId()
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
 
     module =
       moduleName: moduleName
@@ -129,7 +151,12 @@ Meteor.methods
 
   'updateModule': (planId, moduleId, moduleName, description) ->
 
-    userId = Meteor.userId()
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
 
     selector =
       _id: moduleId
@@ -153,6 +180,14 @@ Meteor.methods
 
 
   "moveModule": (planId, moduleId, position) ->
+
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
+
     #FIXME: checking planId & moduleId
     planData = Plans.findOne _id:planId
 
@@ -180,7 +215,12 @@ Meteor.methods
     # FIXME 
     'consider whether we make it public or not'
 
-    userId = Meteor.userId()
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
 
     Plans.update planId,
       $pull:
@@ -198,7 +238,12 @@ Meteor.methods
 
   'createTask': (planId, moduleId, taskName) ->
 
-    userId = Meteor.userId()
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
 
     task =
       taskName: taskName
@@ -219,6 +264,14 @@ Meteor.methods
     console.log 'woo'
 
   'moveTask': (taskId, fromModuleId, toModuleId, toTaskPos) ->
+
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
+    
     #FIXME: checking validation of Ids
     fromModule = Modules.findOne _id:fromModuleId
     
