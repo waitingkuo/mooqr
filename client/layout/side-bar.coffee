@@ -1,7 +1,6 @@
 
 
 Template.sideBar.helpers
-  
 
   active: ->
     isActive = Session.get 'sideBar:isActive'
@@ -9,3 +8,7 @@ Template.sideBar.helpers
       return 'active'
     else
       return ''
+
+Template.sideBar.events
+
+  'click .item-logout': (e) -> Meteor.logout()

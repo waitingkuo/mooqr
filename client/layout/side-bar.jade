@@ -12,6 +12,20 @@ template(name="sideBar")
     .divider
 
     .lists
+      br
       .list
-        i.ion-android-note
-        a(href="{{pathFor 'plans'}}") Plans
+        a.item-plans(href="{{pathFor 'plans'}}")
+          span.icon
+            i.ion-android-note
+          span Plans
+      .list
+        a.item-groups(href="{{pathFor 'groups'}}")
+          span.icon 
+            i.ion-android-social
+          span Groups
+      if currentUser
+        .list
+          a.item-logout
+            span.icon
+              i.ion-log-out
+            span Log Out
