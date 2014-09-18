@@ -55,3 +55,6 @@ Modules.attachSchema new SimpleSchema
 Modules.allow
   'insert': -> true
   'update': -> true
+
+
+

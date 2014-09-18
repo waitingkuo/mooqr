@@ -51,3 +51,5 @@ Tasks.attachSchema new SimpleSchema
 Tasks.allow
   'update': -> true
   'insert': -> true
+
+

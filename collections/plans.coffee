@@ -151,8 +151,29 @@ Meteor.methods
 
     Modules.update selector, modifier
 
-  'moveModule': (planId, moduleId, fromModulePos, toModulePos) ->
-    console.log 'woo'
+
+  "moveModule": (planId, moduleId, position) ->
+    #FIXME: checking planId & moduleId
+    planData = Plans.findOne _id:planId
+
+    # console.log "old planData:" 
+    # console.log planData 
+    
+    moduleIdsArr = planData.moduleIds
+    newModuleIdsArr = moduleIdsArr.filter (mid) -> mid isnt moduleId
+    newModuleIdsArr.splice position,0,moduleId
+
+    # console.log "newModuleIdsArr:"
+    # console.log newModuleIdsArr
+    
+    planData.moduleIds = newModuleIdsArr
+
+    Plans.update {_id:planId}, {$set:{moduleIds:newModuleIdsArr}}
+
+    # console.log "new planData:"
+    # console.log Plans.findOne _id:planId
+
+
 
   'deleteModule': (planId, moduleId) ->
 
@@ -197,8 +218,19 @@ Meteor.methods
   'updateTask': (taskId, taskName) ->
     console.log 'woo'
 
-  'moveTask': (taskId, fromModuleId, fromTaskPos, toModuleId, toTaskPos) ->
-    console.log 'woo'
+  'moveTask': (taskId, fromModuleId, toModuleId, toTaskPos) ->
+    #FIXME: checking validation of Ids
+    fromModule = Modules.findOne _id:fromModuleId
+    
+    fromModuleTasksArr = fromModule.taskIds
+    newFromModuleTasksArr = fromModuleTasksArr.filter (tid) -> tid isnt taskId
+    Modules.update {_id:fromModuleId}, {$set:{taskIds:newFromModuleTasksArr}}
+
+    toModule = Modules.findOne _id:toModuleId
+    toModuleTasksArr = toModule.taskIds
+    toModuleTasksArr.splice toTaskPos,0,taskId
+    Modules.update {_id:toModuleId}, {$set:{taskIds:toModuleTasksArr}}
+    
 
   'deleteTask': (moduleId, taskId) ->
     console.log 'woo'
