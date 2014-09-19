@@ -12,3 +12,9 @@ Template.sideBar.helpers
 Template.sideBar.events
 
   'click .item-logout': (e) -> Meteor.logout()
+
+  'click #feedback': (e) ->
+    UserVoice.push ['show', '#feedback', {
+      mode: 'satisfaction'
+      menu_enabled: true
+    }]
