@@ -8,10 +8,6 @@ Meteor.startup ->
       path: '/'
       template: 'index'
 
-    @route 'feedback',
-      path: '/feedback'
-      template: 'feedback'
-
     @route 'plans',
       path: '/plans',
       template: 'plans'
