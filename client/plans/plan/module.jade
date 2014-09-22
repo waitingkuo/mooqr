@@ -1,23 +1,17 @@
 template(name="module")
-  .card.module
-    .header
-      .module-name {{moduleName}}
-      //button.add-task ADD NEW TASK
+  .module.card2
+    .card-header
+      .title {{moduleName}}
       if isOwner
-        .module-more-button
-          i.ion-more
-        +moduleMoreMenu
+        .menu
+          +UI.dynamic template="menuButton" data=moduleMenuData
 
-    .divider
-    .content
-      ul.tasks
+    .card-divider
+
+    .card-content
+      .tasks.list
         each tasks
           +task
 
 
-template(name="moduleMoreMenu")
-  .menu.module-more-menu
-    .item.add-task Add Task
-    .item.edit-module Edit
-    .item.remove-module Remove
 

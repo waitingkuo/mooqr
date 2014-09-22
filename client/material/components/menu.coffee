@@ -1,8 +1,7 @@
 Template.menuButton.events
   'click .material-menu-icon': (e) ->
     e.stopPropagation()
-    window.v= Blaze.currentView
-    view = Blaze.renderWithData Template.menu, @, Blaze.currentView
+    view = Blaze.renderWithData Template.menu, @, Blaze.currentView.firstNode()
 
     $(document).click (e) ->
       Blaze.remove view

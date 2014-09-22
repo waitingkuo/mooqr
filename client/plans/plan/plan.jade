@@ -3,25 +3,29 @@ template(name="plan")
     br
     br
     .container
-      .card.plan
-        .header
-          .plan-name {{planName}}
-          //button.add-module ADD NEW MODULE
+
+      .plan.card2
+        .card-header
+          .title {{planName}}
           if isOwner
-            .plan-more-button
-              i.ion-more
-            +planMoreMenu
-        .divider
-        //.content
-        //  br
+            .menu
+              +UI.dynamic template="menuButton" data=planMenuData
+          
+      br
+      br
+      br
+
+      //.card.plan
+      //  .header
+      //    .plan-name {{planName}}
+      //    if isOwner
+      //      .plan-menu
+      //        +UI.dynamic template="menuButton" data=planMenuData
+
+      //  .divider
 
       each modules
         +module
 
-template(name="planMoreMenu")
-  .menu.plan-more-menu
-    .item.add-module Add Module
-    .item.rename Edit
-    //.item.remove Remove
 
 

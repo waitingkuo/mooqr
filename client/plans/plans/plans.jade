@@ -10,13 +10,14 @@ template(name="plans")
       .your-plans
         .header Your Plans
         br
-        .card
+        .card2
           each plans
-            .plan
-              .plan-title {{planName}}
-              .plan-more
-                i.ion-more
-                +planItemMoreMenu
+            .plan2
+              .card-header
+                .title {{planName}}
+                //.plan-more
+                //  i.ion-more
+                //  +planItemMoreMenu
 
       br
       br
@@ -24,13 +25,14 @@ template(name="plans")
       .followed-plans
         .header Followed Plans
         br
-        .card
+        .card2
           each followedPlans
-            .plan
-              .plan-title {{planName}}
-              //.plan-more
-              //  i.ion-more
-              //  +planItemMoreMenu
+            .plan2
+              .card-header
+                .title {{planName}}
+                //.plan-more
+                //  i.ion-more
+                //  +planItemMoreMenu
         
       
       br
@@ -38,15 +40,19 @@ template(name="plans")
       .discover-plans
         .header Discover Plans
         br
-        .card
+        .card2
           each otherPlans
-            .plan
-              .plan-title {{planName}}
-              //.plan-more
-              //  i.ion-more
+            .plan2
+              .card-header 
+                .title {{planName}}
+                //.plan-more
+                //  i.ion-more
                 //+planItemMoreMenu
-              button.button.follow follow
+                .button.raised-button.follow follow
 
+    br
+    br
+    br
 
 template(name="planItemMoreMenu")
   .menu.plan-item-more-menu

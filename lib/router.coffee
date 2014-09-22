@@ -4,6 +4,10 @@ Router.configure
 Meteor.startup ->
   Router.map ->
 
+    @route 'test66',
+      path: '/test66'
+      template: 'test66'
+
     @route 'index',
       path: '/'
       template: 'index'

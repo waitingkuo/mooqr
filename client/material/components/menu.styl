@@ -14,14 +14,14 @@ shadow(z-depth=1)
 
 //FIXME
 typog-button()
-  font-weight medium
+  font-weight 500
   font-size 14px
   text-transform uppercase
   color rgba(0, 0, 0, 0.87)
 
 .material-menu-button
   display inline-block
-  background lightblue
+  //background lightblue
   cursor pointer
   position relative
 
@@ -30,6 +30,9 @@ typog-button()
     height 48px
     line-height 48px
     text-align center
+    &:not(:hover)
+      color: rgba(0, 0, 0, 0.2);
+
 
   .material-menu
     position absolute
@@ -38,26 +41,24 @@ typog-button()
 
 .material-menu
 
-  //FIXME
-  width 300px
-
-
   // FIXME should move to card
   background white
   border-radius 2px
   shadow 2
+  z-index 3
 
   padding-top 8px
   padding-bottom 8px
 
   .material-menu-item 
+    white-space nowrap
     height 48px
     line-height 48px
     padding-left 16px
     padding-right 16px
     //FIXME move to typo
     font-size 14px
-    font-weight bold
+    font-weight 500
     // device 14px
     cursor pointer
     &:hover

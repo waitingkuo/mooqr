@@ -1,32 +1,29 @@
-Template.module.events
+Template.module.helpers
 
-  'click .module-more-button': (e) ->
+  isOwner: () ->
+    Meteor.userId() is @userId
 
-    e.stopPropagation()
-
-    $menu = $(e.currentTarget).next()
-    $menu.addClass 'active'
-    $('html').one 'click', ->
-      $menu.removeClass 'active'
-
-  'click .add-task': (e) ->
-
-    moduleId = @_id
-    Session.set 'currentModuleId', moduleId
-
-    Blaze.render Template.taskDialog, document.body
-
-  'click .remove-module': (e) ->
-
-    planId = Session.get 'currentPlanId'
-    moduleId = @_id
-
-    Meteor.call 'deleteModule', planId, moduleId
-    
-  'click .edit-module': (e) ->
-
-    moduleId = @_id
-    Session.set 'currentModuleId', moduleId
-  
-    Blaze.render Template.editModuleDialog, document.body
-
+  moduleMenuData: ->
+    items: [
+      {
+        label: 'Add Task'
+        clickEvent: (e) =>
+          moduleId = @_id
+          Session.set 'currentModuleId', moduleId
+          Blaze.render Template.taskDialog, document.body
+      },
+      {
+        label: 'Edit Module'
+        clickEvent: (e) =>
+          moduleId = @_id
+          Session.set 'currentModuleId', moduleId
+          Blaze.render Template.editModuleDialog, document.body
+      }
+      {
+        label: 'Remove Module'
+        clickEvent: (e) =>
+          planId = Session.get 'currentPlanId'
+          moduleId = @_id
+          Meteor.call 'deleteModule', planId, moduleId
+      }
+    ]

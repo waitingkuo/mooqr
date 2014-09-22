@@ -1,14 +1,16 @@
 Template.plans.events
-  'click .plan': (e) ->
+  #'click .plan': (e) ->
+  #  Router.go 'plan', _id: @_id
+  'click .plan2': (e) ->
     Router.go 'plan', _id: @_id
 
   'click .add-plan': (e) ->
     Blaze.render Template.planDialog, document.body
 
-  'click .plan-more': (e) ->
-    e.stopPropagation()
-    #HACK #FIXME
-    $(e.currentTarget).find('.menu').toggleClass('active')
+  #'click .plan-more': (e) ->
+  #  e.stopPropagation()
+  #  #HACK #FIXME
+  #  $(e.currentTarget).find('.menu').toggleClass('active')
 
   'click .follow': (e) ->
     e.stopPropagation()

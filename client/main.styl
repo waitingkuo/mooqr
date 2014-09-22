@@ -11,6 +11,19 @@ primary-light = #C5CAE9
 primary-dark = #303F9F
 white = #FFFFFF
 
+blue-500 = #5677fc
+blue-600 = #4e6cef
+blue-700 = #455ede
+
+lightblue-500 = #03a9f4
+lightblue-600 = #039be5
+lightblue-700 = #0288d1
+
+grey-200 = #eeeeee
+grey-300 = #e0e0e0
+grey-400 = #bdbdbd
+
+
 // font weight
 regular = 400
 medium = 500
@@ -99,6 +112,28 @@ shadow(z-depth=1)
   else if z-depth == 5
     box-shadow 0 0px 30px 0px rgba(0, 0, 0, 0.30), 0 15px 6px 0px rgba(0, 0, 0, 0.22)
 
+// Material List Element
+.list
+  list-style none
+  padding-left 0
+
+  .list-item + .list-item
+    margin-top 8px
+  .list-item
+    clearfix()
+    > *
+      float left
+
+    .checkbox   
+      width 30px
+      height 30px
+      margin-right 26px
+
+    .content
+      typog-list-title()
+      height 30px
+      line-height 30px
+
 // button
 .button
   typog-button()
@@ -114,6 +149,17 @@ shadow(z-depth=1)
 
     &.save-button
       color #4285F4
+
+  &.raised-button
+    border 0
+    background grey-300
+    border-radius 2px
+    min-width 88px
+    height 36px
+    line-height 36px
+    text-align center
+    shadow 1
+    cursor pointer
 
   &.float-button
     border 0
@@ -218,6 +264,8 @@ shadow(z-depth=1)
 
 // divider
 divider = 1px solid #a0afbb
+divider()
+  border-top 1px solid #a0afbb
 .divider
   border-top 1px solid #a0afbb
     
@@ -545,28 +593,46 @@ dialog(z-depth=2)
 }
 
 
-// menu
-.menu
-  card()
-  shadow 2
-  padding-top 8px
-  padding-bottom 8px
-  .item 
-    padding-left 16px
-    padding-right 16px
-    height 48px
-    line-height 48px
-    text-align left
-    typog-menu()
-    &:hover
-      background #F1FAF6
-    
-
     
 // index
 #index
   .container
     container()
+
+.card2
+
+  card()
+  shadow 1
+
+  .card-header
+    height 64px
+    clearfix()
+    > *
+      float left
+    .title
+      // FIXME check box-sizing
+      box-sizing border-box
+      width calc(100% - 56px)
+      height 64px
+      line-height 64px
+      padding-left 24px
+    .menu
+      width 48px
+      height 64px
+      line-height 64px
+      padding-right 8px
+
+  .card-divider
+    divider()
+
+  .card-content
+    padding 16px
+    font-size 14px
+    font-weight regular
+
+    .title
+      typog-headline()
+
 
 #plans
   .container
@@ -577,6 +643,17 @@ dialog(z-depth=2)
   .discover-plans
     .header
       typog-subhead()
+
+  .plan2 + .plan2
+    divider()
+  .plan2
+    cursor pointer
+    .title
+      width 70%
+    .button
+      margin-top 14px
+      margin-right 24px
+      float right
 
   .plan
     clearfix()
@@ -616,94 +693,10 @@ dialog(z-depth=2)
 #plan
   .container
     container()
-    .plan
-      .header
-        position relative
-        height 52px
-        clearfix()
-        > *
-          float left
-        .plan-name
-          box-sizing border-box
-          padding 16px
-          width calc(100% - 52px)
-        .plan-more-button 
-          box-sizing border-box
-          width 52px
-          height 52px
-          line-height 52px
-          text-align center
-          transform rotate(90deg)
-          font-size 20px
-          cursor pointer
-          color rgba(0, 0, 0, 0.2)
-          &:hover
-            color rgba(0, 0, 0, 1)
-        .plan-more-menu
-          z-index 5
-          position absolute
-          top 10px
-          right 10px
-          .item
-            cursor pointer
-
-          &:not(.active)
-            display none
-
-    .module
-      .header
-        position relative
-        height 52px
-        clearfix()
-        > *
-          float left
-        .module-name
-          box-sizing border-box
-          padding 16px
-          width calc(100% - 52px)
-        .module-more-button 
-          box-sizing border-box
-          width 52px
-          height 52px
-          line-height 52px
-          text-align center
-          transform rotate(90deg)
-          font-size 20px
-          cursor pointer
-          color rgba(0, 0, 0, 0.2)
-          &:hover
-            color rgba(0, 0, 0, 1)
-        .module-more-menu
-          z-index 5
-          position absolute
-          top 10px
-          right 10px
-          .item
-            cursor pointer
-
-          &:not(.active)
-            display none
-
-      ul.tasks
-        list-style none
-        padding-left 0
-
-        .task
-          clearfix()
-          > *
-            float left
-
-          .checkbox   
-            width 30px
-            height 30px
-            margin-right 26px
-
-          .task-content
-            typog-list-title()
-            height 30px
-            line-height 30px
 
 
+
+// FIXME TODELETE
 #udacity359
   .container
     container()
@@ -720,6 +713,8 @@ dialog(z-depth=2)
       list-style none
       padding-left 0
 
+      .task + .task
+        margin-top 8px
       .task
         clearfix()
         > *
@@ -736,7 +731,3 @@ dialog(z-depth=2)
           line-height 30px
 
 
-// test
-.test
-  typog-body1()
-  vertical-align top
