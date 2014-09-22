@@ -15,9 +15,20 @@ Meteor.publish 'plan', (planId) ->
       #userId: userId
   ]
 
+
 Meteor.publish 'userPlans', () ->
 
   userId = @userId
+  
+  console.log "userId = "
+  console.log userId
+  console.log @
+  
+  # console.log "user._id = "
+  # console.log Meteor.userId()
+  
+  # userId = user._id
+
   userPlans = UserPlans.find({userId: userId})
   planIds = _.map userPlans.fetch(), (userPlan) -> userPlan.planId
 
@@ -44,7 +55,23 @@ Meteor.publish 'otherPlans', () ->
   Plans.find
     userId:
       $ne: userId
+
+
     
+Meteor.publish 'allPlans', () ->
+  Plans.find()
+    
+
+
+Meteor.publish 'userPlansNew', () ->
+
+  userId = @userId
+  
+  userPlans = UserPlans.find({userId: userId})
+  planIds = _.map userPlans.fetch(), (userPlan) -> userPlan.planId
+
+  return userPlans.find({userId: userId})
+
 
 
 
