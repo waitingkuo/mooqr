@@ -11,14 +11,10 @@ template(name="plans")
         .header Your Plans
         br
         .card2
-          each plans
+          each ownedPlans
             .plan2
               .card-header
                 .title {{planName}}
-                //.plan-more
-                //  i.ion-more
-                //  +planItemMoreMenu
-
       br
       br
       br
@@ -30,9 +26,6 @@ template(name="plans")
             .plan2
               .card-header
                 .title {{planName}}
-                //.plan-more
-                //  i.ion-more
-                //  +planItemMoreMenu
         
       
       br
@@ -45,9 +38,6 @@ template(name="plans")
             .plan2
               .card-header 
                 .title {{planName}}
-                //.plan-more
-                //  i.ion-more
-                //+planItemMoreMenu
                 .button.raised-button.follow follow
 
     br

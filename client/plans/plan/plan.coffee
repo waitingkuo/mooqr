@@ -3,6 +3,10 @@ Template.plan.helpers
   isOwner: () ->
     Meteor.userId() is @userId
 
+  modules: ->
+    if @plan().moduleIds
+      Modules.find _id: {$in: @moduleIds}
+
   planMenuData: ->
     items: [
       {

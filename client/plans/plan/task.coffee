@@ -26,6 +26,9 @@ Template.task.events
 
 Template.task.helpers
   
+  isOwner: ->
+    Meteor.userId() is @userId
+
   checked: ->
 
     taskId = @_id

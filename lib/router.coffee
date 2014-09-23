@@ -1,5 +1,7 @@
 Router.configure
   layoutTemplate: 'layout'
+  waitOn: ->
+    Meteor.subscribe 'userPlans'
 
 scrollTop = ->
   $(document).scrollTop(0)
@@ -8,10 +10,6 @@ Router.onBeforeAction scrollTop
 
 Meteor.startup ->
   Router.map ->
-
-    @route 'test66',
-      path: '/test66'
-      template: 'test66'
 
     @route 'index',
       path: '/'
@@ -25,46 +23,36 @@ Meteor.startup ->
       path: '/plans',
       template: 'plans'
       data: ->
-        # FIXME according to user
-        plans: ->
-          userPlans = UserPlans.find
-            userId: Meteor.userId()
-            isOwner: true
+        userId = Meteor.userId()
 
-          planIds = userPlans.map (userPlan) -> userPlan.planId
+        userPlanIds = UserPlans.find({
+          userId: userId
+        }).map (userPlan) -> userPlan.planId
 
-          Plans.find
-            _id:
-              $in: planIds
+        @subscribe('plans', userPlanIds).wait()
+        @subscribe('otherPlans', userPlanIds).wait()
 
-        followedPlans: ->
-          userPlans = UserPlans.find
-            userId: Meteor.userId()
-            isOwner: false
+        ownedPlanIds = UserPlans.find({
+          userId: userId
+          isOwner: true
+        }).map (userPlan) -> userPlan.planId
 
-          planIds = userPlans.map (userPlan) -> userPlan.planId
-
-          Plans.find
-            _id:
-              $in: planIds
-
-        otherPlans: ->
-          userPlans = UserPlans.find
-            userId: Meteor.userId()
-
-          planIds = userPlans.map (userPlan) -> userPlan.planId
-
-          #FIX bad performance
-          Plans.find
-            _id:
-              $nin: planIds
-
-
-      waitOn: ->
-        Meteor.subscribe 'userPlans'
-        Meteor.subscribe 'allPlans'
-
+        followedPlanIds = UserPlans.find({
+          userId: userId
+          isOwner: false
+        }).map (userPlan) -> userPlan.planId
         
+        return {
+          ownedPlans: ->
+            Plans.find
+              _id: {$in: ownedPlanIds}
+          followedPlans: ->
+            Plans.find
+              _id: {$in: followedPlanIds}
+          otherPlans: -> 
+            Plans.find
+              _id: {$nin: userPlanIds}
+        }
 
 
     @route 'plan',
@@ -74,38 +62,10 @@ Meteor.startup ->
         Session.set 'currentPlanId', @params._id
         @render()
       data: ->
-        # FIXME might need to optimize
         planId = @params._id
-        plan = Plans.findOne @params._id
-        if plan and plan.moduleIds
-          plan.modules = plan.moduleIds.map (moduleId) -> 
-            module = Modules.findOne moduleId
-            if module and module.taskIds
-              module.tasks = module.taskIds.map (taskId) ->
-                Tasks.findOne taskId
-            module
-          
-
-        plan
-
+        Plans.findOne planId
       waitOn: ->
         planId = @params._id
-        Meteor.subscribe 'plan', planId
+        Meteor.subscribe 'fullPlan', planId
         Meteor.subscribe 'userTasks', planId
       
-
-    @route 'udacity359',
-      path: '/udacity359'
-      template: 'udacity359'
-      waitOn: ->
-        # FIXME Should query by userId
-        Meteor.subscribe 'coursePlans'
-      data: ->
-        plan = CoursePlans.findOne()
-        #taskIds = _.flatten plan.modules.map( (m) -> m.taskIds )
-        if plan
-          for module in plan.modules
-            module.tasks = Tasks.find(_id: {$in: module.taskIds}).fetch()
-        console.log plan
-        return plan
-

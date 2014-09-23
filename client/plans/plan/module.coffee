@@ -3,6 +3,9 @@ Template.module.helpers
   isOwner: () ->
     Meteor.userId() is @userId
 
+  tasks: ->
+    Tasks.find _id: {$in: @taskIds}
+
   moduleMenuData: ->
     items: [
       {

@@ -1,8 +1,9 @@
 template(name="task")
   .task.list-item
-    .checkbox
-      input(type="checkbox", checked="{{checked}}")
-      label
+    if isOwner
+      .checkbox
+        input(type="checkbox", checked="{{checked}}")
+        label
     .content {{taskName}}
 
   
