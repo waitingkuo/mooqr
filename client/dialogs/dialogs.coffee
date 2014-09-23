@@ -68,6 +68,7 @@ AutoForm.hooks
       Meteor.call 'createPlan', planName, (err, result) ->
         if not err
           Blaze.remove Blaze.getView($('.plan-dialog')[0])
+          
 
       @done()
       return false

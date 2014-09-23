@@ -1,6 +1,6 @@
 Meteor.startup ->
 
-  mixpanel.init "696a8c98c250f36f66eb4aab990f79a0"
+  
 
   # #mixpanel.track "[test] mooqr start"
 
