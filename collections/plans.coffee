@@ -119,6 +119,48 @@ Meteor.methods
     
     #should also delete modules and tasks
 
+  'followPlan': (planId) ->
+    # console.log "TODO: Meteor.methods.followPlan"
+
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
+
+    userPlan =
+      userId: userId
+      planId: planId
+      isOwner: false
+
+    if not UserPlans.findOne {userId: userId, planId: planId}
+      UserPlans.insert userPlan
+      returnObj = 
+        status: "success"
+        mixpanel: "[test][UserFollowPlan] user:" + userId + " / " + "plan:" + planId
+
+
+    
+
+
+  'unfollowPlan': (planId) ->
+    # console.log "TODO: Meteor.methods.followPlan"
+
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    userId = user._id
+    
+    UserPlans.remove {userId: userId, planId: planId}
+    returnObj = 
+        status: "success"
+        mixpanel: "[test][UserUnfollowPlan] user:" + userId + " / " + "plan:" + planId
+
+
+
 
   'createModule': (planId, moduleName, description) ->
 

@@ -14,6 +14,7 @@ binary-heap@1.0.0
 blaze-tools@1.0.0
 blaze@2.0.0
 boilerplate-generator@1.0.0
+c3h3dev:mixpanel-tracks@0.0.0
 callback-hook@1.0.0
 check@1.0.0
 coffeescript@1.0.3

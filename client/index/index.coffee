@@ -1,4 +1,24 @@
 Meteor.startup ->
+
+  mixpanel.init "696a8c98c250f36f66eb4aab990f79a0"
+
+  # #mixpanel.track "[test] mooqr start"
+
+  # user = Meteor.user()
+
+  # if user and not Meteor.loggingIn()
+  #   mixpanel.identify user._id
+  #   mixpanel.people.set
+  #     "$email": user.profile.email
+  #   mixpanel.track "[test] record user first account!"
+
+  # if user
+  #   mixpanel.identify user._id
+  #   mixpanel.people.set
+  #     "$email": user.profile.email
+  #   mixpanel.track "[test] record user already has account!"
+
+
   scrollHandler = ->
     if $(document).scrollTop() > 100
       $('.app-bar2').addClass 'shrink'
@@ -14,5 +34,8 @@ Meteor.startup ->
 
   Template.index.destroyed = ->
     $(document).unbind 'scroll', scrollHandler
+
+
     
+
     

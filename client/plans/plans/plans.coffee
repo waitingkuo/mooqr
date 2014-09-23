@@ -15,16 +15,40 @@ Template.plans.events
   'click .follow': (e) ->
     e.stopPropagation()
 
-    userId = Meteor.userId()
     planId = @_id
 
-    userPlan =
-      userId: userId
-      planId: planId
-      isOwner: false
+    Meteor.call 'followPlan', planId, (err, result) ->
+      console.log "user follow plan: "
+      console.log result
+      if result.status is "success"
+        mixpanel.track result.mixpanel
 
-    if not UserPlans.findOne {userId: userId, planId: planId}
-      UserPlans.insert userPlan
+
+  'click .unfollow': (e) ->
+    e.stopPropagation()
+
+    planId = @_id
+
+    Meteor.call 'unfollowPlan', planId, (err, result) ->
+      console.log "user unfollow plan: "
+      console.log result
+      if result.status is "success"
+        mixpanel.track result.mixpanel
+
+
+
+
+    # userId = Meteor.userId()
+    # planId = @_id
+
+    # userPlan =
+    #   userId: userId
+    #   planId: planId
+    #   isOwner: false
+
+    # if not UserPlans.findOne {userId: userId, planId: planId}
+    #   UserPlans.insert userPlan
+
    
 
 #FIXME

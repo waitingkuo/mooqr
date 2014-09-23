@@ -16,8 +16,15 @@ Meteor.startup ->
       template: 'index'
       layoutTemplate: 'indexLayout'
       onBeforeAction: ->
+        
         if Meteor.user()
+          # mixpanel.track "[test][iron-router index][onBeforeAction] Meteor.user() / go to plans"
           Router.go 'plans'
+
+      # onAfterAction: -> 
+      #   mixpanel.track "[test][iron-router index][onBeforeAction] go to home page"
+
+
 
     @route 'plans',
       path: '/plans',
@@ -68,4 +75,3 @@ Meteor.startup ->
         planId = @params._id
         Meteor.subscribe 'fullPlan', planId
         Meteor.subscribe 'userTasks', planId
-      
