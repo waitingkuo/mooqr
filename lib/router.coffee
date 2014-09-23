@@ -2,6 +2,8 @@ Router.configure
   layoutTemplate: 'layout'
   waitOn: ->
     Meteor.subscribe 'userPlans'
+    mixpanel.init "696a8c98c250f36f66eb4aab990f79a0"
+      
 
 scrollTop = ->
   $(document).scrollTop(0)
@@ -15,14 +17,21 @@ Meteor.startup ->
       path: '/'
       template: 'index'
       layoutTemplate: 'indexLayout'
-      onBeforeAction: ->
-        
+      onBeforeAction: ->        
         if Meteor.user()
-          # mixpanel.track "[test][iron-router index][onBeforeAction] Meteor.user() / go to plans"
           Router.go 'plans'
 
-      # onAfterAction: -> 
-      #   mixpanel.track "[test][iron-router index][onBeforeAction] go to home page"
+      onAfterAction: -> 
+        user = Meteor.user()
+        if user
+          Router.go 'plans'
+          mixpanel.identify user._id
+          mixpanel.people.set
+            "$email": user.profile.email
+      
+          mixpanel.track "[test][UserView] index redirectTo plans"
+        else
+          mixpanel.track "[test][AnonymousUserView] index"
 
 
 
@@ -62,6 +71,15 @@ Meteor.startup ->
         }
 
 
+      onAfterAction: -> 
+        user = Meteor.user()
+        if user
+          mixpanel.track "[test][UserView] plans"
+        else
+          mixpanel.track "[test][AnonymousUserView] plans"
+
+
+
     @route 'plan',
       path: '/plans/:_id',
       template: 'plan'
@@ -75,3 +93,14 @@ Meteor.startup ->
         planId = @params._id
         Meteor.subscribe 'fullPlan', planId
         Meteor.subscribe 'userTasks', planId
+
+      onAfterAction: -> 
+        planId = @params._id
+        user = Meteor.user()
+        if user
+          mixpanel.track "[test][UserViewPlan] planId:" + planId
+        else
+          mixpanel.track "[test][AnonymousUserViewPlan] planId:" + planId
+      
+
+

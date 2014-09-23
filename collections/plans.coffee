@@ -138,7 +138,7 @@ Meteor.methods
       UserPlans.insert userPlan
       returnObj = 
         status: "success"
-        mixpanel: "[test][UserFollowPlan] user:" + userId + " / " + "plan:" + planId
+        mixpanel: "[test][UserFollowPlan] planId:" + planId
 
 
     
@@ -157,7 +157,7 @@ Meteor.methods
     UserPlans.remove {userId: userId, planId: planId}
     returnObj = 
         status: "success"
-        mixpanel: "[test][UserUnfollowPlan] user:" + userId + " / " + "plan:" + planId
+        mixpanel: "[test][UserUnfollowPlan] planId:" + planId
 
 
 
