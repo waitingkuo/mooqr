@@ -20,9 +20,9 @@ Meteor.publish 'userPlans', () ->
 
   userId = @userId
   
-  console.log "userId = "
-  console.log userId
-  console.log @
+  # console.log "userId = "
+  # console.log userId
+  # console.log @
   
   # console.log "user._id = "
   # console.log Meteor.userId()
@@ -61,16 +61,6 @@ Meteor.publish 'otherPlans', () ->
 Meteor.publish 'allPlans', () ->
   Plans.find()
     
-
-
-Meteor.publish 'userPlansNew', () ->
-
-  userId = @userId
-  
-  userPlans = UserPlans.find({userId: userId})
-  planIds = _.map userPlans.fetch(), (userPlan) -> userPlan.planId
-
-  return userPlans.find({userId: userId})
 
 
 

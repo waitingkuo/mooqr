@@ -62,8 +62,6 @@ Meteor.startup ->
 
       waitOn: ->
         Meteor.subscribe 'userPlans'
-        # Meteor.subscribe 'otherPlans'
-        # Meteor.subscribe 'userPlansNew'
         Meteor.subscribe 'allPlans'
 
         
