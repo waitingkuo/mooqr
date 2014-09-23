@@ -7,6 +7,8 @@ a
 
 // colors
 primary = #3F51B5
+primary = #5677fc
+primary = #03a9f4
 primary-light = #C5CAE9
 primary-dark = #303F9F
 white = #FFFFFF
@@ -276,13 +278,67 @@ container()
   margin-left auto
   margin-right auto
 
+#app-bar2
+  height 256px
+.app-bar2
+  width 100%
+  height 256px
 
+  color white
+  a
+    color white
+  background primary
+  shadow 2
+  z-index 2
+  position relative
+  box-sizing border-box
+
+  padding 0 20px 0 20px
+
+  clearfix()
+  > *
+    float left
+
+  .nav-icon
+    position fixed
+    font-size 24px
+    cursor pointer
+    width 24px
+    height 64px
+    line-height 64px
+
+  .title
+    position absolute
+    left 60px
+
+    typog-headline()
+    color white
+
+    line-height 300px
+    height 256px
+    font-size 56px
+
+  &.shrink
+    .title
+      position fixed
+      height 64px
+      line-height 64px
+      font-size 24px
+  &.fixed
+    position fixed
+    height 64px
+
+
+.app-bar2
+  height 256px
 // App bar
 #app-bar
   height 64px
 .app-bar
   background primary
   color white
+  a
+    color white
   width 100%
   height 64px
   shadow 2
@@ -308,6 +364,7 @@ container()
 
   .title
     typog-headline()
+    font-size 24px
     color white
     line-height 24px
     height 24px
@@ -599,6 +656,71 @@ dialog(z-depth=2)
   .container
     container()
 
+  section.welcome 
+    //height 660px
+    //height calc(100vh - 256px)
+    //position relative
+    .content
+      text-align center
+
+    //.content
+    //  position relative
+    //  top 100px
+    //  .title
+    //    font-size 34px
+    //    text-align center
+    //    typog-headline()
+    //    margin-bottom 50px
+    //  .login
+    //    text-align center
+
+    //.learn-more
+    //  position relative
+    //  width 120px
+    //  bottom 60px
+    //  left calc(50% - 40px)
+    //  cursor pointer
+    //  i
+    //    font-size 14px
+
+  section
+    max-height calc(100vh - 64px)
+    height 500px
+    container()
+    clearfix()
+    > * 
+      float left
+    .image
+      width 450px
+      box-sizing border-box
+      padding-left 25px
+      padding-right 25px
+      position relative
+      top 50%
+      transform translateY(-50%)
+    .content
+      width 450px
+      box-sizing border-box
+      padding-left 25px
+      padding-right 25px
+      position relative
+      top 50%
+      transform translateY(-50%)
+      .title
+        typog-headline()
+        font-size 34px
+        margin-bottom 20px
+      .description
+        typog-body1
+
+  .bottom-login
+    text-align center
+    #login-buttons
+      #login-buttons-google
+        width 200px
+        height 34px
+        line-height 34px
+
 .card2
 
   card()
@@ -694,7 +816,8 @@ dialog(z-depth=2)
   .container
     container()
 
-
+  .module
+    margin-bottom 20px
 
 // FIXME TODELETE
 #udacity359

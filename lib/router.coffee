@@ -1,6 +1,11 @@
 Router.configure
   layoutTemplate: 'layout'
 
+scrollTop = ->
+  $(document).scrollTop(0)
+Router.onBeforeAction scrollTop
+
+
 Meteor.startup ->
   Router.map ->
 
@@ -11,6 +16,10 @@ Meteor.startup ->
     @route 'index',
       path: '/'
       template: 'index'
+      layoutTemplate: 'indexLayout'
+      onBeforeAction: ->
+        if Meteor.user()
+          Router.go 'plans'
 
     @route 'plans',
       path: '/plans',

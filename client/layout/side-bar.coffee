@@ -11,7 +11,9 @@ Template.sideBar.helpers
 
 Template.sideBar.events
 
-  'click .item-logout': (e) -> Meteor.logout()
+  'click .item-logout': (e) -> 
+    Meteor.logout ->
+      Router.go 'index'
 
   'click #feedback': (e) ->
     UserVoice.push ['show', '#feedback', {

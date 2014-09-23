@@ -4,10 +4,21 @@ template(name="appBar")
       .nav-icon
         i.icon.ion-navicon
       .title
-        a Mooqr
+        a(href="{{pathFor 'index'}}")  Mooqr
         
       unless currentUser
         +loginButtons
+      
+template(name="appBar2")
+  #app-bar2
+    .app-bar2
+      .nav-icon
+        i.icon.ion-navicon
+      .title
+        a Mooqr
+        
+      //unless currentUser
+      //  +loginButtons
       
 
 
