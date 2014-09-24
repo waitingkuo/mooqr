@@ -4,7 +4,7 @@ Template.module.helpers
     Meteor.userId() is @userId
 
   tasks: ->
-    Tasks.find _id: {$in: @taskIds}
+    @taskIds?.map (taskId) -> Tasks.findOne taskId
 
   moduleMenuData: ->
     items: [
