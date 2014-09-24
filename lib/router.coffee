@@ -17,11 +17,11 @@ Meteor.startup ->
       path: '/'
       template: 'index'
       layoutTemplate: 'indexLayout'
-      onBeforeAction: ->        
+      onBeforeAction: ->
         if Meteor.user()
           Router.go 'plans'
 
-      onAfterAction: -> 
+      onAfterAction: ->
         user = Meteor.user()
         if user
           Router.go 'plans'
