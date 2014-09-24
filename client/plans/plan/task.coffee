@@ -29,6 +29,9 @@ Template.task.helpers
   isOwner: ->
     Meteor.userId() is @userId
 
+  isUserTask: ->
+    UserPlans.findOne planId: @planId
+
   checked: ->
 
     taskId = @_id

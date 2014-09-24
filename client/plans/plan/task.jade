@@ -1,6 +1,6 @@
 template(name="task")
   .task.list-item
-    if isOwner
+    if isUserTask
       .checkbox
         input(type="checkbox", checked="{{checked}}")
         label
