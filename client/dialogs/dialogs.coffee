@@ -1,42 +1,79 @@
-Template.inputTextarea.events
-
-  'keyup': (e) ->
-    $area = $(e.target)
-    $area.css 'height', '0'
-    scrollHeight = $area.prop('scrollHeight') - 20
-    console.log scrollHeight
-    $area.css 'height', scrollHeight
-
-
-# Plan Dialog
+#
+# Plan
+#
 Template.planDialog.helpers
-  # this is strange
   planName: ->
     fieldName: 'planName'
 Template.planDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
+AutoForm.hooks
+  planDialog:
+    onSubmit: (insertDoc, updateDoc, currentDoc) ->
+
+      planName = insertDoc.planName
+
+      Meteor.call 'createPlan', planName, (err, result) ->
+        if not err
+          Blaze.remove Blaze.getView($('.material-dialog')[0])
+
+      @done()
+      return false
+
+
+#
+# Edit Plan
+#
 Template.editPlanDialog.helpers
-  # this is strange
   planName: ->
     fieldName: 'planName'
   editingDoc: ->
     Plans.findOne Session.get('currentPlanId')
-
 Template.editPlanDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
+AutoForm.hooks
+  editPlanDialog:
+    onSubmit: (insertDoc, updateDoc, currentDoc) ->
+
+      planId = currentDoc._id
+      planName = updateDoc.$set.planName
+
+      Meteor.call 'updatePlan', planId, planName, (err, result) ->
+        if not err
+          Blaze.remove Blaze.getView($('.material-dialog')[0])
+
+      @done()
+      return false
 
 
-# Module Dialog
+#
+# Module
+#
 Template.moduleDialog.helpers
   moduleName: ->
     fieldName: 'moduleName'
 Template.moduleDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
+AutoForm.hooks
+  moduleDialog:
+    onSubmit: (insertDoc, updateDoc, currentDoc) ->
+
+      planId = Session.get 'currentPlanId'
+      moduleName = insertDoc.moduleName
+
+      Meteor.call 'createModule', planId, moduleName, (err, result) ->
+        if not err
+          Blaze.remove Blaze.getView($('.material-dialog')[0])
+
+      @done()
+      return false
+
+#
+# Edit Module
+#
 Template.editModuleDialog.helpers
-  # this is strange
   moduleName: ->
     fieldName: 'moduleName'
   editingDoc: ->
@@ -46,61 +83,7 @@ Template.editModuleDialog.helpers
 Template.editModuleDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
-      
-
-
-#Task Dialog
-Template.taskDialog.helpers
-  taskName: ->
-    fieldName: 'taskName'
-Template.taskDialog.events
-  'click .cancel-button': (e) ->
-    Blaze.remove Blaze.currentView
-
-
 AutoForm.hooks
-
-  planDialog:
-    onSubmit: (insertDoc, updateDoc, currentDoc) ->
-
-      planName = insertDoc.planName
-
-      Meteor.call 'createPlan', planName, (err, result) ->
-        if not err
-          Blaze.remove Blaze.getView($('.plan-dialog')[0])
-          
-
-      @done()
-      return false
-
-  editPlanDialog:
-    onSubmit: (insertDoc, updateDoc, currentDoc) ->
-
-      planId = currentDoc._id
-      planName = updateDoc.$set.planName
-
-      Meteor.call 'updatePlan', planId, planName, (err, result) ->
-        if not err
-          Blaze.remove Blaze.getView($('.plan-dialog')[0])
-
-      @done()
-      return false
-
-
-  moduleDialog:
-    onSubmit: (insertDoc, updateDoc, currentDoc) ->
-
-      planId = Session.get 'currentPlanId'
-      moduleName = insertDoc.moduleName
-
-      Meteor.call 'createModule', planId, moduleName, (err, result) ->
-        if not err
-          Blaze.remove Blaze.getView($('.module-dialog')[0])
-
-      @done()
-      return false
-
-
   editModuleDialog:
     onSubmit: (insertDoc, updateDoc, currentDoc) ->
 
@@ -110,15 +93,25 @@ AutoForm.hooks
 
       Meteor.call 'updateModule', planId, moduleId, moduleName, (err, result) ->
         if not err
-          Blaze.remove Blaze.getView($('.module-dialog')[0])
+          Blaze.remove Blaze.getView($('.material-dialog')[0])
         else 
           console.log insertDoc, updateDoc, currentDoc
           console.log err
 
       @done()
       return false
+      
 
-
+#
+# Task
+#
+Template.taskDialog.helpers
+  taskName: ->
+    fieldName: 'taskName'
+Template.taskDialog.events
+  'click .cancel-button': (e) ->
+    Blaze.remove Blaze.currentView
+AutoForm.hooks
   taskDialog:
     onSubmit: (insertDoc, updateDoc, currentDoc) ->
 
@@ -128,7 +121,7 @@ AutoForm.hooks
 
       Meteor.call 'createTask', planId, moduleId, taskName, (err, result) ->
         if not err
-          Blaze.remove Blaze.getView($('.task-dialog')[0])
+          Blaze.remove Blaze.getView($('.material-dialog')[0])
 
       @done()
       return false

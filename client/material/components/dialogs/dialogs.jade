@@ -1,0 +1,14 @@
+template(name="inputText")
+  .input-text
+    +afFieldInput name=fieldName template="plain"
+    span.highlight
+    span.bar
+    +afFieldLabel name=fieldName template="plain"
+
+template(name="inputTextarea")
+  .input-textarea
+    textarea(required)
+    span.highlight
+    span.bar
+    label {{label}}
+

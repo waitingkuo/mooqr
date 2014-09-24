@@ -1,83 +1,84 @@
-template(name="inputText")
-  .input-text
-    +afFieldInput name=fieldName template="plain"
-    span.highlight
-    span.bar
-    +afFieldLabel name=fieldName template="plain"
-
-template(name="inputTextarea")
-  .input-textarea
-    textarea(required)
-    span.highlight
-    span.bar
-    label {{label}}
-
+//
 // Plan Dialog
+//
 template(name="planDialog")
-  .plan-dialog
-    +autoForm id="planDialog" collection="Plans"
-      .dialog-header New Plan
+  .material-dialog-background
+    .material-dialog
+      +autoForm id="planDialog" collection="Plans"
+        .dialog-title New Plan
 
-      .plan-name
-        +UI.dynamic template="inputText" data=planName
+        .dialog-content
+          +UI.dynamic template="inputText" data=planName
 
-      .dialog-footer
-        button.button.flat-button.save-button(type="submit") save
-        button.button.flat-button.cancel-button(type="button") cancel
+        .dialog-actions
+          button.button.flat-button.save-button(type="submit") save
+          button.button.flat-button.cancel-button(type="button") cancel
 
-// Plan Dialog
+//
+// Edit Plan Dialog
+//
 template(name="editPlanDialog")
-  .plan-dialog
-    +autoForm id="editPlanDialog" collection="Plans" doc=editingDoc
-      .dialog-header Edit Plan
+  .material-dialog-background
+    .material-dialog
+      +autoForm id="editPlanDialog" collection="Plans" doc=editingDoc
+        .dialog-title Edit Plan
 
-      .plan-name
-        +UI.dynamic template="inputText" data=planName
+        .dialog-content
+          +UI.dynamic template="inputText" data=planName
 
-      .dialog-footer
-        button.button.flat-button.save-button(type="submit") update
-        button.button.flat-button.cancel-button(type="button") cancel
+        .dialog-actions
+          button.button.flat-button.save-button(type="submit") update
+          button.button.flat-button.cancel-button(type="button") cancel
 
-
+//
 // Module Dialog
+//
 template(name="moduleDialog")
-  .module-dialog
-    +autoForm id="moduleDialog" collection="Modules"
-      .dialog-header New Module
+  .material-dialog-background
+    .material-dialog
+      +autoForm id="moduleDialog" collection="Modules"
+        .dialog-title New Module
 
-      .module-name
-        +UI.dynamic template="inputText" data=moduleName
+        .dialog-content
+          +UI.dynamic template="inputText" data=moduleName
 
-      .dialog-footer
-        button.button.flat-button.save-button(type="submit") save
-        button.button.flat-button.cancel-button(type="button") cancel
+        .dialog-actions
+          button.button.flat-button.save-button(type="submit") save
+          button.button.flat-button.cancel-button(type="button") cancel
 
-// Module Dialog
+
+//
+// Edit Module Dialog
+//
 template(name="editModuleDialog")
-  .module-dialog
-    +autoForm id="editModuleDialog" collection="Modules" doc=editingDoc
-      .dialog-header Edit Module
+  .material-dialog-background
+    .material-dialog
+      +autoForm id="editModuleDialog" collection="Modules" doc=editingDoc
+        .dialog-title Edit Module
 
-      .module-name
-        +UI.dynamic template="inputText" data=moduleName
+        .dialog-content
+          +UI.dynamic template="inputText" data=moduleName
 
-      .dialog-footer
-        button.button.flat-button.save-button(type="submit") update
-        button.button.flat-button.cancel-button(type="button") cancel
+        .dialog-actions
+          button.button.flat-button.save-button(type="submit") update
+          button.button.flat-button.cancel-button(type="button") cancel
 
 
+//
 // Task Dialog
+//
 template(name="taskDialog") 
-  .task-dialog
-    +autoForm id="taskDialog" collection="Tasks"
-      .dialog-header New Task
+  .material-dialog-background
+    .material-dialog
+      +autoForm id="taskDialog" collection="Tasks"
+        .dialog-title New Task
 
-      .module-name
-        +UI.dynamic template="inputText" data=taskName
+        .dialog-content
+          +UI.dynamic template="inputText" data=taskName
 
-      .dialog-footer
-        button.button.flat-button.save-button(type="submit") save
-        button.button.flat-button.cancel-button(type="button") cancel
+        .dialog-actions
+          button.button.flat-button.save-button(type="submit") save
+          button.button.flat-button.cancel-button(type="button") cancel
 
 
 
