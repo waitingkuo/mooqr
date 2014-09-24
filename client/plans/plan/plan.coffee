@@ -4,7 +4,7 @@ Template.plan.helpers
     Meteor.userId() is @userId
 
   modules: ->
-    if @plan().moduleIds
+    if @moduleIds
       Modules.find _id: {$in: @moduleIds}
 
   planMenuData: ->
