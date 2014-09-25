@@ -41,8 +41,8 @@ Template.plans.events
 
     $(".followed-plans").hide()
     $(".your-plans").hide()
-    searchWords = $(e.target).val()
-
+    _searchWords = $(e.target).val()
+    searchWords = ( xx for xx in _searchWords.split(" ") when xx isnt "").join "|"
     Session.set "searchWords", searchWords
 
     user = Meteor.user()
