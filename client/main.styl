@@ -853,4 +853,34 @@ dialog(z-depth=2)
           height 30px
           line-height 30px
 
+.search-bar
+  height 64px
+  clearfix()
+  > label > *
+    float left
+    height 64px
+    line-height 64px
+
+  .search-icon
+    box-sizing border-box
+    padding-left 24px
+    width 80px
+  .search-input
+    width calc(100% - 160px)
+    input
+      width 100%
+      font-size 20px
+      box-sizing border-box
+      border none
+      &:focus
+        outline none
+  .search-clear
+    text-align right
+    box-sizing border-box
+    padding-right 24px
+    width 80px
+    float right
+    cursor pointer
+   
+
 
