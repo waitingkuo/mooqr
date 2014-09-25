@@ -1,0 +1,10 @@
+template(name="snackbars")
+  #snackbars
+    each messages
+      +snackbar
+
+template(name="snackbar")
+  .snackbar
+    .snackbar-inner
+      span.message {{message}}
+      span.button {{button}}

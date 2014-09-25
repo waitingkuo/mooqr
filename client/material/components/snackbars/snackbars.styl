@@ -1,0 +1,48 @@
+@import 'nib'
+
+@keyframes snackbar-animation
+  0%  
+    -webkit-transform translateY(200%)
+    opacity: 1
+  5% 
+    -webkit-transform translateY(0%)
+    opacity: 1
+  90% 
+    -webkit-transform translateY(0%)
+    opacity: 1
+  100%
+    -webkit-transform translateY(0%)
+    opacity: 0
+
+#snackbars
+
+  .snackbar
+
+    position fixed
+    z-index 100001
+    -webkit-transition -webkit-transform 2.2s ease-in-out
+    -webkit-animation snackbar-animation 5s ease-in-out 0s 1 normal
+    opacity: 0
+
+    left 12px
+    bottom 12px
+    min-width 288px
+    max-width 568px
+    background #323232
+    typography-toast()
+    -webkit-border-radius 2px
+    .snackbar-inner
+      width 100%
+      font-family roboto
+      padding 15px 20px
+      font-size 14px
+      line-height 14px
+      .message
+        color white
+      .button
+        position absolute
+        right 20px
+        color yellow
+        cursor pointer
+
+
