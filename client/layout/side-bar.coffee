@@ -10,6 +10,10 @@ Template.sideBar.helpers
       return ''
 
 Template.sideBar.events
+  'click .item-plans': (e) ->
+    $(".followed-plans").show()
+    $(".your-plans").show()
+    Session.set("searchWords",".*")
 
   'click .item-logout': (e) -> 
     Meteor.logout ->

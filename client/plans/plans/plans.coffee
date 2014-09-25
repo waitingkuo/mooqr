@@ -39,13 +39,19 @@ Template.plans.events
     
     e.stopPropagation()
 
-    $(".followed-plans").hide()
-    $(".your-plans").hide()
     _searchWords = $(e.target).val()
-    # searchWords = _searchWords
-    searchWords = ( xx for xx in _searchWords.split(" ") when xx isnt "").join "|"
 
-    Session.set "searchWords", searchWords
+
+    # searchWords = _searchWords
+    searchWords = ( xx for xx in _searchWords.split(" ") when xx isnt "")
+    if searchWords.length > 0
+      $(".followed-plans").hide()
+      $(".your-plans").hide()
+      Session.set "searchWords", searchWords.join("|")
+    else
+      $(".followed-plans").show()
+      $(".your-plans").show()
+      Session.set "searchWords", ".*"
 
     user = Meteor.user()
     if user
