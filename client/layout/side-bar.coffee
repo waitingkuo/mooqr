@@ -11,8 +11,8 @@ Template.sideBar.helpers
 
 Template.sideBar.events
   'click .item-plans': (e) ->
-    $(".followed-plans").show()
-    $(".your-plans").show()
+    # $(".followed-plans").show()
+    # $(".your-plans").show()
     Session.set("searchWords",".*")
 
   'click .item-logout': (e) -> 

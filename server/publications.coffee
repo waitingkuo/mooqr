@@ -17,9 +17,13 @@ Meteor.publish 'fullPlan', (planId) ->
 # Resource   : plans
 # Collections: Plans
 #
-Meteor.publish 'plans', (planIds) ->
+Meteor.publish 'plans', (planIds, searchWords) ->
   Plans.find
     _id: {$in: planIds}
+    planName: {
+      $regex: searchWords,
+      $options: "i"
+    }
 
 
 Meteor.publish 'otherPlans', (notPlanIds, searchWords) ->

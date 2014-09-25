@@ -59,12 +59,12 @@ Template.searchPlans.events
       console.log searchWords
       searchWords = ( xx for xx in _searchWords.split(" ") when xx isnt "")
       if searchWords.length > 0
-        $(".followed-plans").hide()
-        $(".your-plans").hide()
+        # $(".followed-plans").hide()
+        # $(".your-plans").hide()
         Session.set "searchWords", searchWords.join("|")
       else
-        $(".followed-plans").show()
-        $(".your-plans").show()
+        # $(".followed-plans").show()
+        # $(".your-plans").show()
         Session.set "searchWords", ".*"
      
       user = Meteor.user()
