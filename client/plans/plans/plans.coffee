@@ -42,14 +42,16 @@ Template.plans.events
     $(".followed-plans").hide()
     $(".your-plans").hide()
     _searchWords = $(e.target).val()
+    # searchWords = _searchWords
     searchWords = ( xx for xx in _searchWords.split(" ") when xx isnt "").join "|"
+
     Session.set "searchWords", searchWords
 
     user = Meteor.user()
     if user
-      mixpanel.track "[test][UserSearch] searchWords:" + searchWords
+      mixpanel.track "[test][UserSearch] searchWords:" + _searchWords
     else
-      mixpanel.track "[test][AnonymousUserSearch] searchWords:" + searchWords
+      mixpanel.track "[test][AnonymousUserSearch] searchWords:" + _searchWords
 
 
 
