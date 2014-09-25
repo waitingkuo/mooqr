@@ -42,7 +42,14 @@ Template.plans.events
     $(".followed-plans").hide()
     $(".your-plans").hide()
     searchWords = $(e.target).val()
-    Session.set("searchWords", searchWords)
+
+    Session.set "searchWords", searchWords
+
+    user = Meteor.user()
+    if user
+      mixpanel.track "[test][UserSearch] searchWords:" + searchWords
+    else
+      mixpanel.track "[test][AnonymousUserSearch] searchWords:" + searchWords
 
 
 
