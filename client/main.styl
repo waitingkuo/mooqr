@@ -273,7 +273,7 @@ divider()
     
 // container
 container()
-  max-width 900px
+  max-width calc(100% - 16px)
   width 900px
   margin-left auto
   margin-right auto
@@ -738,6 +738,12 @@ dialog(z-depth=2)
       height 64px
       line-height 64px
       padding-left 24px
+
+      // truncate
+      text-overflow ellipsis
+      white-space nowrap
+      overflow hidden
+
     .menu
       width 48px
       height 64px
