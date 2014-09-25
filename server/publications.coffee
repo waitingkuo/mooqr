@@ -21,9 +21,14 @@ Meteor.publish 'plans', (planIds) ->
   Plans.find
     _id: {$in: planIds}
 
-Meteor.publish 'otherPlans', (notPlanIds) ->
+
+Meteor.publish 'otherPlans', (notPlanIds, searchWords) ->
   Plans.find({
     _id: {$nin: notPlanIds}
+    planName: {
+      $regex: searchWords,
+      $options: "i"
+    }
   }, {
     limit: 25
   })
@@ -51,11 +56,6 @@ Meteor.publish 'userTasks', (planId) ->
   UserTasks.find
     userId: userId
     planId: planId
-
-
-
-
-
 
     
 Meteor.publish 'allPlans', () ->

@@ -46,7 +46,14 @@ Meteor.startup ->
         }).map (userPlan) -> userPlan.planId
 
         @subscribe('plans', userPlanIds).wait()
-        @subscribe('otherPlans', userPlanIds).wait()
+
+        searchWords = Session.get("searchWords")
+        if searchWords
+          @subscribe('otherPlans', userPlanIds, searchWords).wait()
+        else
+          Session.setDefault("searchWords",".*")
+          searchWords = Session.get("searchWords")
+          @subscribe('otherPlans', userPlanIds, searchWords).wait()
 
         ownedPlanIds = UserPlans.find({
           userId: userId

@@ -10,8 +10,7 @@ Accounts.onCreateUser (options, user) ->
 		user.profile.picture = user.services.google.picture
 		user.profile.name = user.services.google.name
 		user.profile.email = user.services.google.email
-
-
+		
 	user
 
 

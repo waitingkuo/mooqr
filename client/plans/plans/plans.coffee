@@ -35,6 +35,20 @@ Template.plans.events
       if result.status is "success"
         mixpanel.track result.mixpanel
 
+  'change input.search-keyword': (e) ->
+    
+    e.stopPropagation()
+
+    $(".followed-plans").hide()
+    $(".your-plans").hide()
+    searchWords = $(e.target).val()
+    Session.set("searchWords", searchWords)
+
+
+
+    
+
+
 
 
 
