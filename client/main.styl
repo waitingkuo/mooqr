@@ -889,4 +889,30 @@ dialog(z-depth=2)
     cursor pointer
    
 
+// progress-bar
+.progress
+  clearfix()
+  > *
+    float left
+  padding-left 10px
+  padding-right 10px
+
+  .progress-bar-container
+    width 90%
+    height 36px
+    background #C8C8C8
+    .progress-bar
+      transition width 1s
+      width 0%
+      height 36px
+      background primary-dark
+
+  .progress-percentage-container
+    width 10%
+    .progress-percentage
+      line-height 36px
+      height 36px
+      font-size 20px
+      text-align right
+      color black
 

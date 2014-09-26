@@ -1,3 +1,10 @@
+template(name="progress")
+  .progress
+    .progress-bar-container
+      .progress-bar(style="width: {{percentage}}")
+    .progress-percentage-container
+      .progress-percentage {{percentage}}
+
 template(name="plan")
   #plan
     br
@@ -13,7 +20,11 @@ template(name="plan")
           
       br
       br
+      +progress
       br
+      br
+
+
 
       //.card.plan
       //  .header
