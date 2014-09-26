@@ -17,10 +17,16 @@ template(name="plan")
           if isOwner
             .menu
               +UI.dynamic template="menuButton" data=planMenuData
-          
+          else
+            .buttons
+              if isFollowed
+                .button.raised-button.unfollow unfollow
+              else
+                .button.raised-button.follow follow
       br
       br
-      +progress
+      if isUserPlan
+        +progress
       br
       br
 

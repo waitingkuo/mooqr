@@ -1,6 +1,6 @@
 Template.progress.helpers
 
-  percentage: -> 
+  percentage: ->
     if not Router.current().data()
       return  '0%'
     planId = Router.current().data()._id
@@ -34,6 +34,15 @@ Template.plan.helpers
   isOwner: () ->
     Meteor.userId() is @userId
 
+  isFollowed: () ->
+    UserPlans.findOne({
+      planId: @_id
+      isOwner: false
+    })?
+
+  isUserPlan: () ->
+    UserPlans.findOne planId: @_id
+
   modules: ->
     @moduleIds?.map (moduleId) -> Modules.findOne moduleId
 
@@ -53,7 +62,30 @@ Template.plan.helpers
       }
     ]
 
+Template.plan.events
+  
+  'click .follow': (e) ->
+    e.stopPropagation()
 
+    planId = @_id
+
+    Meteor.call 'followPlan', planId, (err, result) ->
+      console.log "user follow plan: "
+      console.log result
+      if result.status is "success"
+        mixpanel.track result.mixpanel
+
+
+  'click .unfollow': (e) ->
+    e.stopPropagation()
+
+    planId = @_id
+
+    Meteor.call 'unfollowPlan', planId, (err, result) ->
+      console.log "user unfollow plan: "
+      console.log result
+      if result.status is "success"
+        mixpanel.track result.mixpanel
   
 
   

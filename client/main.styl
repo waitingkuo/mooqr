@@ -734,7 +734,7 @@ dialog(z-depth=2)
     .title
       // FIXME check box-sizing
       box-sizing border-box
-      width calc(100% - 56px)
+      width calc(100% - 120px)
       height 64px
       line-height 64px
       padding-left 24px
@@ -745,10 +745,18 @@ dialog(z-depth=2)
       overflow hidden
 
     .menu
+      float right
       width 48px
       height 64px
       line-height 64px
       padding-right 8px
+
+    .buttons
+      float right
+      line-height 64px
+      height 64px
+      padding-top 14px
+      padding-right 20px
 
   .card-divider
     divider()
