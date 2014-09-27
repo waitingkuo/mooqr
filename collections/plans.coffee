@@ -59,6 +59,7 @@ Meteor.methods
 
     if !user
       throw new Meteor.Error(401, "You need to login to post new stories")
+      
 
     userId = user._id
 
@@ -98,6 +99,8 @@ Meteor.methods
         planName: planName
 
     Plans.update selector, modifier
+
+    planId
 
 
   'deletePlan': (planId) ->

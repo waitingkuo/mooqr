@@ -16,10 +16,21 @@ Template.plans.events
     planId = @_id
 
     Meteor.call 'followPlan', planId, (err, result) ->
-      console.log "user follow plan: "
-      console.log result
-      if result.status is "success"
-        mixpanel.track result.mixpanel
+      if not err
+        # console.log "user follow plan: "
+        # console.log result
+        if result.status is "success"
+          Snackbars.popup "Follow plan successfully!"
+          mixpanel.track result.mixpanel
+
+      else
+        if err.error is 401
+          Snackbars.popup "Cannot follow plans. Please ... ", "LOGIN"
+          mixpanel.track "[test][AnonymousUserError] follow plans without login"
+        else
+          Snackbars.popup "Cannot follow plans."
+          mixpanel.track "[test][AnonymousUserError] follow plans ERROR"
+
 
 
   'click .unfollow': (e) ->
@@ -28,10 +39,23 @@ Template.plans.events
     planId = @_id
 
     Meteor.call 'unfollowPlan', planId, (err, result) ->
-      console.log "user unfollow plan: "
-      console.log result
-      if result.status is "success"
-        mixpanel.track result.mixpanel
+      if not err
+        # console.log "user unfollow plan: "
+        # console.log result
+        if result.status is "success"
+          Snackbars.popup "Unfollow plan successfully!"
+          mixpanel.track result.mixpanel
+
+      else
+        if err.error is 401
+          Snackbars.popup "Cannot unfollow plans. Please ... ", "LOGIN"
+          mixpanel.track "[test][AnonymousUserError] unfollow plans without login"
+        else
+          Snackbars.popup "Cannot unfollow plans."
+          mixpanel.track "[test][AnonymousUserError] unfollow plans ERROR"
+
+
+
 
 
 delay = ( ->
