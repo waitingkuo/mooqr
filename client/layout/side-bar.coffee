@@ -24,3 +24,10 @@ Template.sideBar.events
       mode: 'satisfaction'
       menu_enabled: true
     }]
+
+Template.sideBar.rendered = ->
+  hammertime = new Hammer($('#side-bar')[0])
+  hammertime.on 'swipeleft', ->
+    isActive = Session.get 'sideBar:isActive'
+    Session.set 'sideBar:isActive', (not isActive)
+
