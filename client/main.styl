@@ -374,7 +374,8 @@ container()
 side-bar-width = 300px
 #side-bar
 
-  width side-bar-width
+  width 264px
+  //width side-bar-width
   min-height 100%
 
   background white
@@ -383,7 +384,7 @@ side-bar-width = 300px
   top 0
   left 0
 
-  z-index 3
+  z-index 10000
   shadow 3
 
   transform translateX( - side-bar-width )
@@ -497,6 +498,7 @@ dialog(z-depth=2)
     font-size 18px
     padding 10px 10px 10px 5px
     display block
+    max-width 100%
     width 300px
     box-sizing border-box
     border none
@@ -524,6 +526,7 @@ dialog(z-depth=2)
   .bar
     position relative
     display block
+    max-width 100%
     width 300px
     background blue
 
@@ -916,7 +919,7 @@ dialog(z-depth=2)
   padding-right 10px
 
   .progress-bar-container
-    width 90%
+    width 85%
     height 36px
     background #C8C8C8
     .progress-bar
@@ -926,7 +929,7 @@ dialog(z-depth=2)
       background primary-dark
 
   .progress-percentage-container
-    width 10%
+    width 15%
     .progress-percentage
       line-height 36px
       height 36px
