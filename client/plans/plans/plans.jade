@@ -49,7 +49,10 @@ template(name="plans")
         br
 
       .discover-plans
-        .header Discover Plans
+        if isSearching
+          .header Discovered Plans
+        else
+          .header Featured Plans
         br
         .card2
           each otherPlans

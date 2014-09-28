@@ -2,6 +2,8 @@ Template.plans.helpers
 
   isOwnedPlans: -> @ownedPlans().count() > 0
   isFollowedPlans: -> @followedPlans().count() > 0
+  isSearching: ->
+    not Session.equals 'searchWords', '.*'
 
 Template.plans.events
   'click .plan2': (e) ->
@@ -67,8 +69,8 @@ delay = ( ->
 Template.searchPlans.events
 
   'click .search-clear': (e) ->
-    $(".followed-plans").show()
-    $(".your-plans").show()
+    #$(".followed-plans").show()
+    #$(".your-plans").show()
     $('.search-input input').val('')
     Session.set "searchWords", ".*"
 
