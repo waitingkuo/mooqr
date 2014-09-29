@@ -794,14 +794,18 @@ dialog(z-depth=2)
       margin-right 24px
       float right
   //hack
-  @media (max-width: 500px)  
+  @media (min-device-width: 320px) and (max-device-width : 568px)
     .plan2
       .card-header
+        //height 128px
         .title
+          width calc(100% - 104px)
+          //width 100%
           padding-left 16px
           padding-right 16px
           font-size 14px
         .button
+          margin-left 0
           margin-right 16px
 
   .plan
