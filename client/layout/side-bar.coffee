@@ -31,3 +31,9 @@ Template.sideBar.rendered = ->
     isActive = Session.get 'sideBar:isActive'
     Session.set 'sideBar:isActive', (not isActive)
 
+  Tracker.autorun ->
+    if Session.get('sideBar:isActive')
+      $('body').css('overflow', 'hidden')
+    else
+      $('body').css('overflow', 'auto')
+
