@@ -45,6 +45,8 @@ meteor-platform@1.1.1
 meteor@1.1.1
 minifiers@1.1.0
 minimongo@1.0.3
+mizzao:build-fetcher@0.2.0
+mizzao:jquery-ui@1.11.0
 mobile-status-bar@1.0.0
 mongo-livedata@1.0.5
 mongo@1.0.6

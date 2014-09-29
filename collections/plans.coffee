@@ -233,8 +233,14 @@ Meteor.methods
 
     userId = user._id
 
+    # console.log "planId:"
+    # console.log planId
+
     #FIXME: checking planId & moduleId
     planData = Plans.findOne _id:planId
+
+    if planData.userId isnt userId
+      throw new Meteor.Error(402, "You need to be the owner of plan to move the module")
 
     # console.log "old planData:" 
     # console.log planData 
