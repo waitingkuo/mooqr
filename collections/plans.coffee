@@ -322,18 +322,39 @@ Meteor.methods
       throw new Meteor.Error(401, "You need to login to post new stories")
 
     userId = user._id
+
+    planId = Tasks.findOne(_id:taskId).planId
+    planData = Plans.findOne _id:planId
+
+    if planData.userId isnt userId
+      throw new Meteor.Error(402, "You need to be the owner of plan to move the task")
+
     
     #FIXME: checking validation of Ids
     fromModule = Modules.findOne _id:fromModuleId
     
     fromModuleTasksArr = fromModule.taskIds
     newFromModuleTasksArr = fromModuleTasksArr.filter (tid) -> tid isnt taskId
-    Modules.update {_id:fromModuleId}, {$set:{taskIds:newFromModuleTasksArr}}
+
+    # console.log "fromModuleTasksArr"
+    # console.log fromModuleTasksArr
+    # console.log "newFromModuleTasksArr"
+    # console.log newFromModuleTasksArr
+    _newFromModuleTasksArr = []
+    _newFromModuleTasksArr.push xx for xx in newFromModuleTasksArr when xx not in _newFromModuleTasksArr
+    
+    Modules.update {_id:fromModuleId}, {$set:{taskIds:_newFromModuleTasksArr}}
 
     toModule = Modules.findOne _id:toModuleId
     toModuleTasksArr = toModule.taskIds
+    # console.log "toModuleTasksArr"
+    # console.log toModuleTasksArr
     toModuleTasksArr.splice toTaskPos,0,taskId
-    Modules.update {_id:toModuleId}, {$set:{taskIds:toModuleTasksArr}}
+    # console.log "toModuleTasksArr"
+    # console.log toModuleTasksArr
+    _toModuleTasksArr = []
+    _toModuleTasksArr.push xx for xx in toModuleTasksArr when xx not in _toModuleTasksArr
+    Modules.update {_id:toModuleId}, {$set:{taskIds:_toModuleTasksArr}}
     
 
   'deleteTask': (moduleId, taskId) ->

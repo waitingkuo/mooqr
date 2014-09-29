@@ -114,7 +114,7 @@ Template.plan.rendered = ->
           # console.log "moveModule successfully!"
         else
           if err.error is 402
-            Snackbars.popup "Cannot move module. (NOT OWNER!)"
+            Snackbars.popup "Cannot move module. (NOT PLAN OWNER!)"
 
   @$( ".sortableData" ).disableSelection()
 
