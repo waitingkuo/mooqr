@@ -117,4 +117,4 @@ Template.plan.rendered = ->
             Snackbars.popup "Cannot move module. (NOT OWNER!)"
 
   @$( ".sortableData" ).disableSelection()
-  
+

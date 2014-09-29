@@ -1,3 +1,5 @@
+
+
 Template.module.helpers
 
   isOwner: () ->
@@ -30,3 +32,12 @@ Template.module.helpers
           Meteor.call 'deleteModule', planId, moduleId
       }
     ]
+
+
+
+Template.module.rendered = -> 
+  @$( ".tasks" ).sortable
+    items: ">.task"
+    connectWith: ".tasks"
+    stop: (event, ui) ->
+      el = ui.item.get 0
