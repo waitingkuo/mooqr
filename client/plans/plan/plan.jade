@@ -11,18 +11,29 @@ template(name="plan")
     br
     .container
 
-      .plan.card2
+      .plan2.card2
         .card-header
           .title {{planName}}
           if isOwner
             .menu
               +UI.dynamic template="menuButton" data=planMenuData
           else
+        .card-divider
+
+        if isContent
+          .card-content 
+            .plan-link {{planLink}}
+            .plan-description {{planDescription}}
+          .card-divider
+
+        unless isOwner
+          .card-footer 
             .buttons
               if isFollowed
                 .button.raised-button.unfollow unfollow
               else
                 .button.raised-button.follow follow
+
       br
       br
       if isUserPlan

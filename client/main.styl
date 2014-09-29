@@ -492,7 +492,8 @@ dialog(z-depth=2)
 .input-text
 
   position relative
-  margin-bottom 45px
+  & + .input-text
+    margin-top 45px
 
   input 
     font-size 18px
@@ -516,8 +517,8 @@ dialog(z-depth=2)
     top 10px
     transition 0.2s ease all
 
-  input:focus ~ label
   input:valid ~ label
+  input:focus ~ label
     top -20px
     font-size 14px
     color #5264AE
@@ -793,6 +794,8 @@ dialog(z-depth=2)
       margin-top 14px
       margin-right 24px
       float right
+
+      
   //hack
   @media (min-device-width: 320px) and (max-device-width : 568px)
     .plan2
@@ -849,6 +852,27 @@ dialog(z-depth=2)
 
   .module
     margin-bottom 20px
+
+  .plan2
+    .card-content
+      .plan-link
+        cursor pointer
+        padding-top 10px
+        padding-bottom 10px
+        line-height 20px
+      .plan-description
+        line-height 20px
+    .card-footer
+      height 64px
+      line-height 64px
+      .buttons
+        float right
+        line-height 64px
+        height 64px
+        padding-top 14px
+        padding-right 20px
+
+
 
 // FIXME TODELETE
 #udacity359

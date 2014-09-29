@@ -1,9 +1,17 @@
 #
 # Plan
 #
+Template.planDialog.rendered = ->
+  $('body').css 'overflow', 'hidden'
+Template.planDialog.destroyed = ->
+  $('body').css 'overflow', 'auto'
 Template.planDialog.helpers
   planName: ->
     fieldName: 'planName'
+  planLink: ->
+    fieldName: 'planLink'
+  planDescription: ->
+    fieldName: 'planDescription'
 Template.planDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
@@ -11,9 +19,10 @@ AutoForm.hooks
   planDialog:
     onSubmit: (insertDoc, updateDoc, currentDoc) ->
 
-      planName = insertDoc.planName
+      #planName = insertDoc.planName
+      #FIXME need to valid insertDoc
 
-      Meteor.call 'createPlan', planName, (err, result) ->
+      Meteor.call 'createPlan', insertDoc, (err, result) ->
         if not err
           # console.log result
           mixpanel.track "[test][UserCreatePlan] planId:"+result
@@ -24,11 +33,9 @@ AutoForm.hooks
             Snackbars.popup "Cannot create plans. Please ... ", "LOGIN"
             mixpanel.track "[test][AnonymousUserError] create plans without login"
           else
+            console.log err
             Snackbars.popup "Cannot create plans."
             mixpanel.track "[test][AnonymousUserError] create plans ERROR"
-
-
-
 
       @done()
       return false
@@ -37,9 +44,17 @@ AutoForm.hooks
 #
 # Edit Plan
 #
+Template.editPlanDialog.rendered = ->
+  $('body').css 'overflow', 'hidden'
+Template.editPlanDialog.destroyed = ->
+  $('body').css 'overflow', 'auto'
 Template.editPlanDialog.helpers
   planName: ->
     fieldName: 'planName'
+  planLink: ->
+    fieldName: 'planLink'
+  planDescription: ->
+    fieldName: 'planDescription'
   editingDoc: ->
     Plans.findOne Session.get('currentPlanId')
 Template.editPlanDialog.events
@@ -50,9 +65,10 @@ AutoForm.hooks
     onSubmit: (insertDoc, updateDoc, currentDoc) ->
 
       planId = currentDoc._id
-      planName = updateDoc.$set.planName
+      #FIXME need to valid updateDoc
+      #planName = updateDoc.$set.planName
 
-      Meteor.call 'updatePlan', planId, planName, (err, result) ->
+      Meteor.call 'updatePlan', planId, updateDoc, (err, result) ->
         if not err
           mixpanel.track "[test][UserUpdatePlan] planId:"+result
           Blaze.remove Blaze.getView($('.material-dialog')[0])
@@ -71,6 +87,10 @@ AutoForm.hooks
 #
 # Module
 #
+Template.moduleDialog.rendered = ->
+  $('body').css 'overflow', 'hidden'
+Template.moduleDialog.destroyed = ->
+  $('body').css 'overflow', 'auto'
 Template.moduleDialog.helpers
   moduleName: ->
     fieldName: 'moduleName'
@@ -94,6 +114,10 @@ AutoForm.hooks
 #
 # Edit Module
 #
+Template.editModuleDialog.rendered = ->
+  $('body').css 'overflow', 'hidden'
+Template.editModuleDialog.destroyed = ->
+  $('body').css 'overflow', 'auto'
 Template.editModuleDialog.helpers
   moduleName: ->
     fieldName: 'moduleName'
@@ -126,6 +150,10 @@ AutoForm.hooks
 #
 # Task
 #
+Template.taskDialog.rendered = ->
+  $('body').css 'overflow', 'hidden'
+Template.taskDialog.destroyed = ->
+  $('body').css 'overflow', 'auto'
 Template.taskDialog.helpers
   taskName: ->
     fieldName: 'taskName'

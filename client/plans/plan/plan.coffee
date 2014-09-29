@@ -43,6 +43,9 @@ Template.plan.helpers
       isOwner: false
     })?
 
+  isContent: ->
+    @planLink? or @planDescription?
+
   isUserPlan: () ->
     UserPlans.findOne planId: @_id
 

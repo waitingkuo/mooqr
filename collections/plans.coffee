@@ -8,10 +8,16 @@ Plans.attachSchema new SimpleSchema
 
   planName:
     type: String
-    label: 'Plan name'
+    label: 'Plan Name *'
     max: 200
 
-  planUrl:
+  planDescription:
+    type: String
+    label: 'Plan Description'
+    max: 2000
+    optional: true
+
+  planLink:
     type: String
     optional: true
 
@@ -53,7 +59,7 @@ Plans.attachSchema new SimpleSchema
 
 Meteor.methods
 
-  'createPlan': (planName, description) ->
+  'createPlan': (insertPlan) ->
 
     user = Meteor.user()
 
@@ -63,25 +69,23 @@ Meteor.methods
 
     userId = user._id
 
-    plan =
+    plan = _.extend insertPlan,
       userId: userId
-      planName: planName
       moduleIds: []
 
     planId = Plans.insert plan
 
-    userPlan = 
+    userPlan =
       userId: userId
       planId: planId
       isOwner: true
-
 
     UserPlans.insert userPlan
 
     planId
 
 
-  'updatePlan': (planId, planName) ->
+  'updatePlan': (planId, updatePlan) ->
 
     user = Meteor.user()
 
@@ -94,9 +98,11 @@ Meteor.methods
       _id: planId
       userId: userId
 
-    modifier =
-      $set:
-        planName: planName
+    #modifier =
+    #  $set:
+    #    planName: plan.planName
+    #    planName: plan.planName
+    modifier = updatePlan
 
     Plans.update selector, modifier
 
