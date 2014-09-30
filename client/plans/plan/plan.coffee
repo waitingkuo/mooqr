@@ -16,9 +16,7 @@ Template.progress.helpers
     finishedModules = 0
     for module in modules.fetch()
       totalTasks = module.taskIds.length
-      if totalTasks is 0
-        totalModules -= 1
-      else
+      if totalTasks isnt 0
         finishedTasks = UserTasks.find({
           taskId: {$in: module.taskIds},
           checked: true,
