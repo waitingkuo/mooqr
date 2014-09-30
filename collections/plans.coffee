@@ -343,6 +343,7 @@ Meteor.methods
     
 
     if fromModuleId is toModuleId
+      console.log "fromModuleId is toModuleId"
       
       module = Modules.findOne _id: toModuleId
       
@@ -365,6 +366,10 @@ Meteor.methods
       # Modules.update {_id: toModuleId},{"$pullAll":{"taskIds":[taskId]}} 
 
     else
+
+      # console.log "fromModuleId isnt toModuleId"
+      # console.log Modules.findOne _id:fromModuleId
+
       Modules.update {_id: fromModuleId},{"$pullAll":{"taskIds":[taskId]}} 
 
       toModule = Modules.findOne _id: toModuleId
@@ -375,6 +380,8 @@ Meteor.methods
       _newTaskIds.push xx for xx in newTaskIds when xx not in _newTaskIds
 
       Modules.update {_id: toModuleId},{"$set":{"taskIds":_newTaskIds}}
+
+      Tasks.update _id:taskId, {"$set":{"moduleId":toModuleId}}
 
 
 
