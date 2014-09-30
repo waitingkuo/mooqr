@@ -350,6 +350,8 @@ container()
 // App bar
 #app-bar
   height 64px
+  @media (min-device-width: 320px) and (max-device-width : 568px)
+    height 64px
 .app-bar
   background primary
   color white
@@ -357,11 +359,19 @@ container()
     color white
   width 100%
   height 64px
+  @media (min-device-width: 320px) and (max-device-width : 568px)
+    height 56px
+  box-sizing border-box 
   shadow 2
   z-index 2
   position fixed
 
-  padding 20px 24px 20px 24px
+  //padding 20px 24px 20px 24px
+  padding-left 24px
+  padding-right 24px
+  @media (min-device-width: 320px) and (max-device-width : 568px)
+    padding-left 16px
+    padding-right 16px
 
   box-sizing border-box
 
@@ -370,20 +380,33 @@ container()
     float left
 
   .nav-icon
-    font-size 24px
-    width 24px
-    height 24px
-    text-align center
-    line-height 24px
-    margin-right 32px
-    cursor pointer
+    margin-left -12px
+    margin-right 20px
+    padding-top 8px
+    padding-bottom 8px
+    height 48px
+    @media (min-device-width: 320px) and (max-device-width : 568px)
+      padding-top 4px
+      padding-bottom 4px
+
+  //.nav-icon
+  //  font-size 24px
+  //  width 24px
+  //  height 24px
+  //  text-align center
+  //  line-height 24px
+  //  margin-right 32px
+  //  cursor pointer
 
   .title
     typog-headline()
     font-size 24px
     color white
-    line-height 24px
-    height 24px
+    line-height 64px
+    height 64px
+    @media (min-device-width: 320px) and (max-device-width : 568px)
+      line-height 56px
+      height 56px
 
 // sidebar
 //#side-bar
