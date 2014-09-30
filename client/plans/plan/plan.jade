@@ -22,7 +22,8 @@ template(name="plan")
 
         if isContent
           .card-content 
-            .plan-link {{planLink}}
+            .plan-link
+              a(href="{{planLink}}", target="_blank") {{planLink}}
             .plan-description {{planDescription}}
           .card-divider
 

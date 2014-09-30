@@ -45,6 +45,8 @@ template(name="moduleDialog")
 
         .dialog-content
           +UI.dynamic template="inputText" data=moduleName
+          +UI.dynamic template="inputText" data=moduleLink
+          +UI.dynamic template="inputText" data=moduleDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") save
@@ -62,6 +64,8 @@ template(name="editModuleDialog")
 
         .dialog-content
           +UI.dynamic template="inputText" data=moduleName
+          +UI.dynamic template="inputText" data=moduleLink
+          +UI.dynamic template="inputText" data=moduleDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") update
@@ -79,6 +83,8 @@ template(name="taskDialog")
 
         .dialog-content
           +UI.dynamic template="inputText" data=taskName
+          +UI.dynamic template="inputText" data=taskLink
+          +UI.dynamic template="inputText" data=taskDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") save

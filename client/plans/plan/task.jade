@@ -4,7 +4,14 @@ template(name="task")
       .checkbox
         input(type="checkbox", checked="{{checked}}")
         label
-    .content {{taskName}}
+    .content 
+      .task-name {{taskName}}
+      .task-description {{taskDescription}}
+
+    .buttons
+      if taskLink
+        a.icon-material-launch(href="{{taskLink}}", target="_blank")
+
 
   
 

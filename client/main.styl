@@ -120,7 +120,7 @@ shadow(z-depth=1)
   padding-left 0
 
   .list-item + .list-item
-    margin-top 8px
+    margin-top 32px
   .list-item
     clearfix()
     > *
@@ -133,8 +133,24 @@ shadow(z-depth=1)
 
     .content
       typog-list-title()
-      height 30px
-      line-height 30px
+      .task-name
+        line-height 30px
+        font-size 16px
+        font-weight 500
+      .task-description
+        line-height 20px
+        font-size 14px
+
+    .buttons
+      float right
+      a
+        line-height 30px
+        height 30px
+        padding-right 5px
+        color rgba(0, 0, 0, 0.2)
+        &:hover
+          color rgba(0, 0, 0, 1)
+
 
 // button
 .button
@@ -853,14 +869,19 @@ dialog(z-depth=2)
   .module
     margin-bottom 20px
 
-  .plan2
+  .plan2,
+  .module
     .card-content
-      .plan-link
-        cursor pointer
-        padding-top 10px
-        padding-bottom 10px
+      .plan-link,
+      .module-link
+        padding-top 5px
+        padding-bottom 5px
         line-height 20px
+        a
+          color primary
+          font-weight 500
       .plan-description
+      .module-description
         line-height 20px
     .card-footer
       height 64px

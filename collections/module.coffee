@@ -4,11 +4,18 @@ Modules.attachSchema new SimpleSchema
 
   moduleName:
     type: String
-    label: 'Module name'
+    label: 'Module Name *'
     max: 200
 
-  description:
+  moduleLink:
     type: String
+    label: 'Module Link'
+    regEx: SimpleSchema.RegEx.Url
+    optional: true
+
+  moduleDescription:
+    type: String
+    label: 'Module Description'
     optional: true
     
   userId:

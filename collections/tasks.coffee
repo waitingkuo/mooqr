@@ -4,8 +4,19 @@ Tasks.attachSchema new SimpleSchema
 
   taskName:
     type: String
-    label: 'Task name'
+    label: 'Task Name *'
     max: 200
+
+  taskLink:
+    type: String
+    label: 'Task Link'
+    regEx: SimpleSchema.RegEx.Url
+    optional: true
+
+  taskDescription:
+    type: String
+    label: 'Task Description'
+    optional: true
 
   userId:
     type: String

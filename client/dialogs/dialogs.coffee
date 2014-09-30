@@ -94,6 +94,10 @@ Template.moduleDialog.destroyed = ->
 Template.moduleDialog.helpers
   moduleName: ->
     fieldName: 'moduleName'
+  moduleLink: ->
+    fieldName: 'moduleLink'
+  moduleDescription: ->
+    fieldName: 'moduleDescription'
 Template.moduleDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
@@ -102,9 +106,9 @@ AutoForm.hooks
     onSubmit: (insertDoc, updateDoc, currentDoc) ->
 
       planId = Session.get 'currentPlanId'
-      moduleName = insertDoc.moduleName
+      #moduleName = insertDoc.moduleName
 
-      Meteor.call 'createModule', planId, moduleName, (err, result) ->
+      Meteor.call 'createModule', planId, insertDoc, (err, result) ->
         if not err
           Blaze.remove Blaze.getView($('.material-dialog')[0])
 
@@ -121,6 +125,10 @@ Template.editModuleDialog.destroyed = ->
 Template.editModuleDialog.helpers
   moduleName: ->
     fieldName: 'moduleName'
+  moduleLink: ->
+    fieldName: 'moduleLink'
+  moduleDescription: ->
+    fieldName: 'moduleDescription'
   editingDoc: ->
     Modules.findOne 
       _id: Session.get 'currentModuleId'
@@ -134,9 +142,9 @@ AutoForm.hooks
 
       planId = currentDoc.planId
       moduleId = currentDoc._id
-      moduleName = updateDoc.$set.moduleName
+      #moduleName = updateDoc.$set.moduleName
 
-      Meteor.call 'updateModule', planId, moduleId, moduleName, (err, result) ->
+      Meteor.call 'updateModule', planId, moduleId, updateDoc, (err, result) ->
         if not err
           Blaze.remove Blaze.getView($('.material-dialog')[0])
         else 
@@ -157,6 +165,10 @@ Template.taskDialog.destroyed = ->
 Template.taskDialog.helpers
   taskName: ->
     fieldName: 'taskName'
+  taskLink: ->
+    fieldName: 'taskLink'
+  taskDescription: ->
+    fieldName: 'taskDescription'
 Template.taskDialog.events
   'click .cancel-button': (e) ->
     Blaze.remove Blaze.currentView
@@ -166,9 +178,9 @@ AutoForm.hooks
 
       planId = Session.get 'currentPlanId'
       moduleId = Session.get 'currentModuleId'
-      taskName = insertDoc.taskName
+      #taskName = insertDoc.taskName
 
-      Meteor.call 'createTask', planId, moduleId, taskName, (err, result) ->
+      Meteor.call 'createTask', planId, moduleId, insertDoc, (err, result) ->
         if not err
           Blaze.remove Blaze.getView($('.material-dialog')[0])
 

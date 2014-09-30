@@ -5,6 +5,9 @@ Template.module.helpers
   isOwner: () ->
     Meteor.userId() is @userId
 
+  isContent: ->
+   @moduleLink? or @moduleDescription?
+
   tasks: ->
     @taskIds?.map (taskId) -> Tasks.findOne taskId
 

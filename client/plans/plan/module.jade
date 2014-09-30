@@ -8,10 +8,18 @@ template(name="module")
 
     .card-divider
 
-    .card-content
-      .tasks.list
-        each tasks
-          +task
+    if isContent
+      .card-content 
+        .module-link 
+          a(href="{{moduleLink}}", target="_blank") {{moduleLink}}
+        .module-description {{moduleDescription}}
+      .card-divider
+
+    if tasks
+      .card-content
+        .tasks.list
+          each tasks
+            +task
 
 
 

@@ -11,14 +11,15 @@ Plans.attachSchema new SimpleSchema
     label: 'Plan Name *'
     max: 200
 
+  planLink:
+    type: String
+    label: 'Plan Link'
+    regEx: SimpleSchema.RegEx.Url
+    optional: true
+
   planDescription:
     type: String
     label: 'Plan Description'
-    max: 2000
-    optional: true
-
-  planLink:
-    type: String
     optional: true
 
   moduleIds:
@@ -171,7 +172,7 @@ Meteor.methods
 
 
 
-  'createModule': (planId, moduleName, description) ->
+  'createModule': (planId, insertModule, description) ->
 
     user = Meteor.user()
 
@@ -180,8 +181,12 @@ Meteor.methods
 
     userId = user._id
 
-    module =
-      moduleName: moduleName
+    #module =
+    #  moduleName: moduleName
+    #  userId: userId
+    #  planId: planId
+    #  taskIds: []
+    module = _.extend insertModule,
       userId: userId
       planId: planId
       taskIds: []
@@ -200,7 +205,7 @@ Meteor.methods
     moduleId
 
 
-  'updateModule': (planId, moduleId, moduleName, description) ->
+  'updateModule': (planId, moduleId, updateModule) ->
 
     user = Meteor.user()
 
@@ -214,20 +219,10 @@ Meteor.methods
       userId: userId
       planId: planId
 
-    updater = {}
+    #modifier =
+    #  $set: updater
 
-    if moduleName
-      updater.moduleName = moduleName
-
-    if description
-      updater.description = description
-
-
-
-    modifier =
-      $set: updater
-
-    Modules.update selector, modifier
+    Modules.update selector, updateModule
 
 
   "moveModule": (planId, moduleId, position) ->
@@ -293,7 +288,7 @@ Meteor.methods
     #should also delete tasks
 
 
-  'createTask': (planId, moduleId, taskName) ->
+  'createTask': (planId, moduleId, insertTask) ->
 
     user = Meteor.user()
 
@@ -302,11 +297,16 @@ Meteor.methods
 
     userId = user._id
 
-    task =
-      taskName: taskName
+    #task =
+    #  taskName: taskName
+    #  userId: userId
+    #  planId: planId
+    #  moduleId: moduleId
+    task = _.extend insertTask,
       userId: userId
       planId: planId
       moduleId: moduleId
+
 
     taskId = Tasks.insert task
     
