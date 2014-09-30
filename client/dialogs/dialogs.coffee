@@ -25,17 +25,17 @@ AutoForm.hooks
       Meteor.call 'createPlan', insertDoc, (err, result) ->
         if not err
           # console.log result
-          mixpanel.track "[test][UserCreatePlan] planId:"+result
+          mixpanel.track "[UserCreatePlan] planId:"+result
           Blaze.remove Blaze.getView($('.material-dialog')[0])
           
         else
           if err.error is 401
             Snackbars.popup "Cannot create plans. Please ... ", "LOGIN"
-            mixpanel.track "[test][AnonymousUserError] create plans without login"
+            mixpanel.track "[AnonymousUserError] create plans without login"
           else
             console.log err
             Snackbars.popup "Cannot create plans."
-            mixpanel.track "[test][AnonymousUserError] create plans ERROR"
+            mixpanel.track "[AnonymousUserError] create plans ERROR"
 
       @done()
       return false
@@ -70,15 +70,15 @@ AutoForm.hooks
 
       Meteor.call 'updatePlan', planId, updateDoc, (err, result) ->
         if not err
-          mixpanel.track "[test][UserUpdatePlan] planId:"+result
+          mixpanel.track "[UserUpdatePlan] planId:"+result
           Blaze.remove Blaze.getView($('.material-dialog')[0])
         else
           if err.error is 401
             Snackbars.popup "Cannot update plans. Please ... ", "LOGIN"
-            mixpanel.track "[test][AnonymousUserError] update plans without login"
+            mixpanel.track "[AnonymousUserError] update plans without login"
           else
             Snackbars.popup "Cannot update plans."
-            mixpanel.track "[test][AnonymousUserError] update plans ERROR"
+            mixpanel.track "[AnonymousUserError] update plans ERROR"
 
       @done()
       return false

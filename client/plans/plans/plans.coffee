@@ -28,10 +28,10 @@ Template.plans.events
       else
         if err.error is 401
           Snackbars.popup "Cannot follow plans. Please ... ", "LOGIN"
-          mixpanel.track "[test][AnonymousUserError] follow plans without login"
+          mixpanel.track "[AnonymousUserError] follow plans without login"
         else
           Snackbars.popup "Cannot follow plans."
-          mixpanel.track "[test][AnonymousUserError] follow plans ERROR"
+          mixpanel.track "[AnonymousUserError] follow plans ERROR"
 
 
 
@@ -51,10 +51,10 @@ Template.plans.events
       else
         if err.error is 401
           Snackbars.popup "Cannot unfollow plans. Please ... ", "LOGIN"
-          mixpanel.track "[test][AnonymousUserError] unfollow plans without login"
+          mixpanel.track "[AnonymousUserError] unfollow plans without login"
         else
           Snackbars.popup "Cannot unfollow plans."
-          mixpanel.track "[test][AnonymousUserError] unfollow plans ERROR"
+          mixpanel.track "[AnonymousUserError] unfollow plans ERROR"
 
 
 
@@ -95,9 +95,9 @@ Template.searchPlans.events
      
       user = Meteor.user()
       if user
-        mixpanel.track "[test][UserSearch] searchWords:" + _searchWords
+        mixpanel.track "[UserSearch] searchWords:" + _searchWords
       else
-        mixpanel.track "[test][AnonymousUserSearch] searchWords:" + _searchWords
+        mixpanel.track "[AnonymousUserSearch] searchWords:" + _searchWords
     ), 1000
 
 
