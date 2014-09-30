@@ -335,32 +335,94 @@ Meteor.methods
     if planData.userId isnt userId
       throw new Meteor.Error(402, "You need to be the owner of plan to move the task")
 
+    # console.log "~~~~~~~~~~~~~~~~"
+    # console.log "fromModuleId"
+    # console.log fromModuleId
+    # console.log "toModOneuleId"
+    # console.log toModuleId
     
-    #FIXME: checking validation of Ids
-    fromModule = Modules.findOne _id:fromModuleId
-    
-    fromModuleTasksArr = fromModule.taskIds
-    newFromModuleTasksArr = fromModuleTasksArr.filter (tid) -> tid isnt taskId
 
+    if fromModuleId is toModuleId
+      
+      module = Modules.findOne _id: toModuleId
+      
+      # console.log "module"
+      # console.log module.taskIds
+      # console.log "toTaskPos"
+      # console.log toTaskPos
+      
+      newTaskIds = module.taskIds.filter (tid) -> tid isnt taskId
+      newTaskIds.splice toTaskPos,0,taskId
+      
+      _newTaskIds = []
+      _newTaskIds.push xx for xx in newTaskIds when xx not in _newTaskIds
+
+
+      # console.log "newTaskIds"
+      # console.log  newTaskIds
+      
+      Modules.update {_id: toModuleId},{"$set":{"taskIds":_newTaskIds}}
+      # Modules.update {_id: toModuleId},{"$pullAll":{"taskIds":[taskId]}} 
+
+    else
+      Modules.update {_id: fromModuleId},{"$pullAll":{"taskIds":[taskId]}} 
+
+      toModule = Modules.findOne _id: toModuleId
+      newTaskIds = toModule.taskIds.filter (tid) -> tid isnt taskId
+      newTaskIds.splice toTaskPos,0,taskId
+
+      _newTaskIds = []
+      _newTaskIds.push xx for xx in newTaskIds when xx not in _newTaskIds
+
+      Modules.update {_id: toModuleId},{"$set":{"taskIds":_newTaskIds}}
+
+
+
+
+
+
+
+
+    # #FIXME: checking validation of Ids
+    # fromModule = Modules.findOne _id:fromModuleId
+    
+    # fromModuleTasksArr = fromModule.taskIds
+    # newFromModuleTasksArr = fromModuleTasksArr.filter (tid) -> tid isnt taskId
+
+    # console.log "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     # console.log "fromModuleTasksArr"
     # console.log fromModuleTasksArr
     # console.log "newFromModuleTasksArr"
     # console.log newFromModuleTasksArr
-    _newFromModuleTasksArr = []
-    _newFromModuleTasksArr.push xx for xx in newFromModuleTasksArr when xx not in _newFromModuleTasksArr
-    
-    Modules.update {_id:fromModuleId}, {$set:{taskIds:_newFromModuleTasksArr}}
 
-    toModule = Modules.findOne _id:toModuleId
-    toModuleTasksArr = toModule.taskIds
+    # _newFromModuleTasksArr = []
+    # _newFromModuleTasksArr.push xx for xx in newFromModuleTasksArr when xx not in _newFromModuleTasksArr
+
+    # console.log "newFromModuleTasksArr"
+    # console.log newFromModuleTasksArr
+    
+
+    # Modules.update {_id:fromModuleId}, {$set:{taskIds:_newFromModuleTasksArr}}
+
+    # toModule = Modules.findOne _id:toModuleId
+    # toModuleTasksArr = toModule.taskIds
+    
     # console.log "toModuleTasksArr"
     # console.log toModuleTasksArr
-    toModuleTasksArr.splice toTaskPos,0,taskId
+    
+    # toModuleTasksArr.splice toTaskPos,0,taskId
+    
     # console.log "toModuleTasksArr"
     # console.log toModuleTasksArr
-    _toModuleTasksArr = []
-    _toModuleTasksArr.push xx for xx in toModuleTasksArr when xx not in _toModuleTasksArr
-    Modules.update {_id:toModuleId}, {$set:{taskIds:_toModuleTasksArr}}
+    
+    # _toModuleTasksArr = []
+    # _toModuleTasksArr.push xx for xx in toModuleTasksArr when xx not in _toModuleTasksArr
+    
+    # console.log "_toModuleTasksArr"
+    # console.log _toModuleTasksArr
+    
+
+    # Modules.update {_id:toModuleId}, {$set:{taskIds:_toModuleTasksArr}}
     
 
   'deleteTask': (moduleId, taskId) ->
