@@ -91,7 +91,8 @@ typog-list-title()
 
 
 body
-  background rgba(0, 0, 0, 0.1)
+  //background rgba(0, 0, 0, 0.1)
+  background #e5e5e5
   font-family 'Roboto', sans-seri
 
 
@@ -140,6 +141,10 @@ shadow(z-depth=1)
       .task-description
         line-height 20px
         font-size 14px
+      &[checked="true"]
+        .task-name,
+        .task-description
+          color rgba(0, 0, 0, 0.3)
 
     .buttons
       float right
@@ -173,7 +178,9 @@ shadow(z-depth=1)
     border 0
     background grey-300
     border-radius 2px
-    min-width 88px
+    min-width 100px
+    @media (min-device-width: 320px) and (max-device-width : 568px)
+      min-width 88px
     height 36px
     line-height 36px
     text-align center
@@ -255,6 +262,7 @@ shadow(z-depth=1)
     //animation checkbox2 0.3s alternate
 
 
+
 @keyframes checkbox {
   0% {
     transform none
@@ -287,6 +295,7 @@ divider()
   border-top 1px solid #a0afbb
 .divider
   border-top 1px solid #a0afbb
+
     
 // container
 container()
@@ -834,6 +843,8 @@ dialog(z-depth=2)
       margin-top 14px
       margin-right 24px
       float right
+    &:hover
+      background rgba(0, 0, 0, 0.02)
 
       
   //hack
@@ -913,46 +924,12 @@ dialog(z-depth=2)
       .buttons
         float right
         line-height 64px
-        height 64px
+        //height 64px
         padding-top 14px
         padding-right 20px
 
 
-
-// FIXME TODELETE
-#udacity359
-  .container
-    container()
-
-
-  .card
-    .content
-      clearfix()
-    .progress-bar
-      height 20px
-      background primary-light
-
-    ul.tasks
-      list-style none
-      padding-left 0
-
-      .task + .task
-        margin-top 8px
-      .task
-        clearfix()
-        > *
-          float left
-
-        .checkbox   
-          width 30px
-          height 30px
-          margin-right 26px
-
-        .task-content
-          typog-list-title()
-          height 30px
-          line-height 30px
-
+// search-bar
 .search-bar
   height 64px
   clearfix()
@@ -983,13 +960,35 @@ dialog(z-depth=2)
     cursor pointer
    
 
+
+
 // progress-bar
 .progress
+
+  position fixed
+  top 64px
+  height 76px
+  width 920px
+  max-width calc(100%)
+  //background #e5e5e5
+  background white
+
+
   clearfix()
   > *
     float left
+  padding-top 20px
+  padding-bottom 20px
   padding-left 10px
   padding-right 10px
+  margin-left -10px
+  box-sizing border-box
+  z-index 1
+  shadow 1
+
+
+  box-sizing border-box
+  overflow hidden
 
   .progress-bar-container
     width 85%
@@ -999,10 +998,12 @@ dialog(z-depth=2)
       transition width 1s
       width 0%
       height 36px
-      background primary-dark
+      //background primary-dark
+      background #e09952
 
   .progress-percentage-container
     width 15%
+    height 36px
     .progress-percentage
       line-height 36px
       height 36px

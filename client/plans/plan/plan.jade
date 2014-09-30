@@ -7,9 +7,13 @@ template(name="progress")
 
 template(name="plan")
   #plan
-    br
-    br
     .container
+      if isUserPlan
+        div(style="height: 96px;")
+        +progress
+      else
+        div(style="height: 20px;")
+
 
       .plan2.card2
         .card-header
@@ -37,21 +41,8 @@ template(name="plan")
 
       br
       br
-      if isUserPlan
-        +progress
-      br
       br
 
-
-
-      //.card.plan
-      //  .header
-      //    .plan-name {{planName}}
-      //    if isOwner
-      //      .plan-menu
-      //        +UI.dynamic template="menuButton" data=planMenuData
-
-      //  .divider
       .sortableData
         each modules
           +module

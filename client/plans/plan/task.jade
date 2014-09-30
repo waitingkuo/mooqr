@@ -4,7 +4,7 @@ template(name="task")
       .checkbox
         input(type="checkbox", checked="{{checked}}")
         label
-    .content 
+    .content(checked="{{checked}}")
       .task-name {{taskName}}
       .task-description {{taskDescription}}
 
