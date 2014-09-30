@@ -1,26 +1,50 @@
 template(name="module")
-  .module.card2(id="{{_id}}")
-    .card-header
-      .title {{moduleName}}
-      if isOwner
+
+  if isOwner 
+    .module.card2.sortable-module(id="{{_id}}")
+      .card-header
+        .title {{moduleName}}
+        
         .menu
           +UI.dynamic template="menuButton" data=moduleMenuData
 
-    .card-divider
-
-    if isContent
-      .card-content 
-        .module-link 
-          a(href="{{moduleLink}}", target="_blank") {{moduleLink}}
-        .module-description {{moduleDescription}}
       .card-divider
 
+      if isContent
+        .card-content 
+          .module-link 
+            a(href="{{moduleLink}}", target="_blank") {{moduleLink}}
+          .module-description {{moduleDescription}}
+        .card-divider
 
-    if tasks
-      .card-content
-        .tasks.list
-          each tasks
-            +task
+
+      if tasks
+        .card-content
+          .tasks.list
+            each tasks
+              +task
+
+  else
+    .module.card2.non-sortable-module(id="{{_id}}")
+      .card-header
+        .title {{moduleName}}
+        
+        .menu
+          +UI.dynamic template="menuButton" data=moduleMenuData
+
+      .card-divider
+
+      if isContent
+        .card-content 
+          .module-link 
+            a(href="{{moduleLink}}", target="_blank") {{moduleLink}}
+          .module-description {{moduleDescription}}
+        .card-divider
 
 
+      if tasks
+        .card-content
+          .tasks.list
+            each tasks
+              +task
 

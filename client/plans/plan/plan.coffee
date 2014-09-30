@@ -95,9 +95,13 @@ Template.plan.events
   
 
 Template.plan.rendered = ->
+
+  # routerData = Router.current().data()
+  # console.log routerData
+
   @$( ".sortableData" ).sortable
     revert:true
-    items: " > div.card2" 
+    items: " > div.sortable-module"
     stop: (event, ui) ->
       el = ui.item.get 0
 
