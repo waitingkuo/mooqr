@@ -154,6 +154,7 @@ shadow(z-depth=1)
 
 // button
 .button
+  user-select none
   typog-button()
   //FIXME
   margin-left 5px
@@ -349,11 +350,9 @@ container()
   height 256px
 // App bar
 #app-bar
-  user-select none
-
   height 64px
   @media (min-device-width: 320px) and (max-device-width : 568px)
-    height 64px
+    height 56px
 .app-bar
   background primary
   color white
