@@ -31,6 +31,10 @@ AutoForm.hooks
           # console.log result
           mixpanel.track "[UserCreatePlan] planId:"+result
           Blaze.remove Blaze.getView($('.material-dialog')[0])
+
+          planId = result
+          Router.go 'plan', {_id: planId}
+
           
         else
           if err.error is 401
