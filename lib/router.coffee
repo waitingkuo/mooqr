@@ -6,7 +6,7 @@ Router.configure
       if Meteor.settings?.public?.mixpanel?.token?
         mixpanel.init Meteor.settings.public.mixpanel.token
       else
-        mixpanel.init()
+        mixpanel.init('NO_TOKEN')
         console.log 'mixpanel init failed'
 
 scrollTop = ->
