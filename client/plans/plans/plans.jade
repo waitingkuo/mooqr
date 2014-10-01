@@ -5,7 +5,11 @@ template(name="searchPlans")
         i.icon-material-search
         //.input-text
       .search-input
-        input.search-keyword(type="text")
+        if isSearching
+          input.search-keyword(type="text", value="{{searchWords}}")
+        else
+          input.search-keyword(type="text")
+
       .search-clear
           i.icon-material-clear
   .search-results
