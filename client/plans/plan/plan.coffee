@@ -53,17 +53,18 @@ Template.plan.helpers
   planMenuData: ->
     items: [
       {
+        label: 'Edit Plan'
+        clickEvent: (e) =>
+          Session.set 'currentPlanId', @_id
+          Blaze.render Template.editPlanDialog, document.body
+      }
+      {
         label: 'Add Module'
         clickEvent: (e) =>
           planId = @_id
           Session.set 'currentPlanId', planId
           Blaze.render Template.moduleDialog, document.body
       },
-      {
-        label: 'Edit'
-        clickEvent: (e) ->
-          Blaze.render Template.editPlanDialog, document.body
-      }
     ]
 
 Template.plan.events

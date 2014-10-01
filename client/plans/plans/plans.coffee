@@ -9,8 +9,9 @@ Template.plans.helpers
     items: [
       {
         label: 'Edit'
-        clickEvent: (e) ->
+        clickEvent: (e) =>
           e.stopPropagation()
+          Session.set 'currentPlanId', @_id
           Blaze.render Template.editPlanDialog, document.body
       }
       {
