@@ -9,12 +9,10 @@ template(name="plan")
   #plan
     .container
       if isUserPlan
-        div(style="height: 96px;")
+        .progress-padding
         +progress
-      else
-        div(style="height: 20px;")
 
-
+      br
       .plan2.card2
         .card-header
           .title {{planName}}
@@ -40,16 +38,10 @@ template(name="plan")
                 .button.raised-button.follow follow
 
       br
-      br
-      br
 
       .sortableData
         each modules
           +module
 
 
-      br
-      br
-      br
-      br
       br

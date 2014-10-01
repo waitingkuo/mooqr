@@ -977,13 +977,24 @@ dialog(z-depth=2)
 
 
 // progress-bar
+.progress-padding
+  height 64px
+  @media (min-device-width: 320px) and (max-device-width : 568px)
+    height 56px
 .progress
 
   position fixed
+
   top 64px
-  height 76px
-  width 920px
+  height 64px
   max-width calc(100%)
+  @media (min-device-width: 320px) and (max-device-width : 568px)
+    top 56px
+    height 56px
+    // prevent right shadow
+    max-width calc(101%)
+
+  width 920px
   //background #e5e5e5
   background white
 
@@ -992,7 +1003,9 @@ dialog(z-depth=2)
   > *
     float left
   padding-top 20px
-  padding-bottom 20px
+  @media (min-device-width: 320px) and (max-device-width : 568px)
+    padding-top 16px
+  //padding-bottom 20px
   padding-left 10px
   padding-right 10px
   margin-left -10px
@@ -1006,21 +1019,21 @@ dialog(z-depth=2)
 
   .progress-bar-container
     width 85%
-    height 36px
+    height 24px
     background #C8C8C8
     .progress-bar
       transition width 1s
       width 0%
-      height 36px
+      height 24px
       //background primary-dark
       background #e09952
 
   .progress-percentage-container
     width 15%
-    height 36px
+    height 24px
     .progress-percentage
-      line-height 36px
-      height 36px
+      line-height 24px
+      height 24px
       font-size 20px
       text-align right
       color black
