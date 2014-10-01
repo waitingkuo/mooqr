@@ -4,7 +4,7 @@ Template.plans.helpers
   isFollowedPlans: -> @followedPlans().count() > 0
   isSearching: ->
     not Session.equals 'searchWords', '.*'
-
+  
 Template.plans.events
   'click .plan2': (e) ->
     Router.go 'plan', _id: @_id
@@ -66,6 +66,14 @@ delay = ( ->
     clearTimeout timer
     timer = setTimeout(callback, ms)
 )()
+
+Template.searchPlans.helpers
+  isSearching: ->
+    not Session.equals 'searchWords', '.*'
+  searchWords: -> 
+    Session.get 'searchWords'
+
+
 Template.searchPlans.events
 
   'click .search-clear': (e) ->
