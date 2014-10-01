@@ -1,10 +1,14 @@
+disableScrolling = ->
+  #$('body').css 'overflow', 'hidden'
+
+enableScrolling = ->
+  #$('body').css 'overflow', 'auto'
+
 #
 # Plan
 #
-Template.planDialog.rendered = ->
-  $('body').css 'overflow', 'hidden'
-Template.planDialog.destroyed = ->
-  $('body').css 'overflow', 'auto'
+Template.planDialog.rendered = disableScrolling
+Template.planDialog.destroyed = enableScrolling
 Template.planDialog.helpers
   planName: ->
     fieldName: 'planName'
@@ -44,10 +48,8 @@ AutoForm.hooks
 #
 # Edit Plan
 #
-Template.editPlanDialog.rendered = ->
-  $('body').css 'overflow', 'hidden'
-Template.editPlanDialog.destroyed = ->
-  $('body').css 'overflow', 'auto'
+Template.editPlanDialog.rendered = disableScrolling
+Template.editPlanDialog.destroyed = enableScrolling
 Template.editPlanDialog.helpers
   planName: ->
     fieldName: 'planName'
@@ -87,10 +89,8 @@ AutoForm.hooks
 #
 # Module
 #
-Template.moduleDialog.rendered = ->
-  $('body').css 'overflow', 'hidden'
-Template.moduleDialog.destroyed = ->
-  $('body').css 'overflow', 'auto'
+Template.moduleDialog.rendered = disableScrolling
+Template.moduleDialog.destroyed = enableScrolling
 Template.moduleDialog.helpers
   moduleName: ->
     fieldName: 'moduleName'
@@ -118,10 +118,8 @@ AutoForm.hooks
 #
 # Edit Module
 #
-Template.editModuleDialog.rendered = ->
-  $('body').css 'overflow', 'hidden'
-Template.editModuleDialog.destroyed = ->
-  $('body').css 'overflow', 'auto'
+Template.editModuleDialog.rendered = disableScrolling
+Template.editModuleDialog.destroyed = enableScrolling
 Template.editModuleDialog.helpers
   moduleName: ->
     fieldName: 'moduleName'
@@ -158,10 +156,8 @@ AutoForm.hooks
 #
 # Task
 #
-Template.taskDialog.rendered = ->
-  $('body').css 'overflow', 'hidden'
-Template.taskDialog.destroyed = ->
-  $('body').css 'overflow', 'auto'
+Template.taskDialog.rendered = disableScrolling
+Template.taskDialog.destroyed = enableScrolling
 Template.taskDialog.helpers
   taskName: ->
     fieldName: 'taskName'
