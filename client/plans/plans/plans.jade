@@ -36,6 +36,8 @@ template(name="plans")
               .plan2
                 .card-header
                   .title {{planName}}
+                  .menu
+                    +UI.dynamic template="menuButton" data=planMenuData
         br
         br
 

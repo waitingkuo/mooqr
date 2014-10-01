@@ -76,12 +76,15 @@ Meteor.startup ->
           ownedPlans: ->
             Plans.find
               _id: {$in: ownedPlanIds}
+              deleted: false
           followedPlans: ->
             Plans.find
               _id: {$in: followedPlanIds}
-          otherPlans: -> 
+              deleted: false
+          otherPlans: ->
             Plans.find
               _id: {$nin: userPlanIds}
+              deleted: false
         }
 
 

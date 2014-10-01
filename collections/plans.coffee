@@ -56,7 +56,10 @@ Plans.attachSchema new SimpleSchema
     denyInsert: true
     optional: true
 
-
+  deleted:
+    type: Boolean
+    optional: true
+    defaultValue: false
 
 Meteor.methods
 
@@ -120,10 +123,14 @@ Meteor.methods
       throw new Meteor.Error(401, "You need to login to post new stories")
 
     userId = user._id
-    
-    Plans.remove 
+     
+    Plans.update {
       _id: planId
       userId: userId
+    }, {
+      $set:
+        deleted: true
+    }
 
     #FIXME
     

@@ -4,6 +4,22 @@ Template.plans.helpers
   isFollowedPlans: -> @followedPlans().count() > 0
   isSearching: ->
     not Session.equals 'searchWords', '.*'
+
+  planMenuData: ->
+    items: [
+      {
+        label: 'Edit'
+        clickEvent: (e) ->
+          e.stopPropagation()
+          Blaze.render Template.editPlanDialog, document.body
+      }
+      {
+        label: 'Delete'
+        clickEvent: (e) =>
+          e.stopPropagation()
+          Meteor.call 'deletePlan', @_id
+      }
+    ]
   
 Template.plans.events
   'click .plan2': (e) ->
