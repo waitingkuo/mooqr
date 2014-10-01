@@ -343,7 +343,7 @@ Meteor.methods
     
 
     if fromModuleId is toModuleId
-      console.log "fromModuleId is toModuleId"
+      # console.log "fromModuleId is toModuleId"
       
       module = Modules.findOne _id: toModuleId
       
