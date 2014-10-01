@@ -131,17 +131,19 @@ shadow(z-depth=1)
     > *
       float left
 
-    &.dragable:hover
-      background #f0f0f0
-      cursor -webkit-grab
-      cursor -moz-grab
-      border-radius 2px
-    &.dragable:active
-      background #f0f0f0
-      cursor -webkit-grabbing
-      cursor -moz-grabbing
-      shadow 1
-      border-radius 2px
+    @media (min-device-width : 569px)
+      &.dragable:hover
+        background #f0f0f0
+        cursor -webkit-grab
+        cursor -moz-grab
+        border-radius 2px
+      &.dragable:active
+        background #f0f0f0
+        cursor -webkit-grabbing
+        cursor -moz-grabbing
+        shadow 1
+        border-radius 2px
+        
 
     .checkbox   
       width 30px
@@ -183,11 +185,11 @@ shadow(z-depth=1)
         padding 16px 12px
         float right
       clearfix()
-    &:hover
-      .buttons
-        display block
-        background #f0f0f0
-      //float right
+    @media (min-device-width: 569px)
+      &:hover
+        .buttons
+          display block
+          background #f0f0f0
 
 
 // button
@@ -235,6 +237,9 @@ shadow(z-depth=1)
     position fixed
     right 50px
     bottom 50px
+    @media (min-device-width: 320px) and (max-device-width : 568px)
+      right 10px
+      bottom 20px
     shadow 2
     z-index 3
     cursor pointer
