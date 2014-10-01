@@ -330,15 +330,23 @@ container()
 
   .nav-icon
     position fixed
-    font-size 24px
-    cursor pointer
-    width 24px
-    height 64px
-    line-height 64px
+    left 24px
+    @media (min-device-width: 320px) and (max-device-width : 568px)
+      left 16px
+    margin-left -12px
+    margin-right 20px
+    padding-top 8px
+    padding-bottom 8px
+    height 48px
+    @media (min-device-width: 320px) and (max-device-width : 568px)
+      padding-top 4px
+      padding-bottom 4px
 
   .title
     position absolute
-    left 60px
+    left 80px
+    @media (min-device-width: 320px) and (max-device-width : 568px)
+      left 72px
 
     typog-headline()
     color white
@@ -352,14 +360,17 @@ container()
       position fixed
       height 64px
       line-height 64px
+      @media (min-device-width: 320px) and (max-device-width : 568px)
+        height 56px
+        line-height 56px
       font-size 24px
   &.fixed
     position fixed
     height 64px
+    @media (min-device-width: 320px) and (max-device-width : 568px)
+      height 56px
 
 
-.app-bar2
-  height 256px
 // App bar
 #app-bar
   height 64px
