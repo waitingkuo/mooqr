@@ -1,5 +1,14 @@
 Template.task.events
 
+  'click .edit-task': (e) ->
+    Session.set 'currentTaskId', @_id
+    Blaze.render Template.editTaskDialog, document.body
+
+  'click .delete-task': (e) ->
+    Meteor.call 'deleteTask', @moduleId, @_id, (err, result) ->
+      if not err
+        Snackbars.popup 'Task has been deleted successfully'
+
   'click .checkbox': (e) ->
 
     planId = Session.get 'currentPlanId'
@@ -51,6 +60,15 @@ Template.task.helpers
 
 
 Template.task.rendered = ->
+  planId = Session.get('currentPlanId')
+  plan = Plans.findOne(planId)
+  if not Meteor.userId()?
+    return
+  if plan?.userId isnt Meteor.userId()
+    return
+
+  $('.task').addClass 'dragable'
+
   $( ".tasks" ).sortable
     items: ">.task"
     connectWith: ".tasks"

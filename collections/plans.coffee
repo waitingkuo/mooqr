@@ -281,9 +281,13 @@ Meteor.methods
 
     userId = user._id
 
-    Plans.update planId,
+    Plans.update {
+      _id: planId
+      userId: userId
+    }, {
       $pull:
         moduleIds: moduleId
+    }
 
     Modules.remove
       _id: moduleId,
@@ -324,8 +328,22 @@ Meteor.methods
     taskId
 
 
-  'updateTask': (taskId, taskName) ->
-    console.log 'woo'
+  'updateTask': (planId, moduleId, taskId, updateTask) ->
+
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login first")
+
+    userId = user._id
+
+    selector =
+      _id: taskId
+      userId: userId
+      planId: planId
+
+    Tasks.update selector, updateTask
+
 
   'moveTask': (taskId, fromModuleId, toModuleId, toTaskPos) ->
 
@@ -440,7 +458,25 @@ Meteor.methods
     
 
   'deleteTask': (moduleId, taskId) ->
-    console.log 'woo'
+
+    user = Meteor.user()
+
+    if !user
+      throw new Meteor.Error(401, "You need to login to post new stories")
+
+    Modules.update {
+      _id: moduleId
+      userId: user._id
+    }, {
+      $pull:
+        taskIds: taskId
+    }
+
+    Tasks.remove
+      _id: taskId
+      moduleId: moduleId
+      userId: user._id
+
   
 
 

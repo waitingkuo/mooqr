@@ -91,6 +91,28 @@ template(name="taskDialog")
           button.button.flat-button.cancel-button(type="button") cancel
 
 
+//
+// Edit Task Dialog
+//
+template(name="editTaskDialog") 
+  .material-dialog-background
+    .material-dialog
+      +autoForm id="editTaskDialog" collection="Tasks" doc=editingDoc
+        .dialog-title New Task
+
+        .dialog-content
+          +UI.dynamic template="inputText" data=taskName
+          +UI.dynamic template="inputText" data=taskLink
+          +UI.dynamic template="inputText" data=taskDescription
+
+        .dialog-actions
+          button.button.flat-button.save-button(type="submit") update
+          button.button.flat-button.cancel-button(type="button") cancel
+
+
+
+
+
 
 
 

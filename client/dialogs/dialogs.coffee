@@ -186,3 +186,42 @@ AutoForm.hooks
 
       @done()
       return false
+
+
+#
+# Edit Task 
+#
+Template.editTaskDialog.rendered = disableScrolling
+Template.editTaskDialog.destroyed = enableScrolling
+Template.editTaskDialog.helpers
+  taskName: ->
+    fieldName: 'taskName'
+  taskLink: ->
+    fieldName: 'taskLink'
+  taskDescription: ->
+    fieldName: 'taskDescription'
+  editingDoc: ->
+    Tasks.findOne 
+      _id: Session.get 'currentTaskId'
+      planId: Session.get 'currentPlanId'
+Template.editTaskDialog.events
+  'click .cancel-button': (e) ->
+    Blaze.remove Blaze.currentView
+AutoForm.hooks
+  editTaskDialog:
+    onSubmit: (insertDoc, updateDoc, currentDoc) ->
+
+      planId = currentDoc.planId
+      moduleId = currentDoc.moduleId
+      taskId = currentDoc._id
+      #taskName = updateDoc.$set.taskName
+
+      Meteor.call 'updateTask', planId, moduleId, taskId, updateDoc, (err, result) ->
+        if not err
+          Blaze.remove Blaze.getView($('.material-dialog')[0])
+        else 
+          console.log insertDoc, updateDoc, currentDoc
+          console.log err
+
+      @done()
+      return false

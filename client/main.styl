@@ -120,12 +120,28 @@ shadow(z-depth=1)
   list-style none
   padding-left 0
 
+
   .list-item + .list-item
-    margin-top 32px
+    //margin-top 16px
   .list-item
+    position relative
+    padding-top 10px
+    padding-bottom 26px
     clearfix()
     > *
       float left
+
+    &.dragable:hover
+      background #f0f0f0
+      cursor -webkit-grab
+      cursor -moz-grab
+      border-radius 2px
+    &.dragable:active
+      background #f0f0f0
+      cursor -webkit-grabbing
+      cursor -moz-grabbing
+      shadow 1
+      border-radius 2px
 
     .checkbox   
       width 30px
@@ -158,7 +174,20 @@ shadow(z-depth=1)
             color rgba(0, 0, 0, 0.3)
 
     .buttons
-      float right
+      position absolute
+      right 8px
+      display none
+      .icon-button
+        font-size 16px
+        height 16px
+        padding 16px 12px
+        float right
+      clearfix()
+    &:hover
+      .buttons
+        display block
+        background #f0f0f0
+      //float right
 
 
 // button
@@ -321,7 +350,7 @@ container()
     color white
   background primary
   shadow 2
-  z-index 2
+  z-index 5
   position relative
   box-sizing border-box
 
@@ -390,7 +419,7 @@ container()
     height 56px
   box-sizing border-box 
   shadow 2
-  z-index 2
+  z-index 5
   position fixed
 
   //padding 20px 24px 20px 24px
@@ -1014,7 +1043,7 @@ dialog(z-depth=2)
   padding-right 10px
   margin-left -10px
   box-sizing border-box
-  z-index 1
+  z-index 4
   shadow 2
 
 

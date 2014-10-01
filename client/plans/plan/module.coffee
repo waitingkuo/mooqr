@@ -14,13 +14,6 @@ Template.module.helpers
   moduleMenuData: ->
     items: [
       {
-        label: 'Add Task'
-        clickEvent: (e) =>
-          moduleId = @_id
-          Session.set 'currentModuleId', moduleId
-          Blaze.render Template.taskDialog, document.body
-      },
-      {
         label: 'Edit Module'
         clickEvent: (e) =>
           moduleId = @_id
@@ -33,6 +26,13 @@ Template.module.helpers
           planId = Session.get 'currentPlanId'
           moduleId = @_id
           Meteor.call 'deleteModule', planId, moduleId
+      }
+      {
+        label: 'Add Task'
+        clickEvent: (e) =>
+          moduleId = @_id
+          Session.set 'currentModuleId', moduleId
+          Blaze.render Template.taskDialog, document.body
       }
     ]
 

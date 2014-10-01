@@ -9,12 +9,18 @@ template(name="task")
         if taskLink
           a(href="{{taskLink}}", target="_blank")
             span {{taskName}} 
-            i.icon-material-launch
+            i.icon-material-launch(style="vertical-align: -10%;")
         else
           span {{taskName}}
+
       .task-description {{taskDescription}}
 
-    .buttons
+    if isOwner
+      .buttons
+        .icon-button.delete-task
+          .icon-material-delete
+        .icon-button.edit-task
+          .icon-material-create
 
 
   
