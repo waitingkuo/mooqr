@@ -34,6 +34,9 @@ Template.task.helpers
 
   checked: ->
 
+    if not UserPlans.findOne({planId: @planId})
+      return undefined
+
     taskId = @_id
     userId = Meteor.userId()
 

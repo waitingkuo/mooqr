@@ -5,12 +5,16 @@ template(name="task")
         input(type="checkbox", checked="{{checked}}")
         label
     .content(checked="{{checked}}")
-      .task-name {{taskName}}
+      .task-name 
+        if taskLink
+          a(href="{{taskLink}}", target="_blank")
+            span {{taskName}} 
+            i.icon-material-launch
+        else
+          span {{taskName}}
       .task-description {{taskDescription}}
 
     .buttons
-      if taskLink
-        a.icon-material-launch(href="{{taskLink}}", target="_blank")
 
 
   

@@ -134,10 +134,19 @@ shadow(z-depth=1)
 
     .content
       typog-list-title()
+      width calc(100% - 60px)
       .task-name
         line-height 30px
         font-size 16px
         font-weight 500
+        a
+          line-height 30px
+          height 30px
+          padding-right 5px
+          //color rgba(0, 0, 0, 0.2)
+          //color rgba(0, 0, 0, 0.2)
+          //&:hover
+          color rgba(0, 0, 0, 1)
       .task-description
         line-height 20px
         font-size 14px
@@ -145,17 +154,11 @@ shadow(z-depth=1)
         .task-name,
         .task-description
           color rgba(0, 0, 0, 0.3)
+          a
+            color rgba(0, 0, 0, 0.3)
 
     .buttons
       float right
-      a
-        line-height 30px
-        height 30px
-        padding-right 5px
-        //color rgba(0, 0, 0, 0.2)
-        color rgba(0, 0, 0, 0.2)
-        &:hover
-          color rgba(0, 0, 0, 1)
 
 
 // button
@@ -805,6 +808,7 @@ dialog(z-depth=2)
       height 64px
       line-height 64px
       padding-left 24px
+      font-weight medium
 
       // truncate
       text-overflow ellipsis
@@ -829,7 +833,7 @@ dialog(z-depth=2)
     divider()
 
   .card-content
-    padding 16px
+    padding 16px 24px
     font-size 14px
     font-weight regular
 
