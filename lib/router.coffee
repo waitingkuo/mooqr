@@ -2,8 +2,12 @@ Router.configure
   layoutTemplate: 'layout'
   waitOn: ->
     Meteor.subscribe 'userPlans'
-    mixpanel.init "696a8c98c250f36f66eb4aab990f79a0"
-      
+    if Meteor.isClient
+      if Meteor.settings?.public?.mixpanel?.token?
+        mixpanel.init Meteor.settings.public.mixpanel.token
+      else
+        mixpanel.init()
+        console.log 'mixpanel init failed'
 
 scrollTop = ->
   $(document).scrollTop(0)
