@@ -2,8 +2,12 @@ template(name="appBar")
   #app-bar
     .app-bar
       .nav-icon
-        .icon-button
-          i.icon-material-menu
+        if isArrowBack
+          .icon-button.arrow-back
+            i.icon-material-arrow-back
+        else
+          .icon-button.menu
+            i.icon-material-menu
       .title
         a(href="{{pathFor 'index'}}")  Mooqr
         
