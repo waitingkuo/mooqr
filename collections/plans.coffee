@@ -287,16 +287,11 @@ Meteor.methods
     }, {
       $pull:
         moduleIds: moduleId
-    }
-
-    Modules.remove
-      _id: moduleId,
-      planId: planId
-      userId: userId
-
-    #FIXME
-    
-    #should also delete tasks
+    }, ->
+      Modules.remove
+        _id: moduleId,
+        planId: planId
+        userId: userId
 
 
   'createTask': (planId, moduleId, insertTask) ->
@@ -470,12 +465,11 @@ Meteor.methods
     }, {
       $pull:
         taskIds: taskId
-    }
-
-    Tasks.remove
-      _id: taskId
-      moduleId: moduleId
-      userId: user._id
+    }, ->
+      Tasks.remove
+        _id: taskId
+        moduleId: moduleId
+        userId: user._id
 
   
 

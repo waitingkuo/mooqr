@@ -88,7 +88,8 @@ Template.searchPlans.helpers
   isSearching: ->
     not Session.equals 'searchWords', '.*'
   searchWords: -> 
-    Session.get 'searchWords'
+    _searchWords = Session.get 'searchWords'
+    _searchWords.replace "|", " "
 
 
 Template.searchPlans.events
