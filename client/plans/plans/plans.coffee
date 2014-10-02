@@ -89,7 +89,7 @@ Template.searchPlans.helpers
     not Session.equals 'searchWords', '.*'
   searchWords: -> 
     _searchWords = Session.get 'searchWords'
-    _searchWords.replace "|", " "
+    _searchWords.split("|").join(" ")
 
 
 Template.searchPlans.events
