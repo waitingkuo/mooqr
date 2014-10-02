@@ -6,7 +6,6 @@
 standard-app-packages
 waitingkuo:normalize
 mrt:moment
-mrt:ionicons
 mrt:numeral
 accounts-google
 accounts-ui
@@ -20,4 +19,3 @@ stylus
 alanning:roles
 c3h3dev:mixpanel-tracks
 mizzao:jquery-ui
-
