@@ -1,7 +1,6 @@
 Template.appBar.helpers
   isArrowBack: ->
     routeName = Router.current().route.name
-    console.log routeName
     if routeName is 'plan' 
       return true
     else
