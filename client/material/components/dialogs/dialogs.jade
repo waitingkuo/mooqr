@@ -6,9 +6,14 @@ template(name="inputText")
     +afFieldLabel name=fieldName template="plain"
 
 template(name="inputTextarea")
+  //.input-textarea
+  //  +afFieldInput name=fieldName template="plain" required=true rows=6
+  //  span.highlight
+  //  span.bar
+  //  +afFieldLabel name=fieldName template="plain"
+
   .input-textarea
-    textarea(required)
+    +afFieldInput name=fieldName template="plain" required=true rows=3
     span.highlight
     span.bar
-    label {{label}}
-
+    +afFieldLabel name=fieldName template="plain"

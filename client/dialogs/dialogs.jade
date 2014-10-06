@@ -10,7 +10,7 @@ template(name="planDialog")
         .dialog-content
           +UI.dynamic template="inputText" data=planName
           +UI.dynamic template="inputText" data=planLink
-          +UI.dynamic template="inputText" data=planDescription
+          +UI.dynamic template="inputTextarea" data=planDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") save

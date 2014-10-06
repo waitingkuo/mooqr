@@ -1,9 +1,13 @@
 Template.inputTextarea.events
 
-  'keyup': (e) ->
-    $area = $(e.target)
-    $area.css 'height', '0'
-    scrollHeight = $area.prop('scrollHeight') - 20
-    console.log scrollHeight
-    $area.css 'height', scrollHeight
+  #'keydown': (e) ->
+  #  $area = $(e.target)
+  #  height = parseInt $area.css('height')
+  #  scrollHeight = $area.prop 'scrollHeight'
+  #  console.log height, scrollHeight
+  #  if height+20+24 == scrollHeight
+  #    $area.css 'height', height+24
+  #    console.log 'setting'
 
+Template.inputTextarea.rendered = ->
+  $(@.find('textarea')).autosize()

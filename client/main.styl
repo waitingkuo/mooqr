@@ -594,13 +594,15 @@ dialog(z-depth=2)
   position relative
   & + .input-text
     margin-top 45px
+  & + .input-textarea
+    margin-top 45px
 
   input 
     font-size 18px
     padding 10px 10px 10px 5px
     display block
-    max-width 100%
-    width 300px
+    max-width calc(100% - 24px)
+    width 450px
     box-sizing border-box
     border none
     border-bottom 1px solid #757575
@@ -627,8 +629,8 @@ dialog(z-depth=2)
   .bar
     position relative
     display block
-    max-width 100%
-    width 300px
+    width 450px
+    max-width calc(100% - 24px)
     background blue
 
     &::before,
@@ -671,20 +673,26 @@ dialog(z-depth=2)
   }
 }
 
+
+
 .input-textarea
 
   position relative
-  margin-bottom 45px
+
+  & + .input-text
+    margin-bottom 45px
 
   textarea
+    box-sizing border-box
     overflow hidden
     resize none
-    height 24px
+    //height 48px
     line-height 24px
     font-size 18px
     padding 10px 10px 10px 5px
     display block
-    width 285px
+    width 450px
+    max-width calc(100% - 24px)
     border none
     border-bottom 1px solid #757575
     &:focus
@@ -710,7 +718,8 @@ dialog(z-depth=2)
   .bar
     position relative
     display block
-    width 300px
+    width 450px
+    max-width calc(100% - 24px)
     background blue
 
     &::before,
