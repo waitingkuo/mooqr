@@ -825,6 +825,22 @@ dialog(z-depth=2)
         height 34px
         line-height 34px
 
+#plans
+  .card-header
+    .title
+      text-overflow ellipsis
+      white-space nowrap
+      overflow hidden
+#plan
+  .card-header
+    height auto
+    .title
+      padding-top 20px
+      padding-bottom 20px
+      height auto
+      line-height 24px
+      width calc(100% - 56px)
+
 .card2
 
   card()
@@ -845,9 +861,9 @@ dialog(z-depth=2)
       font-weight medium
 
       // truncate
-      text-overflow ellipsis
-      white-space nowrap
-      overflow hidden
+      //text-overflow ellipsis
+      //white-space nowrap
+      //overflow hidden
 
     .menu
       float right
