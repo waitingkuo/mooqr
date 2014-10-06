@@ -1,0 +1,44 @@
+template(name="index")
+  #index
+    section.welcome
+      .container
+        .brand Mooqr
+        .short-description Your learning plans
+
+        .divider
+
+        .title Finish your online courses in the right way
+        .description Completion rates for the online courses are typically lower than 10%, with a steep participation drop starting in the first week. You need a better way to organize courses.
+        .login
+          +loginButtons
+        .image
+          .macbook
+            img.device(src="/images/macbook.png")
+            img.screenshot(src="/images/screenshot.png")
+          .iphone
+            img.device(src="/images/iphone.png")
+            img.screenshot(src="/images/screenshot-small.png")
+
+
+    section.features
+      .container
+
+        .feature
+          .title Manage your plans
+          .description There are too many courses to learn and we always forget some of them. Create your plans , then prioritize and finish them.
+
+        .feature
+          .title Sync your progress
+          .description We can't always learn continuosly. Sync your progress, make sure you are always in the right steps.
+
+        .feature
+          .title Follow trending plans
+          .description Experts have created effective plans. Follow trending plans and broaden your knownledge.
+
+        .feature
+          .title Interact with others
+          .description It's not safe to learn alone. Create study groups. Share plans and discuss with each other.
+
+    section.login
+      .container
+        +loginButtons

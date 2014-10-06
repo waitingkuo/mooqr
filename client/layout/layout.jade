@@ -2,6 +2,7 @@ template(name="layout")
 
   // should move to some other place
   +commonLayout
+  +userVoice
   +appBar
   +sideBar
   +yield
@@ -10,10 +11,9 @@ template(name="layout")
 template(name="indexLayout")
   +commonLayout
 
-  +appBar2
-  +sideBar
+  //+appBar2
+  //+sideBar
   +yield
 
 template(name="commonLayout")
   +snackbars
-  +userVoice
