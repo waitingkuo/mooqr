@@ -28,7 +28,7 @@ template(name="editPlanDialog")
         .dialog-content
           +UI.dynamic template="inputText" data=planName
           +UI.dynamic template="inputText" data=planLink
-          +UI.dynamic template="inputText" data=planDescription
+          +UI.dynamic template="inputTextarea" data=planDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") update
@@ -46,7 +46,7 @@ template(name="moduleDialog")
         .dialog-content
           +UI.dynamic template="inputText" data=moduleName
           +UI.dynamic template="inputText" data=moduleLink
-          +UI.dynamic template="inputText" data=moduleDescription
+          +UI.dynamic template="inputTextarea" data=moduleDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") save
@@ -65,7 +65,7 @@ template(name="editModuleDialog")
         .dialog-content
           +UI.dynamic template="inputText" data=moduleName
           +UI.dynamic template="inputText" data=moduleLink
-          +UI.dynamic template="inputText" data=moduleDescription
+          +UI.dynamic template="inputTextarea" data=moduleDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") update
@@ -84,7 +84,7 @@ template(name="taskDialog")
         .dialog-content
           +UI.dynamic template="inputText" data=taskName
           +UI.dynamic template="inputText" data=taskLink
-          +UI.dynamic template="inputText" data=taskDescription
+          +UI.dynamic template="inputTextarea" data=taskDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") save
@@ -103,7 +103,7 @@ template(name="editTaskDialog")
         .dialog-content
           +UI.dynamic template="inputText" data=taskName
           +UI.dynamic template="inputText" data=taskLink
-          +UI.dynamic template="inputText" data=taskDescription
+          +UI.dynamic template="inputTextarea" data=taskDescription
 
         .dialog-actions
           button.button.flat-button.save-button(type="submit") update
