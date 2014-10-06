@@ -22,7 +22,21 @@ Template.index.events
   'click .plan2': ->
     Router.go 'plan', {_id: @_id}
 
+Template.index.helpers
+  followers: ->
+    followers = 1
+
+    if @followers? and (not isNaN(@follower2)) and @followers >= 1
+      followers = @followers
+
+    followers2 = 0
+    if @followers2? and (not isNaN(@followers2)) and @followers2 >= 0
+      followers2 = @followers2
+
+    return followers + followers2
 
     
+  isContent: ->
+    @planLink? or @planDescription?
 
     
