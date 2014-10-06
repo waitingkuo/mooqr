@@ -13,6 +13,11 @@ Tasks.attachSchema new SimpleSchema
     regEx: SimpleSchema.RegEx.Url
     optional: true
 
+  youtubeVideoId:
+    type: String
+    label: 'Youtube Video ID'
+    optional: true
+
   taskDescription:
     type: String
     label: 'Task Description'
