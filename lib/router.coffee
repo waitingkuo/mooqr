@@ -4,7 +4,7 @@ Router.configure
   waitOn: ->
     Meteor.subscribe 'userPlans'
 
-Router.onBeforeAction('loading')
+#Router.onBeforeAction('loading')
 
 Router.onAfterAction ->
     Tracker.nonreactive =>
@@ -33,6 +33,17 @@ Meteor.startup ->
       onBeforeAction: ->
         if Meteor.user()
           Router.go 'plans'
+      data:
+        plans: ->
+          Plans.find({
+            deleted: false
+          },{
+            limit: 5
+            sort:
+              featured: -1
+          })
+      waitOn: ->
+        Meteor.subscribe 'featuredPlans'
 
       onAfterAction: ->
         user = Meteor.user()
@@ -54,10 +65,10 @@ Meteor.startup ->
       data: ->
         userId = Meteor.userId()
 
+
         userPlanIds = UserPlans.find({
           userId: userId
         }).map (userPlan) -> userPlan.planId
-
 
 
         searchWords = Session.get("searchWords")
