@@ -73,6 +73,15 @@ Meteor.publish 'userTasks', (planId) ->
     userId: userId
     planId: planId
 
+
+Meteor.publish 'featuredPlans', () ->
+  Plans.find({
+    deleted: false
+  },{
+    limit: 3
+    sort:
+      featured: -1
+  })
     
 Meteor.publish 'allPlans', () ->
   Plans.find()

@@ -39,6 +39,30 @@ template(name="index")
           .title Interact with others
           .description It's not safe to learn alone. Create study groups. Share plans and discuss with each other.
 
+    section.plans
+      .container
+        .section-title Featured Plans
+        each plans
+          .plan2.card2
+            .card-header
+              .title {{planName}}
+            .card-divider
+
+            if isContent
+              .card-content 
+                .plan-link
+                  a(href="{{planLink}}", target="_blank") {{planLink}}
+                .plan-description {{planDescription}}
+              .card-divider
+
+            .card-footer 
+              span {{followers}} Followers
+              .buttons
+                .button.raised-button go
+          
+
     section.login
       .container
         +loginButtons
+
+

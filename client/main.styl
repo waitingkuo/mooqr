@@ -908,7 +908,26 @@ dialog(z-depth=2)
           text-align center
           font-size 21px
 
+  section.plans
+    padding-top 50px
+    padding-bottom 50px
+    .plan2
+      shadow 2
+      cursor pointer
+
+    .section-title
+      font-size 32px
+      text-align center
+      font-weight 500
+      margin-bottom 30px
+    .plan2 + .plan2
+      margin-top 30px
+    background rgba(0, 0, 0, 0.1)
+
+
+
   section.login
+    background rgba(0, 0, 0, 0.1)
     text-align center
     padding-bottom 50px
 
@@ -987,6 +1006,8 @@ dialog(z-depth=2)
       text-overflow ellipsis
       white-space nowrap
       overflow hidden
+
+#index,
 #plan
   .card-header
     height auto
@@ -1121,6 +1142,7 @@ dialog(z-depth=2)
     border-top divider
 
   
+#index,
 #plan
   .container
     container()
