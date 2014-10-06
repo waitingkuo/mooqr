@@ -45,6 +45,8 @@ Meteor.publish 'otherPlans', (notPlanIds, searchWords) ->
     }
   }, {
     limit: 25
+    sort:
+      featured: -1
   })
 
 

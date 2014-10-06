@@ -71,6 +71,11 @@ Plans.attachSchema new SimpleSchema
     optional: true
     defaultValue: 0
 
+  featured:
+    type: Number
+    optional: true
+    defaultValue: 0
+
 Meteor.methods
 
   'createPlan': (insertPlan) ->
@@ -510,3 +515,25 @@ Meteor.methods
     Plans.update planId,
       $set:
         followers2: num
+
+  'getFeatured': (planId) ->
+
+    user = Meteor.user()
+    if !user or user.profile.email != 'waitingkuo0527@gmail.com'
+      throw new Meteor.Error(401, "You need to login to post new stories")
+   
+    plan = Plans.findOne planId
+    if plan
+      if Meteor.isClient
+        console.log plan.featured
+      return plan.featured
+
+  'setFeatured': (planId, num) ->
+
+    user = Meteor.user()
+    if !user or user.profile.email != 'waitingkuo0527@gmail.com'
+      throw new Meteor.Error(401, "You need to login to post new stories")
+   
+    Plans.update planId,
+      $set:
+        featured: num

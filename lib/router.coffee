@@ -84,9 +84,13 @@ Meteor.startup ->
               _id: {$in: followedPlanIds}
               deleted: false
           otherPlans: ->
-            Plans.find
+            Plans.find({
               _id: {$nin: userPlanIds}
               deleted: false
+            },{
+              sort:
+                featured: -1
+            })
         }
 
 
