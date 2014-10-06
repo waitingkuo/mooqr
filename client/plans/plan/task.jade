@@ -14,6 +14,8 @@ template(name="task")
           span {{taskName}}
 
       .task-description {{taskDescription}}
+      if hasYoutubeVideo
+        video.video-js.vjs-default-skin(src="",controls,width="30%",data-setup='{ "techOrder": ["youtube"], "src": "http://www.youtube.com/embed/{{youtubeVideoId}}" }')
 
     if isOwner
       .buttons

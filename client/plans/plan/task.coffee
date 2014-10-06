@@ -34,6 +34,11 @@ Template.task.events
 
 
 Template.task.helpers
+  hasYoutubeVideo: ->
+    if @youtubeVideoId
+      true
+    else
+      false
   
   isOwner: ->
     Meteor.userId() is @userId
