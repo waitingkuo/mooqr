@@ -33,11 +33,16 @@ Template.progress.helpers
 Template.plan.helpers
 
   followers: ->
-    if not @followers?
-      return 1
-    if @followers < 1
-      return 1
-    return @followers
+    followers = 1
+
+    if @followers? Number.isInteger(@follower2) and @followers >= 1
+      followers = @followers
+
+    followers2 = 0
+    if @followers2? and Number.isInteger(@followers2) and @followers2 >= 0
+      followers2 = @followers2
+
+    return followers + followers2
 
   isOwner: () ->
     Meteor.userId() is @userId

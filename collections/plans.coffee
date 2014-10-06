@@ -66,6 +66,11 @@ Plans.attachSchema new SimpleSchema
     optional: true
     defaultValue: 1
 
+  followers2:
+    type: Number
+    optional: true
+    defaultValue: 0
+
 Meteor.methods
 
   'createPlan': (insertPlan) ->
@@ -483,5 +488,25 @@ Meteor.methods
         userId: user._id
 
   
+  # ADMIN
+  'getFollowers2': (planId) ->
 
+    user = Meteor.user()
+    if !user or user.profile.email != 'waitingkuo0527@gmail.com'
+      throw new Meteor.Error(401, "You need to login to post new stories")
+   
+    plan = Plans.findOne planId
+    if plan
+      if Meteor.isClient
+        console.log plan.followers2
+      return plan.followers2
 
+  'setFollowers2': (planId, num) ->
+
+    user = Meteor.user()
+    if !user or user.profile.email != 'waitingkuo0527@gmail.com'
+      throw new Meteor.Error(401, "You need to login to post new stories")
+   
+    Plans.update planId,
+      $set:
+        followers2: num
