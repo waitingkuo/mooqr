@@ -61,6 +61,11 @@ Plans.attachSchema new SimpleSchema
     optional: true
     defaultValue: false
 
+  followers:
+    type: Number
+    optional: true
+    defaultValue: 1
+
 Meteor.methods
 
   'createPlan': (insertPlan) ->
@@ -152,7 +157,10 @@ Meteor.methods
       isOwner: false
 
     if not UserPlans.findOne {userId: userId, planId: planId}
-      UserPlans.insert userPlan
+      UserPlans.insert userPlan, ->
+        Plans.update planId,
+          $inc:
+            followers: 1
       returnObj = 
         status: "success"
         mixpanel: "[test][UserFollowPlan] planId:" + planId
@@ -171,7 +179,10 @@ Meteor.methods
 
     userId = user._id
     
-    UserPlans.remove {userId: userId, planId: planId}
+    UserPlans.remove {userId: userId, planId: planId}, ->
+      Plans.update planId,
+        $inc:
+          followers: -1
     returnObj = 
         status: "success"
         mixpanel: "[test][UserUnfollowPlan] planId:" + planId

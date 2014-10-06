@@ -29,8 +29,9 @@ template(name="plan")
             .plan-description {{planDescription}}
           .card-divider
 
-        unless isOwner
-          .card-footer 
+        .card-footer 
+          span {{followers}} Followers
+          unless isOwner
             .buttons
               if isFollowed
                 .button.raised-button.unfollow unfollow

@@ -20,6 +20,7 @@ check@1.0.1
 coffeescript@1.0.3
 ctl-helper@1.0.3
 ctl@1.0.1
+datariot:ganalytics@0.2.0
 ddp@1.0.9
 deps@1.0.4
 ejson@1.0.3
