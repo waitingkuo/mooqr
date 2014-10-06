@@ -38,7 +38,7 @@ Meteor.startup ->
           Plans.find({
             deleted: false
           },{
-            limit: 5
+            limit: 3
             sort:
               featured: -1
           })
