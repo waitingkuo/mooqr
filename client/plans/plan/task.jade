@@ -15,7 +15,9 @@ template(name="task")
 
       .task-description {{taskDescription}}
       if hasYoutubeVideo
-        video.video-js.vjs-default-skin(src="",controls,width="30%",data-setup='{ "techOrder": ["youtube"], "src": "http://www.youtube.com/embed/{{youtubeVideoId}}" }')
+        //- video.video-js.vjs-default-skin(src="",controls,width="30%",data-setup='{ "techOrder": ["youtube"], "src": "http://www.youtube.com/embed/{{youtubeVideoId}}" }')
+        iframe(type="text/html",width="350",height="225",src="http://www.youtube.com/embed/{{youtubeVideoId}}",frameborder="0",allowfullscreen, style="margin-bottom: -4px")
+
 
     if isOwner
       .buttons
