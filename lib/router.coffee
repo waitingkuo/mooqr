@@ -35,9 +35,9 @@ Meteor.startup ->
           mixpanel.people.set
             "$email": user.profile.email
       
-          mixpanel.track "[test][UserView] index redirectTo plans"
+          mixpanel.track "[UserView] index redirectTo plans"
         else
-          mixpanel.track "[test][AnonymousUserView] index"
+          mixpanel.track "[AnonymousUserView] index"
 
 
 
@@ -93,9 +93,9 @@ Meteor.startup ->
       onAfterAction: -> 
         user = Meteor.user()
         if user
-          mixpanel.track "[test][UserView] plans"
+          mixpanel.track "[UserView] plans"
         else
-          mixpanel.track "[test][AnonymousUserView] plans"
+          mixpanel.track "[AnonymousUserView] plans"
 
 
 
@@ -117,9 +117,9 @@ Meteor.startup ->
         planId = @params._id
         user = Meteor.user()
         if user
-          mixpanel.track "[test][UserViewPlan] planId:" + planId
+          mixpanel.track "[UserViewPlan] planId:" + planId
         else
-          mixpanel.track "[test][AnonymousUserViewPlan] planId:" + planId
+          mixpanel.track "[AnonymousUserViewPlan] planId:" + planId
       
 
 
