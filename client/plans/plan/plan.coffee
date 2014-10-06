@@ -35,7 +35,7 @@ Template.plan.helpers
   followers: ->
     followers = 1
 
-    if @followers? and (not isNaN(@follower2)) and @followers >= 1
+    if @followers? and (not isNaN(@followers)) and @followers >= 1
       followers = @followers
 
     followers2 = 0
