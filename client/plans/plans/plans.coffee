@@ -41,6 +41,7 @@ Template.plans.events
         if result.status is "success"
           Snackbars.popup "Follow plan successfully!"
           mixpanel.track result.mixpanel
+          GAnalytics.event 'plan', 'follow', planId
 
       else
         if err.error is 401
@@ -64,6 +65,8 @@ Template.plans.events
         if result.status is "success"
           Snackbars.popup "Unfollow plan successfully!"
           mixpanel.track result.mixpanel
+          GAnalytics.event 'plan', 'unfollow', planId
+
 
       else
         if err.error is 401

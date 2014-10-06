@@ -33,6 +33,7 @@ AutoForm.hooks
           Blaze.remove Blaze.getView($('.material-dialog')[0])
 
           planId = result
+          GAnalytics.event 'plan', 'create', planId
           Router.go 'plan', {_id: planId}
 
           

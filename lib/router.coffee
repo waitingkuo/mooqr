@@ -1,7 +1,14 @@
 Router.configure
   layoutTemplate: 'layout'
+  loadingTemplate: 'loading'
   waitOn: ->
     Meteor.subscribe 'userPlans'
+
+Router.onBeforeAction('loading')
+
+Router.onAfterAction ->
+    Tracker.nonreactive =>
+      GAnalytics.pageview @path
 
 scrollTop = ->
   $(document).scrollTop(0)
